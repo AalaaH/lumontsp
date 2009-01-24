@@ -55,6 +55,7 @@ namespace TravellingSalesman.Business_Logic
                 debug("curD=" + curD.ToString());
                 debug("newD=" + newD.ToString());
 
+                
                 if (curD < newD)
                 {
                     if (Accept(newD, curD, temp)) // if we accept we swap nodes
