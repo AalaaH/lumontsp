@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using TravellingSalesman.Business_Logic;
 using TravellingSalesman.Data_Logic;
+using TravellingSalesman.Presentation;
 
 namespace TravellingSalesman
 {
@@ -20,13 +21,11 @@ namespace TravellingSalesman
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Debug(MathHelper.getRandom());
-            Debug(MathHelper.getRandom());
-            Debug(MathHelper.getRandom());
-            Debug(MathHelper.getRandom());
-            Debug(MathHelper.getRandom());
-            Debug(MathHelper.getRandom());
-            Debug(MathHelper.getRandom());
+            
+            this.Controls.Add(digraph);
+
+
+            
         }
         private void Debug(object msg)
         {
