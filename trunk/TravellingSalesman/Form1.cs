@@ -58,9 +58,17 @@ namespace TravellingSalesman
             digraph.DrawCities(Init.instance.GenerateProblem(50, digraph.Width, digraph.Height, digraph.Margin.All));
         }
 
+        List<City> cities = null;
+
         private void butGenerateProblem_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            digraph.Clear();
+            cities = Init.instance.GenerateProblem(5, digraph.Width, digraph.Height, digraph.Margin.All);
+            list.SetData(cities);
+            digraph.DrawCities(cities);
 
+            Cursor.Current = Cursors.Default;
         }
 
 
@@ -73,9 +81,7 @@ namespace TravellingSalesman
             digraph.DrawCities(cities);
 
             Cursor.Current = Cursors.Default;
-
             Solver.instance.Report = RefreshCities;
-
             Solver.instance.BasicFeasible(ref cities);
         }
     }
