@@ -16,7 +16,6 @@ namespace TravellingSalesman.Presentation
 
 
         #region Data members
-        int offset = 5;
 
         #endregion
 
@@ -50,15 +49,15 @@ namespace TravellingSalesman.Presentation
             while (i < (cities.Count - 1))
             {
                 DrawPath(cities[i], cities[i + 1]);                     
-                dc.DrawEllipse(gPen, cities[i].X - 2 + offset, cities[i].Y - 2 + offset, 5, 5);
+                dc.DrawEllipse(gPen, cities[i].X - 2, cities[i].Y - 2, 5, 5);
                 if (i == 0) 
-                    dc.DrawEllipse(new Pen(Color.DarkGreen, 3), cities[i].X - 2 + offset, cities[i].Y - 2 + offset, 5, 5);
+                    dc.DrawEllipse(new Pen(Color.DarkGreen, 3), cities[i].X - 2 , cities[i].Y - 2 , 5, 5);
 
                 dc.DrawString(cities[i].Name, fArial, Brushes.Black, new PointF(cities[i].X, cities[i].Y));
                 i++;
             }
 
-            dc.DrawEllipse(gPen, cities[cities.Count-1].X - 2 + offset, cities[cities.Count-1].Y - 2 + offset, 5, 5);     
+            dc.DrawEllipse(gPen, cities[cities.Count-1].X - 2 , cities[cities.Count-1].Y - 2 , 5, 5);     
         }
         
         private void DrawPath(City startCity, City endCity)
@@ -66,7 +65,7 @@ namespace TravellingSalesman.Presentation
             Pen lGPen = new Pen(Color.LightGray,1);
             Graphics dc = CreateGraphics();
             dc.SmoothingMode = SmoothingMode.HighQuality;
-            dc.DrawLine(lGPen, new Point(startCity.X + offset, startCity.Y + offset), new Point(endCity.X + offset, endCity.Y + offset));
+            dc.DrawLine(lGPen, new Point(startCity.X , startCity.Y ), new Point(endCity.X , endCity.Y ));
         }
 
     }
