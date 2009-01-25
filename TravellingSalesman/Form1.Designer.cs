@@ -34,9 +34,9 @@
             // 
             // butSimAnnealing
             // 
-            this.butSimAnnealing.Location = new System.Drawing.Point(90, 186);
+            this.butSimAnnealing.Location = new System.Drawing.Point(180, 12);
             this.butSimAnnealing.Name = "butSimAnnealing";
-            this.butSimAnnealing.Size = new System.Drawing.Size(161, 23);
+            this.butSimAnnealing.Size = new System.Drawing.Size(166, 35);
             this.butSimAnnealing.TabIndex = 0;
             this.butSimAnnealing.Text = "Simulated Annealing";
             this.butSimAnnealing.UseVisualStyleBackColor = true;
@@ -44,7 +44,7 @@
             // 
             // butDiagraph
             // 
-            this.butDiagraph.Location = new System.Drawing.Point(98, 137);
+            this.butDiagraph.Location = new System.Drawing.Point(12, 12);
             this.butDiagraph.Name = "butDiagraph";
             this.butDiagraph.Size = new System.Drawing.Size(152, 35);
             this.butDiagraph.TabIndex = 1;
@@ -52,14 +52,14 @@
             this.butDiagraph.UseVisualStyleBackColor = true;
             this.butDiagraph.Click += new System.EventHandler(this.butDiagraph_Click);
             // 
-            // Form1
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(825, 580);
             this.Controls.Add(this.butDiagraph);
             this.Controls.Add(this.butSimAnnealing);
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
