@@ -70,6 +70,12 @@
     <Compile Include="Presentation\Digraph.Designer.cs">
       <DependentUpon>Digraph.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\GridList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentation\GridList.Designer.cs">
+      <DependentUpon>GridList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -78,6 +84,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Digraph.resx">
       <DependentUpon>Digraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\GridList.resx">
+      <DependentUpon>GridList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
