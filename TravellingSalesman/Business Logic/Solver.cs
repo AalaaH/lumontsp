@@ -219,7 +219,7 @@ namespace TravellingSalesman.Business_Logic
         }
 
 
-
+        
         public void BasicFeasible(ref List<City> cities)
         {
             double curDistance = 0;
@@ -237,6 +237,7 @@ namespace TravellingSalesman.Business_Logic
 
                     if (newDistance < curDistance)
                     {
+                        Report.Invoke(cities);
                         curDistance = newDistance;
                         toSwap = x;                       
                     }
@@ -249,7 +250,7 @@ namespace TravellingSalesman.Business_Logic
                     }
 
                     // if we want to report current list;
-                    Report.Invoke(cities);
+                    // Report.Invoke(cities);
                 }
             }
         }
