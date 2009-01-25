@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 using TravellingSalesman.Data_Logic;
 
 namespace TravellingSalesman.Presentation
@@ -16,7 +17,6 @@ namespace TravellingSalesman.Presentation
 
         #region Data members
         int offset = 5;
-
 
         #endregion
 
@@ -33,17 +33,6 @@ namespace TravellingSalesman.Presentation
             
         }
 
-        /// <summary>
-        /// constructor
-        /// </summary>
-        /// <param name="width">width</param>
-        /// <param name="height">height</param>
-        public Digraph(int width, int height)
-        {
-            InitializeComponent();
-            components = new System.ComponentModel.Container();
-            Size = new System.Drawing.Size(width + (offset * 2), height + (offset * 2));
-        }
 
         public void Clear()
         {
@@ -55,16 +44,17 @@ namespace TravellingSalesman.Presentation
         {
             Graphics dc = CreateGraphics();
             Pen gPen = new Pen(Color.DarkOrange, 3);
-            Font f = new Font("Arial", 8);
+            Font fArial = new Font("Arial", 8);
 
             int i=0;
             while (i < (cities.Count - 1))
             {
                 DrawPath(cities[i], cities[i + 1]);                     
                 dc.DrawEllipse(gPen, cities[i].X - 2 + offset, cities[i].Y - 2 + offset, 5, 5);
-                if (i == 0) dc.DrawEllipse(new Pen(Color.DarkGreen, 3), cities[i].X - 2 + offset, cities[i].Y - 2 + offset, 5, 5);
+                if (i == 0) 
+                    dc.DrawEllipse(new Pen(Color.DarkGreen, 3), cities[i].X - 2 + offset, cities[i].Y - 2 + offset, 5, 5);
 
-                dc.DrawString(cities[i].Name, f, Brushes.Black, new PointF(cities[i].X, cities[i].Y));
+                dc.DrawString(cities[i].Name, fArial, Brushes.Black, new PointF(cities[i].X, cities[i].Y));
                 i++;
             }
 
@@ -75,7 +65,7 @@ namespace TravellingSalesman.Presentation
         {
             Pen lGPen = new Pen(Color.LightGray,1);
             Graphics dc = CreateGraphics();
-            
+            dc.SmoothingMode = SmoothingMode.HighQuality;
             dc.DrawLine(lGPen, new Point(startCity.X + offset, startCity.Y + offset), new Point(endCity.X + offset, endCity.Y + offset));
         }
 
