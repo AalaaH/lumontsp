@@ -233,7 +233,8 @@ namespace TravellingSalesman.Business_Logic
                 for (int x = i+2; x < cities.Count; x++)
                 {
                     double newDistance = MathHelper.getDistance(cities[i], cities[x]);
-                    
+                    debug(cities[i].Name+":"+cities[x].Name+" - n=" + newDistance + ": o=" + curDistance);
+
                     if (newDistance < curDistance)
                     {
                         curDistance = newDistance;

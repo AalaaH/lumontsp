@@ -38,8 +38,8 @@ namespace TravellingSalesman
             for (int i = 0; i < numCities; i++)
             {
                 City ct = new City();
-                ct.X = rd.Next(0, maxX);
-                ct.Y = rd.Next(0, maxY);
+                ct.X = rd.Next(10, maxX);
+                ct.Y = rd.Next(10, maxY);
                 ct.Name = GetName(i);
 
                 if (i > 0)
