@@ -33,16 +33,18 @@
             this.butDiagraph = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butGenerateProblem = new System.Windows.Forms.ToolStripButton();
-            this.digraph1 = new TravellingSalesman.Presentation.Digraph();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.dgvCities = new TravellingSalesman.Presentation.GridList();
             this.toolStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // butSimAnnealing
             // 
-            this.butSimAnnealing.Location = new System.Drawing.Point(234, 26);
+            this.butSimAnnealing.Location = new System.Drawing.Point(409, 3);
             this.butSimAnnealing.Name = "butSimAnnealing";
-            this.butSimAnnealing.Size = new System.Drawing.Size(166, 35);
+            this.butSimAnnealing.Size = new System.Drawing.Size(120, 25);
             this.butSimAnnealing.TabIndex = 0;
             this.butSimAnnealing.Text = "Simulated Annealing";
             this.butSimAnnealing.UseVisualStyleBackColor = true;
@@ -50,9 +52,9 @@
             // 
             // butDiagraph
             // 
-            this.butDiagraph.Location = new System.Drawing.Point(426, 26);
+            this.butDiagraph.Location = new System.Drawing.Point(535, 3);
             this.butDiagraph.Name = "butDiagraph";
-            this.butDiagraph.Size = new System.Drawing.Size(152, 35);
+            this.butDiagraph.Size = new System.Drawing.Size(84, 25);
             this.butDiagraph.TabIndex = 1;
             this.butDiagraph.Text = "Diagraph";
             this.butDiagraph.UseVisualStyleBackColor = true;
@@ -77,19 +79,32 @@
             this.butGenerateProblem.Text = "Generate";
             this.butGenerateProblem.Click += new System.EventHandler(this.butGenerateProblem_Click);
             // 
-            // digraph1
+            // panel1
             // 
-            this.digraph1.BackColor = System.Drawing.Color.White;
-            this.digraph1.Location = new System.Drawing.Point(281, 67);
-            this.digraph1.Name = "digraph1";
-            this.digraph1.Size = new System.Drawing.Size(475, 327);
-            this.digraph1.TabIndex = 4;
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.butSimAnnealing);
+            this.panel1.Controls.Add(this.butDiagraph);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(194, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(631, 34);
+            this.panel1.TabIndex = 5;
+            // 
+            // digraph
+            // 
+            this.digraph.BackColor = System.Drawing.Color.White;
+            this.digraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.digraph.Location = new System.Drawing.Point(194, 25);
+            this.digraph.Name = "digraph";
+            this.digraph.Size = new System.Drawing.Size(631, 555);
+            this.digraph.TabIndex = 4;
             // 
             // dgvCities
             // 
-            this.dgvCities.Location = new System.Drawing.Point(81, 67);
+            this.dgvCities.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgvCities.Location = new System.Drawing.Point(0, 25);
             this.dgvCities.Name = "dgvCities";
-            this.dgvCities.Size = new System.Drawing.Size(194, 525);
+            this.dgvCities.Size = new System.Drawing.Size(194, 555);
             this.dgvCities.TabIndex = 2;
             // 
             // frmMain
@@ -97,16 +112,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 580);
-            this.Controls.Add(this.digraph1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.digraph);
             this.Controls.Add(this.dgvCities);
-            this.Controls.Add(this.butDiagraph);
-            this.Controls.Add(this.butSimAnnealing);
+            this.Controls.Add(this.toolStrip1);
             this.Name = "frmMain";
             this.Text = "Travelling Salesman";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,7 +134,8 @@
         private TravellingSalesman.Presentation.GridList dgvCities;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton butGenerateProblem;
-        private TravellingSalesman.Presentation.Digraph digraph1;
+        private TravellingSalesman.Presentation.Digraph digraph;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

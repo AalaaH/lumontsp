@@ -40,13 +40,7 @@ namespace TravellingSalesman
         {
             int min = 0;
             int max = 500;
-            Digraph dg = new Digraph(max, max);
-            dg.Location = new Point(0, 50);
-            dg.Dock = DockStyle.Bottom;
-            Controls.Add(dg);
-            dg.DrawCities(Init.instance.GenerateProblem(50, min, max));
-
-
+            digraph.DrawCities(Init.instance.GenerateProblem(500, min, max));
         }
 
         private void butGenerateProblem_Click(object sender, EventArgs e)
