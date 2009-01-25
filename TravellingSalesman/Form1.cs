@@ -33,7 +33,7 @@ namespace TravellingSalesman
         {
             Cursor.Current = Cursors.WaitCursor;
             digraph.Clear();
-            List<City> cities = Init.instance.GenerateProblem(50, digraph.Width, digraph.Height);
+            List<City> cities = Init.instance.GenerateProblem(50, digraph.Width-10, digraph.Height-10);
             list.SetData(cities);
             digraph.DrawCities(cities);
 
@@ -45,7 +45,7 @@ namespace TravellingSalesman
 
         private void RefreshCities(List<City> cities)
         {
-            Console.WriteLine("RefreshDigraph report");
+            // Console.WriteLine("RefreshDigraph report");
             digraph.Clear();
             digraph.DrawCities(cities);
             list.SetData(cities);
@@ -55,7 +55,7 @@ namespace TravellingSalesman
         private void butDiagraph_Click(object sender, EventArgs e)
         {
             digraph.Clear();
-            digraph.DrawCities(Init.instance.GenerateProblem(50, digraph.Width, digraph.Height));
+            digraph.DrawCities(Init.instance.GenerateProblem(50, digraph.Width-10, digraph.Height-10));
         }
 
         private void butGenerateProblem_Click(object sender, EventArgs e)
@@ -66,9 +66,9 @@ namespace TravellingSalesman
 
         private void butBasicFeasible_Click(object sender, EventArgs e)
         {
-                        Cursor.Current = Cursors.WaitCursor;
+            Cursor.Current = Cursors.WaitCursor;
             digraph.Clear();
-            List<City> cities = Init.instance.GenerateProblem(10, digraph.Width, digraph.Height);
+            List<City> cities = Init.instance.GenerateProblem(5, digraph.Width, digraph.Height);
             list.SetData(cities);
             digraph.DrawCities(cities);
 
