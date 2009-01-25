@@ -36,9 +36,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
+            this.butBasicFeasible = new System.Windows.Forms.Button();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.list = new TravellingSalesman.Presentation.GridList();
-            this.butBasicFeasible = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -111,12 +111,25 @@
             this.statusObjective.Tag = "";
             this.statusObjective.Text = "Total Distance: ";
             // 
+            // butBasicFeasible
+            // 
+            this.butBasicFeasible.Location = new System.Drawing.Point(228, 3);
+            this.butBasicFeasible.Name = "butBasicFeasible";
+            this.butBasicFeasible.Size = new System.Drawing.Size(75, 23);
+            this.butBasicFeasible.TabIndex = 2;
+            this.butBasicFeasible.Text = "BFS";
+            this.butBasicFeasible.UseVisualStyleBackColor = true;
+            this.butBasicFeasible.Click += new System.EventHandler(this.butBasicFeasible_Click);
+            // 
             // digraph
             // 
             this.digraph.BackColor = System.Drawing.Color.White;
+            this.digraph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.digraph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.digraph.Location = new System.Drawing.Point(242, 59);
+            this.digraph.Margin = new System.Windows.Forms.Padding(30);
             this.digraph.Name = "digraph";
+            this.digraph.Padding = new System.Windows.Forms.Padding(20);
             this.digraph.Size = new System.Drawing.Size(583, 499);
             this.digraph.TabIndex = 4;
             // 
@@ -127,16 +140,6 @@
             this.list.Name = "list";
             this.list.Size = new System.Drawing.Size(242, 499);
             this.list.TabIndex = 2;
-            // 
-            // butBasicFeasible
-            // 
-            this.butBasicFeasible.Location = new System.Drawing.Point(228, 3);
-            this.butBasicFeasible.Name = "butBasicFeasible";
-            this.butBasicFeasible.Size = new System.Drawing.Size(75, 23);
-            this.butBasicFeasible.TabIndex = 2;
-            this.butBasicFeasible.Text = "BFS";
-            this.butBasicFeasible.UseVisualStyleBackColor = true;
-            this.butBasicFeasible.Click += new System.EventHandler(this.butBasicFeasible_Click);
             // 
             // frmMain
             // 
