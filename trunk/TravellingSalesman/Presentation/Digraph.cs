@@ -39,6 +39,8 @@ namespace TravellingSalesman.Presentation
             Size = new System.Drawing.Size(width, height);
             BackColor = Color.White;
         }
+
+
         
         public void DrawCities(List<City> cities)
         {
@@ -62,7 +64,8 @@ namespace TravellingSalesman.Presentation
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Graphics dc = CreateGraphics();
+
+            Graphics dc = e.Graphics;
             Pen GreenPen = new Pen(Color.Green, 2);
 
             dc.DrawEllipse(GreenPen, 0, 0, 10, 10);

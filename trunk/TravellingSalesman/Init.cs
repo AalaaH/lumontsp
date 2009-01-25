@@ -31,16 +31,19 @@ namespace TravellingSalesman
             // AAA
             // AAB
             // AAC
-            char[] chars = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
+            char[] chars = { 'A', 'B', 'C', 'D', 'E' };
+                               //'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'};
             Random rd = new Random();
 
-            int c = 0;
+            
             List<City> cities = new List<City>();
             for (int i = 0; i < numCities; i++)
             {
                 City ct = new City();
                 ct.X = rd.Next(min, max);
                 ct.Y = rd.Next(min, max);
+                //Console.WriteLine(ct.X + ", " + ct.Y);
+                GetName(chars, i);
                 
                 //ct.Name = chars[c];
 
@@ -52,6 +55,14 @@ namespace TravellingSalesman
         private void GetName(char[] c, int x)
         {
             //return new char[];
+            int sq = Convert.ToInt32(Math.Pow(c.Length,2));
+            int g = (Convert.ToInt32(Math.Floor((double)x / sq)))%c.Length;
+            int h = (Convert.ToInt32(Math.Floor((double)(x)/c.Length)))%c.Length;
+            int i = x%c.Length;
+
+
+            Console.WriteLine(x + ": " + g + ":" + h + ":" + i + " - " + c[g].ToString() + c[h].ToString() + c[i].ToString());
+            
         }
     }
 }
