@@ -29,7 +29,7 @@ namespace TravellingSalesman
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <returns></returns>
-        public List<City> GenerateProblem(int numCities, int maxX, int maxY)
+        public List<City> GenerateProblem(int numCities, int maxX, int maxY, int offset)
         {
             
             Random rd = new Random();
@@ -38,8 +38,8 @@ namespace TravellingSalesman
             for (int i = 0; i < numCities; i++)
             {
                 City ct = new City();
-                ct.X = rd.Next(0, maxX);
-                ct.Y = rd.Next(0, maxY);
+                ct.X = rd.Next(0+offset, maxX-offset);
+                ct.Y = rd.Next(0+offset, maxY-offset);
                 ct.Name = GetName(i);
 
                 if (i > 0)

@@ -127,9 +127,8 @@
             this.digraph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.digraph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.digraph.Location = new System.Drawing.Point(242, 59);
-            this.digraph.Margin = new System.Windows.Forms.Padding(30);
+            this.digraph.Margin = new System.Windows.Forms.Padding(50);
             this.digraph.Name = "digraph";
-            this.digraph.Padding = new System.Windows.Forms.Padding(20);
             this.digraph.Size = new System.Drawing.Size(583, 499);
             this.digraph.TabIndex = 4;
             // 

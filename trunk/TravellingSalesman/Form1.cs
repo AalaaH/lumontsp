@@ -33,7 +33,7 @@ namespace TravellingSalesman
         {
             Cursor.Current = Cursors.WaitCursor;
             digraph.Clear();
-            List<City> cities = Init.instance.GenerateProblem(50, digraph.Width-10, digraph.Height-10);
+            List<City> cities = Init.instance.GenerateProblem(50, digraph.Width, digraph.Height, digraph.Margin.All);
             list.SetData(cities);
             digraph.DrawCities(cities);
 
@@ -55,7 +55,7 @@ namespace TravellingSalesman
         private void butDiagraph_Click(object sender, EventArgs e)
         {
             digraph.Clear();
-            digraph.DrawCities(Init.instance.GenerateProblem(50, digraph.Width-10, digraph.Height-10));
+            digraph.DrawCities(Init.instance.GenerateProblem(50, digraph.Width, digraph.Height, digraph.Margin.All));
         }
 
         private void butGenerateProblem_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace TravellingSalesman
         {
             Cursor.Current = Cursors.WaitCursor;
             digraph.Clear();
-            List<City> cities = Init.instance.GenerateProblem(5, digraph.Width, digraph.Height);
+            List<City> cities = Init.instance.GenerateProblem(5, digraph.Width, digraph.Height, digraph.Margin.All);
             list.SetData(cities);
             digraph.DrawCities(cities);
 
