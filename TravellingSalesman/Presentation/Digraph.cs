@@ -40,22 +40,24 @@ namespace TravellingSalesman.Presentation
             BackColor = Color.White;
         }
         
-        public void DrawCities(List<City> Cities)
+        public void DrawCities(List<City> cities)
         {
-         /*   int i=0;   
-            while there is more cites + 1
+            int i=0;
+            while (i <= (cities.Count - 1))
             {
-                DrawPath(cities[i],cities[i+1]);
+                Graphics dc = CreateGraphics();
+                Pen GPen = new Pen(Color.Green);
+                dc.DrawEllipse(GPen, cities[i].X, cities[i].Y, 1, 1);
+                DrawPath(cities[i], cities[i + 1]);
                 i++;
             }
-          */
         }
         
-        private void DrawPath(City StartCity, City EndCity)
+        private void DrawPath(City startCity, City endCity)
         {
-            /*
-             * DrawArc(StartCity,EndCity);
-             */
+            Pen LGPen = new Pen(Color.LightGray);
+            Graphics dc = CreateGraphics();
+            dc.DrawLine(LGPen, new Point(startCity.X, startCity.Y), new Point(endCity.X, endCity.Y));
         }
 
         protected override void OnPaint(PaintEventArgs e)
