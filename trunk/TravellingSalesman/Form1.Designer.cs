@@ -112,10 +112,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 580);
-            this.Controls.Add(this.panel1);
+            
             this.Controls.Add(this.digraph);
             this.Controls.Add(this.dgvCities);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
+            
             this.Name = "frmMain";
             this.Text = "Travelling Salesman";
             this.Load += new System.EventHandler(this.Form1_Load);

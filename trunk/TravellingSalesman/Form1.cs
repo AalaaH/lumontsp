@@ -31,16 +31,17 @@ namespace TravellingSalesman
 
         private void butSimAnnealing_Click(object sender, EventArgs e)
         {
-            List<City> cities = Init.instance.GenerateProblem(1000, 0, 100);
+            
+            List<City> cities = Init.instance.GenerateProblem(50, 0, 100);
             dgvCities.SetData(cities);
-            //Solver.instance.SimAnneal(ref cities, 20, 0.5);
+            Solver.instance.SimAnneal(ref cities, 20, 0.5);
         }
 
         private void butDiagraph_Click(object sender, EventArgs e)
         {
             int min = 0;
             int max = 500;
-            digraph.DrawCities(Init.instance.GenerateProblem(500, min, max));
+            digraph.DrawCities(Init.instance.GenerateProblem(50, min, max));
         }
 
         private void butGenerateProblem_Click(object sender, EventArgs e)
