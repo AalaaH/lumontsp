@@ -9,8 +9,35 @@ namespace TravellingSalesman.Business_Logic
     public sealed class Solver
     {
 
+        #region Reporting
+
+        public delegate void ReportSolution(List<City> cities);
+        private ReportSolution _reportSolution = null;
+
+        public ReportSolution Report
+        {
+            get {
+                if (_reportSolution == null)
+                {
+                    _reportSolution = this.DummyReport;                   
+                }
+                return _reportSolution;
+            }
+            set { _reportSolution = value; }
+        }
+
+        public void DummyReport(List<City> cts)
+        {
+            Console.WriteLine("dummy report");
+        }
+
+        #endregion
+
         #region Simulated Annealing
         private static Solver _solver = null;
+
+
+
         
         private void debug(string msg)
         {
@@ -151,11 +178,30 @@ namespace TravellingSalesman.Business_Logic
         {
         }
 
-        public void BasicFeasible(ref List<City> cities)
-        {
 
+
+        public void BasicFeasible(ref List<City> cities)
+        {            
+            for (int i = 0; i < cities.Count-1; i++)
+            {
+                double curDistance = MathHelper.getDistance(cities[i], cities[i + 1]);
+
+                for (int x = i+2; x < cities.Count; x++)
+                {
+                    double newDistance = MathHelper.getDistance(cities[i], cities[x]);
+
+                    if (newDistance < curDistance)
+                    {
+                        //SwapNodes(ref cities[i], ref cities[x]);
+                    }
+
+                    // if we want to report current list;
+                    Report.Invoke(cities);
+                }
+            }
         }
 
+        
 
     }
 }

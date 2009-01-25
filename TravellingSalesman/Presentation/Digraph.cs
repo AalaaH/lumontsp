@@ -27,6 +27,12 @@ namespace TravellingSalesman.Presentation
 
         #endregion
 
+        public Digraph()
+        {
+            InitializeComponent();
+            BackColor = Color.White;
+        }
+
         /// <summary>
         /// constructor
         /// </summary>

@@ -13,7 +13,7 @@ namespace TravellingSalesman.Business_Logic
     {
         public static double getDistance(City c1, City c2)
         {
-            double d = Math.Sqrt((c1.X - c2.X)^2 + (c1.Y - c2.Y)^2);
+            double d = Math.Sqrt(Math.Pow((c1.X - c2.X),2) + Math.Pow((c1.Y - c2.Y),2));
             return d;
         }
 
