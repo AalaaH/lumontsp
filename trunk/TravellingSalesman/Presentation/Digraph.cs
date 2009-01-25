@@ -15,7 +15,7 @@ namespace TravellingSalesman.Presentation
 
 
         #region Data members
-
+        int offset = 5;
 
 
         #endregion
@@ -36,7 +36,7 @@ namespace TravellingSalesman.Presentation
         {
             InitializeComponent();
             components = new System.ComponentModel.Container();
-            Size = new System.Drawing.Size(width, height);
+            Size = new System.Drawing.Size(width + (offset * 2), height + (offset * 2));
             BackColor = Color.White; 
         }
 
@@ -45,22 +45,23 @@ namespace TravellingSalesman.Presentation
         public void DrawCities(List<City> cities)
         {
             Graphics dc = CreateGraphics();
-            Pen gPen = new Pen(Color.Green);
+            Pen gPen = new Pen(Color.Green,3);
 
             int i=0;
             while (i < (cities.Count - 1))
             {
-                dc.DrawEllipse(gPen, cities[i].X, cities[i].Y, 1, 1);
                 DrawPath(cities[i], cities[i + 1]);
+                dc.DrawEllipse(gPen, cities[i].X - 2 + offset, cities[i].Y - 2 + offset, 5, 5);
+                
                 i++;
             }
         }
         
         private void DrawPath(City startCity, City endCity)
         {
-            Pen lGPen = new Pen(Color.LightGray);
+            Pen lGPen = new Pen(Color.LightGray,3);
             Graphics dc = CreateGraphics();
-            dc.DrawLine(lGPen, new Point(startCity.X, startCity.Y), new Point(endCity.X, endCity.Y));
+            dc.DrawLine(lGPen, new Point(startCity.X + offset, startCity.Y + offset), new Point(endCity.X + offset, endCity.Y + offset));
         }
 
     }
