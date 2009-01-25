@@ -39,6 +39,7 @@ namespace TravellingSalesman
         {
             Digraph dg = new Digraph(200, 200);
             Controls.Add(dg);
+            dg.DrawCities(Init.instance.GenerateProblem(50, 0, 100));
 
 
         }
