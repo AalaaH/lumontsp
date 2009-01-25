@@ -34,15 +34,19 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butGenerateProblem = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
-            this.dgvCities = new TravellingSalesman.Presentation.GridList();
+            this.list = new TravellingSalesman.Presentation.GridList();
+            this.butBasicFeasible = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // butSimAnnealing
             // 
-            this.butSimAnnealing.Location = new System.Drawing.Point(409, 3);
+            this.butSimAnnealing.Location = new System.Drawing.Point(12, 28);
             this.butSimAnnealing.Name = "butSimAnnealing";
             this.butSimAnnealing.Size = new System.Drawing.Size(120, 25);
             this.butSimAnnealing.TabIndex = 0;
@@ -52,7 +56,7 @@
             // 
             // butDiagraph
             // 
-            this.butDiagraph.Location = new System.Drawing.Point(535, 3);
+            this.butDiagraph.Location = new System.Drawing.Point(138, 3);
             this.butDiagraph.Name = "butDiagraph";
             this.butDiagraph.Size = new System.Drawing.Size(84, 25);
             this.butDiagraph.TabIndex = 1;
@@ -82,48 +86,77 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.butSimAnnealing);
+            this.panel1.Controls.Add(this.butBasicFeasible);
             this.panel1.Controls.Add(this.butDiagraph);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(194, 25);
+            this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(631, 34);
+            this.panel1.Size = new System.Drawing.Size(825, 34);
             this.panel1.TabIndex = 5;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusObjective});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 558);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(825, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusObjective
+            // 
+            this.statusObjective.Name = "statusObjective";
+            this.statusObjective.Size = new System.Drawing.Size(82, 17);
+            this.statusObjective.Tag = "";
+            this.statusObjective.Text = "Total Distance: ";
             // 
             // digraph
             // 
             this.digraph.BackColor = System.Drawing.Color.White;
             this.digraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.digraph.Location = new System.Drawing.Point(194, 25);
+            this.digraph.Location = new System.Drawing.Point(242, 59);
             this.digraph.Name = "digraph";
-            this.digraph.Size = new System.Drawing.Size(631, 555);
+            this.digraph.Size = new System.Drawing.Size(583, 499);
             this.digraph.TabIndex = 4;
             // 
-            // dgvCities
+            // list
             // 
-            this.dgvCities.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dgvCities.Location = new System.Drawing.Point(0, 25);
-            this.dgvCities.Name = "dgvCities";
-            this.dgvCities.Size = new System.Drawing.Size(194, 555);
-            this.dgvCities.TabIndex = 2;
+            this.list.Dock = System.Windows.Forms.DockStyle.Left;
+            this.list.Location = new System.Drawing.Point(0, 59);
+            this.list.Name = "list";
+            this.list.Size = new System.Drawing.Size(242, 499);
+            this.list.TabIndex = 2;
+            // 
+            // butBasicFeasible
+            // 
+            this.butBasicFeasible.Location = new System.Drawing.Point(228, 3);
+            this.butBasicFeasible.Name = "butBasicFeasible";
+            this.butBasicFeasible.Size = new System.Drawing.Size(75, 23);
+            this.butBasicFeasible.TabIndex = 2;
+            this.butBasicFeasible.Text = "BFS";
+            this.butBasicFeasible.UseVisualStyleBackColor = true;
+            this.butBasicFeasible.Click += new System.EventHandler(this.butBasicFeasible_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 580);
-            
+            this.Controls.Add(this.butSimAnnealing);
             this.Controls.Add(this.digraph);
-            this.Controls.Add(this.dgvCities);
+            this.Controls.Add(this.list);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
-            
+            this.Controls.Add(this.statusStrip1);
             this.Name = "frmMain";
             this.Text = "Travelling Salesman";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,11 +166,14 @@
 
         private System.Windows.Forms.Button butSimAnnealing;
         private System.Windows.Forms.Button butDiagraph;
-        private TravellingSalesman.Presentation.GridList dgvCities;
+        private TravellingSalesman.Presentation.GridList list;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton butGenerateProblem;
         private TravellingSalesman.Presentation.Digraph digraph;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel statusObjective;
+        private System.Windows.Forms.Button butBasicFeasible;
     }
 }
 

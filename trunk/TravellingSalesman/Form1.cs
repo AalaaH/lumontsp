@@ -31,22 +31,52 @@ namespace TravellingSalesman
 
         private void butSimAnnealing_Click(object sender, EventArgs e)
         {
-            
-            List<City> cities = Init.instance.GenerateProblem(50, 0, 100);
-            dgvCities.SetData(cities);
-            Solver.instance.SimAnneal(ref cities, 20, 0.5);
+            Cursor.Current = Cursors.WaitCursor;
+            digraph.Clear();
+            List<City> cities = Init.instance.GenerateProblem(50, digraph.Width, digraph.Height);
+            list.SetData(cities);
+            digraph.DrawCities(cities);
+
+            Cursor.Current = Cursors.Default;
+
+            Solver.instance.Report = RefreshCities;
+            Solver.instance.SimAnneal(ref cities, 1200, 0.001);        
+        }
+
+        private void RefreshCities(List<City> cities)
+        {
+            Console.WriteLine("RefreshDigraph report");
+            digraph.Clear();
+            digraph.DrawCities(cities);
+            list.SetData(cities);
+            statusObjective.Text = "Total Distance: " + Solver.instance.TotalDistance(cities);
         }
 
         private void butDiagraph_Click(object sender, EventArgs e)
         {
-            int min = 0;
-            int max = 500;
-            digraph.DrawCities(Init.instance.GenerateProblem(50, min, max));
+            digraph.Clear();
+            digraph.DrawCities(Init.instance.GenerateProblem(50, digraph.Width, digraph.Height));
         }
 
         private void butGenerateProblem_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void butBasicFeasible_Click(object sender, EventArgs e)
+        {
+                        Cursor.Current = Cursors.WaitCursor;
+            digraph.Clear();
+            List<City> cities = Init.instance.GenerateProblem(10, digraph.Width, digraph.Height);
+            list.SetData(cities);
+            digraph.DrawCities(cities);
+
+            Cursor.Current = Cursors.Default;
+
+            Solver.instance.Report = RefreshCities;
+
+            Solver.instance.BasicFeasible(ref cities);
         }
     }
 }
