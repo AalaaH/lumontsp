@@ -43,7 +43,7 @@ namespace TravellingSalesman.Presentation
 
         
         public void DrawCities(List<City> cities)
-        {
+        {            
             int i=0;
             while (i < (cities.Count - 1))
             {
