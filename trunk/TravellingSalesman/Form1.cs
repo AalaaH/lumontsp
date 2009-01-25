@@ -21,10 +21,7 @@ namespace TravellingSalesman
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            this.Controls.Add(digraph);
-
-
+                       
             
         }
         private void Debug(object msg)
