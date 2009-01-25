@@ -37,7 +37,7 @@ namespace TravellingSalesman.Presentation
             InitializeComponent();
             components = new System.ComponentModel.Container();
             Size = new System.Drawing.Size(width, height);
-            BackColor = Color.White;
+            BackColor = Color.White; 
         }
 
 
