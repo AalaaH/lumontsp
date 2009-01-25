@@ -142,9 +142,10 @@ namespace TravellingSalesman.Business_Logic
 
             for (int i = 0; i < cities.Count-1; i++)
             {
-                distance += Math.Sqrt((cities[i].X - cities[i].X) ^ 2 + (cities[i+1].Y - cities[i+1].Y) ^ 2);
-                    
-                    //MathHelper.getDistance(cities[i], cities[i + 1]);
+                double d1 = Math.Pow(cities[i].X - cities[i].X, 2);
+                double d2 = Math.Pow(cities[i+1].X - cities[i+1].X, 2);
+
+                distance += Math.Sqrt(d1 + d2);
             }
             return distance;
         }
