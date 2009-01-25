@@ -31,8 +31,9 @@ namespace TravellingSalesman
 
         private void butSimAnnealing_Click(object sender, EventArgs e)
         {
-            List<City> cities = Init.instance.GenerateProblem(2000, 0, 100);
-            Solver.instance.SimAnneal(ref cities, 20, 0.5);
+            List<City> cities = Init.instance.GenerateProblem(1000, 0, 100);
+            dgvCities.SetData(cities);
+            //Solver.instance.SimAnneal(ref cities, 20, 0.5);
         }
 
         private void butDiagraph_Click(object sender, EventArgs e)
@@ -45,6 +46,11 @@ namespace TravellingSalesman
             Controls.Add(dg);
             dg.DrawCities(Init.instance.GenerateProblem(50, min, max));
 
+
+        }
+
+        private void butGenerateProblem_Click(object sender, EventArgs e)
+        {
 
         }
     }
