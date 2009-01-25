@@ -62,17 +62,18 @@ namespace TravellingSalesman.Business_Logic
         /// <param name="delta"></param>
         public void SimAnneal(ref List<City> cities, double temp, double delta)
         {
+            double curD = TotalDistance(cities);
+
             int numCities = cities.Count;
 
             int i = 0;
             while (temp > 0.01)
             {                                
                 Random rd = new Random();
-                int r1 = rd.Next(0, numCities);
-                int r2 = rd.Next(0, numCities);
-
-                double curD = Distance(cities);
-                double newD = this.TrySwapNodesDistance(cities[r1], cities[r2]);
+                int r1 = rd.Next(1, numCities-1);
+                int r2 = rd.Next(1, numCities-1);
+                
+                double newD = GetNewDistance(cities, r1, r2, curD);
 
                 // change temperature
                 temp -= delta;
@@ -82,14 +83,29 @@ namespace TravellingSalesman.Business_Logic
                 debug("curD=" + curD.ToString());
                 debug("newD=" + newD.ToString());
 
+
                 
-                if (curD < newD)
+                if (newD < curD) // if new solution better we accept
                 {
-                    if (Accept(newD, curD, temp)) // if we accept we swap nodes
+                    Console.WriteLine("accept");
+                    City tempCity = cities[r1];
+                    cities[r1] = cities[r2];
+                    cities[r2] = tempCity;
+                    curD = newD;
+                    Report.Invoke(cities);
+                }
+
+                else
+                {
+                    if (Accept(newD, curD, temp)) // calc prob to accept increase
                     {
+                        Console.WriteLine("accept");
                         City tempCity = cities[r1];
                         cities[r1] = cities[r2];
                         cities[r2] = tempCity;
+                        curD = newD;
+                        Report.Invoke(cities);
+
                     }
                 }
                 i++;
@@ -103,8 +119,8 @@ namespace TravellingSalesman.Business_Logic
         private void SwapNodes(ref List<City> cts)
         {
             Random rd = new Random();
-            int r1 = rd.Next(0, cts.Count);
-            int r2 = rd.Next(0, cts.Count);
+            int r1 = rd.Next(1, cts.Count);
+            int r2 = rd.Next(1, cts.Count);
 
             City temp = cts[r2];
             cts[r2] = cts[r1];
@@ -112,9 +128,35 @@ namespace TravellingSalesman.Business_Logic
         }
 
 
-        private double TrySwapNodesDistance(City c1, City c2)
+        private double GetDistBeforeAfterCity(List<City> cts, int c)
         {
-            return new double();
+            double d = 0;
+            if (c > 0)
+                d += MathHelper.getDistance(cts[c], cts[c - 1]);
+            if (c < cts.Count)
+                d += MathHelper.getDistance(cts[c], cts[c + 1]);
+            return d;
+        }
+
+
+        private double GetNewDistance(List<City> cts, int c1, int c2, double curDistance)
+        {
+            // to min calculations we get new distance by
+            // curDistance - (old distances involving c1 an c2) + (new distances involving c1 and c2)
+            // this improves performance for networks with large numbers of nodes
+
+            if ((c2 - c1) > 2)
+            {
+                double dis = curDistance - GetDistBeforeAfterCity(cts, c1) - GetDistBeforeAfterCity(cts, c2); // distance - the two cities
+
+                // swap cities
+                City temp = cts[c1];
+                cts[c1] = cts[c2];
+                cts[c2] = temp;
+
+                return dis + GetDistBeforeAfterCity(cts, c1) + GetDistBeforeAfterCity(cts, c2); // total distance after swap
+            } 
+            return TotalDistance(cts);
         }
 
         
@@ -136,16 +178,13 @@ namespace TravellingSalesman.Business_Logic
         /// </summary>
         /// <param name="cities"></param>
         /// <returns></returns>
-        private double Distance(List<City> cities)
+        public double TotalDistance(List<City> cities)
         {
             double distance = 0.00;
 
             for (int i = 0; i < cities.Count-1; i++)
             {
-                double d1 = Math.Pow(cities[i].X - cities[i].X, 2);
-                double d2 = Math.Pow(cities[i+1].X - cities[i+1].X, 2);
-
-                distance += Math.Sqrt(d1 + d2);
+                distance+= MathHelper.getDistance(cities[i], cities[i + 1]);
             }
             return distance;
         }
@@ -182,18 +221,30 @@ namespace TravellingSalesman.Business_Logic
 
 
         public void BasicFeasible(ref List<City> cities)
-        {            
+        {
+            double curDistance = 0;
+            int toSwap = -1;
+
             for (int i = 0; i < cities.Count-1; i++)
             {
-                double curDistance = MathHelper.getDistance(cities[i], cities[i + 1]);
+                curDistance = MathHelper.getDistance(cities[i], cities[i + 1]);
+                toSwap = -1;
 
                 for (int x = i+2; x < cities.Count; x++)
                 {
                     double newDistance = MathHelper.getDistance(cities[i], cities[x]);
-
+                    
                     if (newDistance < curDistance)
                     {
-                        //SwapNodes(ref cities[i], ref cities[x]);
+                        curDistance = newDistance;
+                        toSwap = x;                       
+                    }
+
+                    if (toSwap > 0)
+                    {
+                        City temp = cities[i];
+                        cities[i] = cities[toSwap];
+                        cities[toSwap] = temp; 
                     }
 
                     // if we want to report current list;

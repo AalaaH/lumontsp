@@ -19,6 +19,7 @@ namespace TravellingSalesman.Presentation
 
         public void SetData(List<City> cities)
         {
+            this.dgvList.DataSource = null;
             this.dgvList.DataSource = cities;
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TravellingSalesman.Data_Logic;
+using TravellingSalesman.Business_Logic;
 
 namespace TravellingSalesman
 {
@@ -19,6 +20,8 @@ namespace TravellingSalesman
 
         }
 
+        private static char[] chars = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S' };
+
         /// <summary>
         /// Will generate a list of random cities
         /// </summary>
@@ -26,37 +29,37 @@ namespace TravellingSalesman
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <returns></returns>
-        public List<City> GenerateProblem(int numCities, int min, int max)
+        public List<City> GenerateProblem(int numCities, int maxX, int maxY)
         {
-            // AAA
-            // AAB
-            // AAC
-            char[] chars = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'};
+            
             Random rd = new Random();
-
             
             List<City> cities = new List<City>();
             for (int i = 0; i < numCities; i++)
             {
                 City ct = new City();
-                ct.X = rd.Next(min, max);
-                ct.Y = rd.Next(min, max);
-                ct.Name = GetName(chars, i);
-                
+                ct.X = rd.Next(0, maxX);
+                ct.Y = rd.Next(0, maxY);
+                ct.Name = GetName(i);
+
+                if (i > 0)
+                {
+                    ct.Distance = MathHelper.getDistance(ct, cities[i - 1]);
+                }
                 cities.Add(ct);
             }
             return cities;
         }
 
-        private string GetName(char[] c, int x)
+        private string GetName(int x)
         {
-            //return new char[];
-            int sq = Convert.ToInt32(Math.Pow(c.Length,2));
-            int g = (Convert.ToInt32(Math.Floor((double)x / sq)))%c.Length;
-            int h = (Convert.ToInt32(Math.Floor((double)(x)/c.Length)))%c.Length;
-            int i = x%c.Length;
+            //return new name;
+            int sq = Convert.ToInt32(Math.Pow(chars.Length,2));
+            int g = (Convert.ToInt32(Math.Floor((double)x / sq))) % chars.Length;
+            int h = (Convert.ToInt32(Math.Floor((double)(x) / chars.Length))) % chars.Length;
+            int i = x % chars.Length;
 
-            return c[g].ToString() + c[h].ToString() + c[i].ToString();
+            return chars[g].ToString() + chars[h].ToString() + chars[i].ToString();
 
         }
     }

@@ -13,8 +13,11 @@ namespace TravellingSalesman.Business_Logic
     {
         public static double getDistance(City c1, City c2)
         {
-            double d = Math.Sqrt(Math.Pow((c1.X - c2.X),2) + Math.Pow((c1.Y - c2.Y),2));
-            return d;
+
+            double d1 = Math.Pow((double)c1.X - (double)c2.X, 2);
+            double d2 = Math.Pow((double)c1.Y - (double)c2.Y, 2);
+
+            return Math.Sqrt(d1 + d2);
         }
 
         static Random rd = new Random();
