@@ -12,9 +12,9 @@ using TravellingSalesman.Presentation;
 
 namespace TravellingSalesman
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace TravellingSalesman
 
         private void butSimAnnealing_Click(object sender, EventArgs e)
         {
-            List<City> cities = Init.instance.GenerateProblem(50, 0, 100);
+            List<City> cities = Init.instance.GenerateProblem(2000, 0, 100);
             Solver.instance.SimAnneal(ref cities, 20, 0.5);
         }
 
@@ -39,6 +39,8 @@ namespace TravellingSalesman
         {
             Digraph dg = new Digraph(200, 200);
             Controls.Add(dg);
+
+
         }
     }
 }
