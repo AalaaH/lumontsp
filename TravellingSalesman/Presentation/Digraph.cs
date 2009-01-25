@@ -58,7 +58,6 @@ namespace TravellingSalesman.Presentation
             {
                 DrawPath(cities[i], cities[i + 1]);
                 dc.DrawEllipse(gPen, cities[i].X - 2 + offset, cities[i].Y - 2 + offset, 5, 5);
-                
                 i++;
             }
         }
