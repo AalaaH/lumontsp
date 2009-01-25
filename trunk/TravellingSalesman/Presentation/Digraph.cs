@@ -43,13 +43,14 @@ namespace TravellingSalesman.Presentation
 
         
         public void DrawCities(List<City> cities)
-        {            
+        {
+            Graphics dc = CreateGraphics();
+            Pen gPen = new Pen(Color.Green);
+
             int i=0;
             while (i < (cities.Count - 1))
             {
-                Graphics dc = CreateGraphics();
-                Pen GPen = new Pen(Color.Green);
-                dc.DrawEllipse(GPen, cities[i].X, cities[i].Y, 1, 1);
+                dc.DrawEllipse(gPen, cities[i].X, cities[i].Y, 1, 1);
                 DrawPath(cities[i], cities[i + 1]);
                 i++;
             }
@@ -57,9 +58,9 @@ namespace TravellingSalesman.Presentation
         
         private void DrawPath(City startCity, City endCity)
         {
-            Pen LGPen = new Pen(Color.LightGray);
+            Pen lGPen = new Pen(Color.LightGray);
             Graphics dc = CreateGraphics();
-            dc.DrawLine(LGPen, new Point(startCity.X, startCity.Y), new Point(endCity.X, endCity.Y));
+            dc.DrawLine(lGPen, new Point(startCity.X, startCity.Y), new Point(endCity.X, endCity.Y));
         }
 
     }
