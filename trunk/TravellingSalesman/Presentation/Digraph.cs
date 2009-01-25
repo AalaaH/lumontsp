@@ -45,7 +45,7 @@ namespace TravellingSalesman.Presentation
         public void DrawCities(List<City> cities)
         {
             int i=0;
-            while (i <= (cities.Count - 1))
+            while (i < (cities.Count - 1))
             {
                 Graphics dc = CreateGraphics();
                 Pen GPen = new Pen(Color.Green);
@@ -62,13 +62,5 @@ namespace TravellingSalesman.Presentation
             dc.DrawLine(LGPen, new Point(startCity.X, startCity.Y), new Point(endCity.X, endCity.Y));
         }
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-
-            Graphics dc = e.Graphics;
-            Pen GreenPen = new Pen(Color.Green, 2);
-
-            dc.DrawEllipse(GreenPen, 0, 0, 10, 10);
-        }
     }
 }
