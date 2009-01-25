@@ -21,7 +21,7 @@ namespace TravellingSalesman
 
         private void Form1_Load(object sender, EventArgs e)
         {
-                       
+            
             
         }
         private void Debug(object msg)
@@ -33,6 +33,12 @@ namespace TravellingSalesman
         {
             List<City> cities = Init.instance.GenerateProblem(50, 0, 100);
             Solver.instance.SimAnneal(ref cities, 20, 0.5);
+        }
+
+        private void butDiagraph_Click(object sender, EventArgs e)
+        {
+            Digraph dg = new Digraph(200, 200);
+            Controls.Add(dg);
         }
     }
 }
