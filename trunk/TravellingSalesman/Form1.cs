@@ -78,7 +78,7 @@ namespace TravellingSalesman
         {
             // cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
             Solver.instance.Report = RefreshCities;
-            Solver.instance.BasicFeasible(ref cities);
+            Solver.instance.BasicFeasible(ref cities, 0);
         }
 
         private void butSimBFS_Click(object sender, EventArgs e)

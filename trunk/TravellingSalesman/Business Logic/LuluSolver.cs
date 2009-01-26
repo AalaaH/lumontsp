@@ -13,10 +13,10 @@ namespace TravellingSalesman.Business_Logic
        
 
 
-        public void BasicFeasible(ref List<City> cities)
+        public void BasicFeasible(ref List<City> cities, int start)
         {
             Timer.instance.Start();
-            for (int i = 0; i < cities.Count - 1; i++)
+            for (int i = start; i < cities.Count - 1; i++)
             {
                 double curDistance = MathHelper.getDistance(cities[i], cities[i + 1]);
                 int toSwap = -1;
@@ -45,5 +45,75 @@ namespace TravellingSalesman.Business_Logic
             Console.WriteLine("Timer Lu:" + Timer.instance.elapsedTime()); 
             Report(cities);
         }
+
+
+
+        /// <summary>
+        /// Solves using Simulated Annealing
+        /// </summary>
+        /// <param name="cities">list of cities</param>
+        /// <param name="temp">temperature</param>
+        /// <param name="delta"></param>
+        public void SimAnneal(ref List<City> cities, double temp, double delta)
+        {
+            int numCities = cities.Count;
+
+            int MAX_ITER = 200;
+            int lBound = 3, uBound = numCities + 1;
+
+            double curD = TotalDistance(cities);
+
+
+            for (int i = 0; i < MAX_ITER; i++)
+            {
+                Random rd = new Random();
+                int r1 = rd.Next(1, numCities - 1);
+                int r2 = rd.Next(1, numCities - 1);
+
+                double newD = GetNewDistance(cities, r1, r2, curD);
+
+                // change temperature
+                temp -= delta;
+                Debug.WriteLine("");
+                Debug.WriteLine("iter=" + i.ToString());
+                Debug.WriteLine("temp=" + temp.ToString());
+                Debug.WriteLine("curD=" + curD.ToString());
+                Debug.WriteLine("newD=" + newD.ToString());
+
+                for (int c = 0; c < cities.Count; c++)
+                {
+                    // find random c1 and c2 to swap
+
+                    r1 = rd.Next(lBound, uBound);
+                    if (newD < curD) // if new solution better we accept
+                    {
+                        Console.WriteLine("accept");
+                        City tempCity = cities[r1];
+                        cities[r1] = cities[r2];
+                        cities[r2] = tempCity;
+                        curD = newD;
+                        Report.Invoke(cities);
+                    }
+
+                    else
+                    {
+                        if (Accept(newD, curD, temp)) // calc prob to accept increase
+                        {
+                            Console.WriteLine("accept");
+                            City tempCity = cities[r1];
+                            cities[r1] = cities[r2];
+                            cities[r2] = tempCity;
+                            curD = newD;
+                            Report.Invoke(cities);
+
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+
     }
 }
