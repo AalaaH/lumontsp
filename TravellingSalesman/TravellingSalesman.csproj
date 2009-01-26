@@ -51,7 +51,6 @@
     <Compile Include="Business Logic\MathHelper.cs" />
     <Compile Include="Business Logic\Solver.cs" />
     <Compile Include="Data Logic\City.cs" />
-    <Compile Include="Debug.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

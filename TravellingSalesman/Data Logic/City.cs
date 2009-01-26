@@ -50,7 +50,16 @@ namespace TravellingSalesman.Data_Logic
             set { _cost = value; }
         }
 
+        public City()
+        {
+        }
 
+        public City(int x, int y, string name)
+        {
+            X = x;
+            Y = y;
+            Name = name; 
+        }
 
 
     }
