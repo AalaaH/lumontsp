@@ -30,6 +30,8 @@ namespace TravellingSalesman.Presentation
         public Digraph()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint |
+ControlStyles.UserPaint, true);
             
         }
 
@@ -47,23 +49,19 @@ namespace TravellingSalesman.Presentation
         }
 
         
-        private void DrawCities()
+        private void DrawCities(Graphics dc)
         {
-            Graphics dc = CreateGraphics();
             Font fArial = new Font("Arial", 8);
 
-            Debug.WriteLine(Cities);
             if (Cities != null)
             {
-                Debug.WriteLine(Cities.Count);
-                
                 Pen gPen = new Pen(Color.DarkOrange, 3);
                 
 
                 int i = 0;
                 while (i < (Cities.Count - 1))
                 {
-                    DrawPath(Cities[i], Cities[i + 1]);
+                    DrawPath(dc, Cities[i], Cities[i + 1]);
                     dc.DrawEllipse(gPen, Cities[i].X - 2, Cities[i].Y - 2, 5, 5);
                     if (i == 0)
                         dc.DrawEllipse(new Pen(Color.DarkGreen, 3), Cities[i].X - 2, Cities[i].Y - 2, 5, 5);
@@ -83,14 +81,15 @@ namespace TravellingSalesman.Presentation
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            DrawCities();
+            DrawCities(e.Graphics);
         }
 
+
+
         
-        private void DrawPath(City startCity, City endCity)
+        private void DrawPath(Graphics dc, City startCity, City endCity)
         {
-            Pen lGPen = new Pen(Color.LightGray,2);
-            Graphics dc = CreateGraphics();
+            Pen lGPen = new Pen(Color.DarkGray,1);
             dc.SmoothingMode = SmoothingMode.HighQuality;
             dc.DrawLine(lGPen, new Point(startCity.X , startCity.Y ), new Point(endCity.X , endCity.Y ));
         }

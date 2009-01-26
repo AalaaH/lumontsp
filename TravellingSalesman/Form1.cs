@@ -24,6 +24,7 @@ namespace TravellingSalesman
         List<City> cities = new List<City>();
         private void Form1_Load(object sender, EventArgs e)
         {
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
             cities.Add(new City(10, 15, "syd"));            
             cities.Add(new City(200, 378, "melb"));
@@ -42,6 +43,8 @@ namespace TravellingSalesman
             list.SetData(cities);
             digraph.Cities = cities;
         }
+
+
 
 
         private void butSimAnnealing_Click(object sender, EventArgs e)
@@ -80,9 +83,10 @@ namespace TravellingSalesman
 
 
         private void butBasicFeasible_Click(object sender, EventArgs e)
-        {            
+        {
+            cities = Init.instance.GenerateProblem(50, digraph.Width, digraph.Height, digraph.Margin.All);
             Solver.instance.Report = RefreshCities;
-            Solver.instance.SimonsBasicFeasible(ref cities);
+            Solver.instance.BasicFeasible(ref cities);
             
         }
     }
