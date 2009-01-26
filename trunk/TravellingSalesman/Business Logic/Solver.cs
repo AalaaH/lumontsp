@@ -231,6 +231,7 @@ namespace TravellingSalesman.Business_Logic
         
         private int partition(ref List<City> cities, int left, int right)
         {
+            findMedianOfMedians(ref cities, left, Convert.ToInt32(Math.Round((double)right/2)));
             int pivotIndex = left, index = left, i;
             double pivotValue = cities[pivotIndex].Distance;
             swapCity(ref cities, left, right);
@@ -246,6 +247,46 @@ namespace TravellingSalesman.Business_Logic
             return index;
         }
 
+        private double findMedianOfMedians(ref List<City> cities, int left, int right)
+        {
+            if (left == right)
+                return cities[left].Distance;
+
+            int i, shift = 1;
+            while (shift <= (right - left))
+            {
+                for (i = left; i <= right; i += shift * 5)
+                {
+                    int endIndex = (i + shift * 5 - 1 < right) ? i + shift * 5 - 1 : right;
+                    int medianIndex = findMedianIndex(ref cities, i, endIndex, shift);
+
+                    
+                    swapCity(ref cities, i, medianIndex);
+                }
+                shift *= 5;
+            }
+
+            return cities[left].Distance;
+        }
+
+        int findMedianIndex(ref List<City> cities, int left, int right, int shift)
+        {
+            int i, groups = (right - left) / shift + 1, k = left + groups / 2 * shift;
+            for (i = left; i <= k; i += shift)
+            {
+                int minIndex = i , j;
+                double minValue = cities[minIndex].Distance;
+                for (j = i; j <= right; j += shift)
+                    if (cities[j].Distance < minValue)
+                    {
+                        minIndex = j;
+                        minValue = cities[minIndex].Distance;
+                    }
+                swapCity(ref cities, i, minIndex);
+            }
+
+            return k;
+        }
         private void quickSort(ref List<City> cities, int left, int right)
         {
             
@@ -280,9 +321,9 @@ namespace TravellingSalesman.Business_Logic
             {
                 CalculateDistances(ref cities, i - 1);
                 quickSort(ref cities, i, cities.Count - 1);
-         //       Timer.instance.Pause();
+                Timer.instance.Pause();
                 Report(cities);
-           //     Timer.instance.Pause();
+                Timer.instance.Pause();
             }
 
             
