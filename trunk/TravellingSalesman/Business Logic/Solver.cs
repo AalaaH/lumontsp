@@ -226,10 +226,12 @@ namespace TravellingSalesman.Business_Logic
             cities[index1] = cities[index2];
             cities[index2] = temp;
         }
+
+        
         
         private int partition(ref List<City> cities, int left, int right)
         {
-            findMedianOfMedians(ref cities, left, right);
+            // findMedianOfMedians(ref cities, left, right);
             int pivotIndex = left, index = left, i;
             double pivotValue = cities[pivotIndex].Distance;
             swapCity(ref cities, left, right);
@@ -287,7 +289,6 @@ namespace TravellingSalesman.Business_Logic
         }
         private void quickSort(ref List<City> cities, int left, int right)
         {
-
             
             int pivotIndex = 0;
             

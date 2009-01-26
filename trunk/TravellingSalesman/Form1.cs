@@ -27,6 +27,12 @@ namespace TravellingSalesman
             ori_cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
             cities = new List<City>(ori_cities);
             ResetCities();
+
+            PerformanceCounterCategory[] perfCounters = PerformanceCounterCategory.GetCategories();
+            foreach (PerformanceCounterCategory p in perfCounters)
+            {
+                Debug.WriteLine(p.CategoryName);
+            }
         }
 
         
