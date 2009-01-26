@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Business Logic\LuluSolver.cs" />
     <Compile Include="Business Logic\MathHelper.cs" />
+    <Compile Include="Business Logic\Perfomance.cs" />
     <Compile Include="Business Logic\Solver.cs" />
     <Compile Include="Data Logic\City.cs" />
     <Compile Include="Form1.cs">
