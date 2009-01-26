@@ -231,7 +231,8 @@ namespace TravellingSalesman.Business_Logic
         
         private int partition(ref List<City> cities, int left, int right)
         {
-            findMedianOfMedians(ref cities, left, left+5);
+            if( left+5 > cities.Count) 
+                findMedianOfMedians(ref cities, left, left+5);
             int pivotIndex = left, index = left, i;
             double pivotValue = cities[pivotIndex].Distance;
             swapCity(ref cities, left, right);
