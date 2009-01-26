@@ -9,6 +9,8 @@ using TravellingSalesman.Data_Logic;
 
 namespace TravellingSalesman.Business_Logic
 {
+    /// <summary>
+    /// Tries to solve a network(List) of Cities TSP by using Local Search/ Simulated Annealing
     public sealed partial class Solver
     {
 
@@ -29,9 +31,12 @@ namespace TravellingSalesman.Business_Logic
             set { _reportSolution = value; }
         }
 
+        /// <summary>
+        /// Used as a dummy reporting method for new solution
+        /// </summary>
+        /// <param name="cts"></param>
         public void DummyReport(List<City> cts)
-        {
-            Console.WriteLine("dummy report");
+        {            
         }
 
         #endregion
@@ -39,11 +44,9 @@ namespace TravellingSalesman.Business_Logic
         #region Simulated Annealing
         private static Solver _solver = null;
 
-
-
-        
-
-
+        /// <summary>
+        /// Solver is a singleton
+        /// </summary>
         public static Solver instance
         {
             get {
@@ -54,21 +57,7 @@ namespace TravellingSalesman.Business_Logic
         }
 
 
- 
-        /// <summary>
-        /// Randomly swaps two nodes
-        /// </summary>
-        /// <param name="cts"></param>
-        public void SwapNodes(ref List<City> cts)
-        {
-            Random rd = new Random();
-            int r1 = rd.Next(1, cts.Count);
-            int r2 = rd.Next(1, cts.Count);
 
-            City temp = cts[r2];
-            cts[r2] = cts[r1];
-            cts[r1] = temp;            
-        }
 
 
         private double GetDistBeforeAfterCity(List<City> cts, int c)
@@ -76,7 +65,7 @@ namespace TravellingSalesman.Business_Logic
             double d = 0;
             if (c > 0)
                 d += MathHelper.getDistance(cts[c], cts[c - 1]);
-            if (c < cts.Count)
+            if (c < cts.Count-1)
                 d += MathHelper.getDistance(cts[c], cts[c + 1]);
             return d;
         }
@@ -150,19 +139,22 @@ namespace TravellingSalesman.Business_Logic
         }
 
 
-        /*If (temperature > 0.01) Then
-        Prob = Rnd()
-        If (Prob < Exp(-5 * (dist_new - dist_old) / temperature)) Then
-           accept = 1
-        End If */
+
+
         #endregion
 
         public void LocalSearch(ref List<City> cities)
         {
+            // TO IMPLEMENT
         }
 
 
-        
+        /// <summary>
+        /// Swap two cities
+        /// </summary>
+        /// <param name="cities"></param>
+        /// <param name="index1"></param>
+        /// <param name="index2"></param>
         private void swapCity(ref List<City> cities,int index1, int index2)
         {
             City temp = cities[index1];
@@ -207,12 +199,16 @@ namespace TravellingSalesman.Business_Logic
           
         }
 
+        /// <summary>
+        /// Assign distances
+        /// </summary>
+        /// <param name="cities"></param>
+        /// <param name="startCity"></param>
         private void CalculateDistances(ref List<City> cities, int startCity)
         {
             for (int i = startCity+1; i < cities.Count; i++)
             {
-                cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);
-                
+                cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);                
             }
         }
         

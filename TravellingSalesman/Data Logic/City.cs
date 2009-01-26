@@ -60,7 +60,5 @@ namespace TravellingSalesman.Data_Logic
             Y = y;
             Name = name; 
         }
-
-
     }
 }

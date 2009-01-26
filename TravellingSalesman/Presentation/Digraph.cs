@@ -15,7 +15,6 @@ namespace TravellingSalesman.Presentation
     public partial class Digraph : UserControl
     {
 
-
         #region Data members
 
         #endregion
@@ -44,8 +43,15 @@ ControlStyles.UserPaint, true);
         private List<City> _cts;
         public List<City> Cities
         {
-            get { return _cts; }
-            set { _cts = value; }
+            get 
+            { 
+                return _cts; 
+            }
+            set 
+            { 
+                _cts = value;
+                Refresh();
+            }
         }
 
         
@@ -57,7 +63,6 @@ ControlStyles.UserPaint, true);
             {
                 Pen gPen = new Pen(Color.DarkOrange, 3);
                 
-
                 int i = 0;
                 while (i < (Cities.Count - 1))
                 {

@@ -64,11 +64,20 @@ namespace TravellingSalesman
 
         private void butGenerateProblem_Click(object sender, EventArgs e)
         {
+            int numCities = 50;
+            try
+            {
+                numCities = Convert.ToInt32(txtNumCities.Text);
+            }
+            catch { }
             Cursor.Current = Cursors.WaitCursor;
             digraph.Clear();
-            cities = Init.instance.GenerateProblem(5, digraph.Width, digraph.Height, digraph.Margin.All);
+
+            cities = Init.instance.GenerateProblem(numCities, digraph.Width, digraph.Height, digraph.Margin.All);
+            
             list.SetData(cities);
             digraph.Cities = cities;
+            digraph.Refresh();
 
             Cursor.Current = Cursors.Default;
         }
@@ -151,7 +160,6 @@ namespace TravellingSalesman
 
         private void butSwapNodes_Click(object sender, EventArgs e)
         {
-            Solver.instance.SwapNodes(ref cities);
             RefreshCities(cities);
         }
 
