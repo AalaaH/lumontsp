@@ -305,29 +305,31 @@ namespace TravellingSalesman.Business_Logic
 
         private void CalculateDistances(ref List<City> cities, int startCity)
         {
+    //        Timer.instance.Pause();
             for (int i = startCity+1; i < cities.Count; i++)
             {
                 cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);
                 
             }
+  //          Timer.instance.Pause();
         }
         
 
 
         public void SimonsBasicFeasible(ref List<City> cities)
         {
-            Timer.instance.Start();
+            //Timer.instance.Start();
             for (int i = 1; i < cities.Count; i++)
             {
                 CalculateDistances(ref cities, i - 1);
                 quickSort(ref cities, i, cities.Count - 1);
-                Timer.instance.Pause();
+         //       Timer.instance.Pause();
                 Report(cities);
-                Timer.instance.Pause();
+           //     Timer.instance.Pause();
             }
 
             
-            Timer.instance.Stop();
+//            Timer.instance.Stop();
             Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime()); 
             Report(cities);
         }
