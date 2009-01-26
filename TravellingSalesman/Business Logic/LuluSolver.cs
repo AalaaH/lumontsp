@@ -15,6 +15,7 @@ namespace TravellingSalesman.Business_Logic
 
         public void BasicFeasible(ref List<City> cities)
         {
+            Timer.instance.Start();
             for (int i = 0; i < cities.Count - 1; i++)
             {
                 double curDistance = MathHelper.getDistance(cities[i], cities[i + 1]);
@@ -38,6 +39,9 @@ namespace TravellingSalesman.Business_Logic
                 }
 
             }
+            Timer.instance.Stop();
+            Console.WriteLine("Timer: " + Timer.instance.elapsedTime()); 
+            Report(cities);
         }
     }
 }
