@@ -251,7 +251,89 @@ namespace TravellingSalesman.Business_Logic
                 }
             }
         }
+        
+        private void swapCity(ref List<City> cities,int index1, int index2)
+        {
+            City temp = cities[index1];
+            cities[index1] = cities[index2];
+            cities[index2] = temp;
+        }
+        
+        private int partition(ref List<City> cities, int left, int right, int pivotIndex)
+        {
+            int storeIndex = 0;
 
+            swapCity(ref cities, pivotIndex, right);
+            CalculateDistances(ref cities, left - 1);
+            storeIndex = left;
+            for (int i = left; i < (right - 1); i++)
+            {
+                if (cities[i].Distance <= cities[pivotIndex].Distance)
+                {
+                    swapCity(ref cities, i, storeIndex);
+                    storeIndex++;
+                }
+            }
+            swapCity(ref cities, storeIndex, right);
+            Console.WriteLine("store index " + storeIndex);
+            return storeIndex;
+        }
+
+        private void quickSort(ref List<City> cities, int left, int right)
+        {
+
+            int pivotIndex = 0;
+            int pivotNewIndex = 0;
+            Console.WriteLine("yay im sorting");
+
+
+            if (cities[right].Distance > cities[left].Distance)
+            {
+                pivotIndex = left + 1;
+                pivotNewIndex = partition(ref cities, left, right, pivotIndex);
+                Console.WriteLine(pivotNewIndex);
+                
+                quickSort(ref cities, left, pivotNewIndex - 1);
+                //quickSort(ref cities, pivotNewIndex + 1, right); not need only conserned with shorter values
+            }
+            
+            
+        }
+
+        private void CalculateDistances(ref List<City> cities, int startCity)
+        {
+            for (int i = startCity+1; i < cities.Count; i++)
+            {
+                cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);
+                Console.WriteLine(i + ":" + cities[i].Distance);
+            }
+        }
+        public void bubbleSort(ref List<City> cities, int startCity)
+        {
+            int current = startCity;
+            CalculateDistances(ref cities, 0);
+            for (int i = startCity + 1; i < cities.Count; i++)
+            {
+                if (cities[current].Distance > cities[i].Distance)
+                {
+                    swapCity(ref cities, current, i);
+                    current = i;
+                }
+            }
+            startCity++;
+            if (startCity < cities.Count)
+            {
+                bubbleSort(ref cities, startCity);
+            }
+        }
+
+
+        public void SimonsBasicFeasible(ref List<City> cities)
+        {
+            //CalculateDistances(ref cities, 0);
+            //quickSort(ref cities, 1, cities.Count-1);
+            bubbleSort(ref cities,1);
+        }
         
 
     }
