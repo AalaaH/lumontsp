@@ -244,9 +244,6 @@ namespace TravellingSalesman.Business_Logic
             return index;
         }
 
-        //Computes the median of each group of 5 elements and stores
-        //it as the first element of the group. Recursively does this
-        //till there is only one group and hence only one Median
         private double findMedianOfMedians(ref List<City> cities, int left, int right)
         {
             if (left == right)
@@ -269,8 +266,6 @@ namespace TravellingSalesman.Business_Logic
             return cities[left].Distance;
         }
 
-        //Find the index of the Median of the elements
-        //of array that occur at every "shift" positions.
         int findMedianIndex(ref List<City> cities, int left, int right, int shift)
         {
             int i, groups = (right - left) / shift + 1, k = left + groups / 2 * shift;
@@ -303,11 +298,7 @@ namespace TravellingSalesman.Business_Logic
             //CalculateDistances(ref cities, left);
             quickSort(ref cities, left, pivotIndex - 1);
             //quickSort(ref cities, pivotNewIndex + 1, right); not need only conserned with shorter values
-            
-
-            
-            
-            
+          
         }
 
         private void CalculateDistances(ref List<City> cities, int startCity)
