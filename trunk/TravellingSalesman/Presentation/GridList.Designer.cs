@@ -58,20 +58,26 @@
             this.colName.DataPropertyName = "Name";
             this.colName.HeaderText = "Name";
             this.colName.Name = "colName";
+            this.colName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colName.Width = 50;
             // 
             // colXPos
             // 
+            this.colXPos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colXPos.DataPropertyName = "X";
+            this.colXPos.FillWeight = 50F;
             this.colXPos.HeaderText = "xPos";
             this.colXPos.Name = "colXPos";
+            this.colXPos.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colXPos.Width = 50;
             // 
             // colYPos
             // 
             this.colYPos.DataPropertyName = "Y";
+            this.colYPos.FillWeight = 50F;
             this.colYPos.HeaderText = "yPos";
             this.colYPos.Name = "colYPos";
+            this.colYPos.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colYPos.Width = 50;
             // 
             // colDistance
