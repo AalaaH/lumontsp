@@ -52,11 +52,13 @@ namespace TravellingSalesman
         }
 
         private void RefreshCities(List<City> cities)
-        {
-            digraph.Clear();
+        {            
             digraph.Cities = cities;
+            digraph.Refresh();
+
             list.SetData(cities);
             statusObjective.Text = "Total Distance: " + Solver.instance.TotalDistance(cities);
+            
         }
 
         private void butDiagraph_Click(object sender, EventArgs e)
@@ -81,6 +83,7 @@ namespace TravellingSalesman
         {            
             Solver.instance.Report = RefreshCities;
             Solver.instance.SimonsBasicFeasible(ref cities);
+            
         }
     }
 }
