@@ -320,6 +320,9 @@ namespace TravellingSalesman.Business_Logic
             {
                 CalculateDistances(ref cities, i - 1);
                 quickSort(ref cities, i, cities.Count - 1);
+                Timer.instance.Pause();
+                Report(cities);
+                Timer.instance.Pause();
             }
 
             

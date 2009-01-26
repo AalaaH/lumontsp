@@ -53,7 +53,7 @@ ControlStyles.UserPaint, true);
         {
             Font fArial = new Font("Arial", 8);
 
-            if (Cities != null)
+            if (Cities.Count>0)
             {
                 Pen gPen = new Pen(Color.DarkOrange, 3);
                 
