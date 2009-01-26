@@ -34,11 +34,13 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butGenerateProblem = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.butSimBFS = new System.Windows.Forms.Button();
+            this.butBasicFeasible = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
-            this.butBasicFeasible = new System.Windows.Forms.Button();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.list = new TravellingSalesman.Presentation.GridList();
+            this.butReset = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -86,6 +88,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.butReset);
+            this.panel1.Controls.Add(this.butSimBFS);
             this.panel1.Controls.Add(this.butBasicFeasible);
             this.panel1.Controls.Add(this.butDiagraph);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -93,6 +97,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(825, 34);
             this.panel1.TabIndex = 5;
+            // 
+            // butSimBFS
+            // 
+            this.butSimBFS.Location = new System.Drawing.Point(309, 3);
+            this.butSimBFS.Name = "butSimBFS";
+            this.butSimBFS.Size = new System.Drawing.Size(75, 23);
+            this.butSimBFS.TabIndex = 2;
+            this.butSimBFS.Text = "Simon BFS";
+            this.butSimBFS.UseVisualStyleBackColor = true;
+            this.butSimBFS.Click += new System.EventHandler(this.butSimBFS_Click);
+            // 
+            // butBasicFeasible
+            // 
+            this.butBasicFeasible.Location = new System.Drawing.Point(228, 3);
+            this.butBasicFeasible.Name = "butBasicFeasible";
+            this.butBasicFeasible.Size = new System.Drawing.Size(75, 23);
+            this.butBasicFeasible.TabIndex = 2;
+            this.butBasicFeasible.Text = "Lu BFS";
+            this.butBasicFeasible.UseVisualStyleBackColor = true;
+            this.butBasicFeasible.Click += new System.EventHandler(this.butBasicFeasible_Click);
             // 
             // statusStrip1
             // 
@@ -111,20 +135,11 @@
             this.statusObjective.Tag = "";
             this.statusObjective.Text = "Total Distance: ";
             // 
-            // butBasicFeasible
-            // 
-            this.butBasicFeasible.Location = new System.Drawing.Point(228, 3);
-            this.butBasicFeasible.Name = "butBasicFeasible";
-            this.butBasicFeasible.Size = new System.Drawing.Size(75, 23);
-            this.butBasicFeasible.TabIndex = 2;
-            this.butBasicFeasible.Text = "BFS";
-            this.butBasicFeasible.UseVisualStyleBackColor = true;
-            this.butBasicFeasible.Click += new System.EventHandler(this.butBasicFeasible_Click);
-            // 
             // digraph
             // 
             this.digraph.BackColor = System.Drawing.Color.White;
             this.digraph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.digraph.Cities = null;
             this.digraph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.digraph.Location = new System.Drawing.Point(242, 59);
             this.digraph.Margin = new System.Windows.Forms.Padding(50);
@@ -140,6 +155,16 @@
             this.list.Size = new System.Drawing.Size(242, 499);
             this.list.TabIndex = 2;
             // 
+            // butReset
+            // 
+            this.butReset.Location = new System.Drawing.Point(390, 3);
+            this.butReset.Name = "butReset";
+            this.butReset.Size = new System.Drawing.Size(75, 23);
+            this.butReset.TabIndex = 3;
+            this.butReset.Text = "Reset Cities";
+            this.butReset.UseVisualStyleBackColor = true;
+            this.butReset.Click += new System.EventHandler(this.butReset_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,7 +177,9 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Travelling Salesman";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -176,6 +203,8 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusObjective;
         private System.Windows.Forms.Button butBasicFeasible;
+        private System.Windows.Forms.Button butSimBFS;
+        private System.Windows.Forms.Button butReset;
     }
 }
 
