@@ -336,9 +336,9 @@ namespace TravellingSalesman.Business_Logic
 
         public void SimonsBasicFeasible(ref List<City> cities)
         {
-            //CalculateDistances(ref cities, 0);
+            CalculateDistances(ref cities, 0);
             //quickSort(ref cities, 1, cities.Count-1);
-            bubbleSort(ref cities,0);
+            //bubbleSort(ref cities,0);
         }
         
 
