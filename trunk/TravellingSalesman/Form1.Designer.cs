@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.butSimAnnealing = new System.Windows.Forms.Button();
-            this.butDiagraph = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butGenerateProblem = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.butSwapNodes = new System.Windows.Forms.Button();
             this.butReset = new System.Windows.Forms.Button();
             this.butSimBFS = new System.Windows.Forms.Button();
             this.butBasicFeasible = new System.Windows.Forms.Button();
@@ -41,7 +41,7 @@
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.list = new TravellingSalesman.Presentation.GridList();
-            this.butSwapNodes = new System.Windows.Forms.Button();
+            this.txtNumCities = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -57,20 +57,11 @@
             this.butSimAnnealing.UseVisualStyleBackColor = true;
             this.butSimAnnealing.Click += new System.EventHandler(this.butSimAnnealing_Click);
             // 
-            // butDiagraph
-            // 
-            this.butDiagraph.Location = new System.Drawing.Point(138, 3);
-            this.butDiagraph.Name = "butDiagraph";
-            this.butDiagraph.Size = new System.Drawing.Size(84, 25);
-            this.butDiagraph.TabIndex = 1;
-            this.butDiagraph.Text = "Diagraph";
-            this.butDiagraph.UseVisualStyleBackColor = true;
-            this.butDiagraph.Click += new System.EventHandler(this.butDiagraph_Click);
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.butGenerateProblem});
+            this.butGenerateProblem,
+            this.txtNumCities});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(825, 25);
@@ -93,16 +84,25 @@
             this.panel1.Controls.Add(this.butReset);
             this.panel1.Controls.Add(this.butSimBFS);
             this.panel1.Controls.Add(this.butBasicFeasible);
-            this.panel1.Controls.Add(this.butDiagraph);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(825, 34);
             this.panel1.TabIndex = 5;
             // 
+            // butSwapNodes
+            // 
+            this.butSwapNodes.Location = new System.Drawing.Point(494, 3);
+            this.butSwapNodes.Name = "butSwapNodes";
+            this.butSwapNodes.Size = new System.Drawing.Size(136, 23);
+            this.butSwapNodes.TabIndex = 4;
+            this.butSwapNodes.Text = "Swap Random Nodes";
+            this.butSwapNodes.UseVisualStyleBackColor = true;
+            this.butSwapNodes.Click += new System.EventHandler(this.butSwapNodes_Click);
+            // 
             // butReset
             // 
-            this.butReset.Location = new System.Drawing.Point(390, 3);
+            this.butReset.Location = new System.Drawing.Point(413, 3);
             this.butReset.Name = "butReset";
             this.butReset.Size = new System.Drawing.Size(75, 23);
             this.butReset.TabIndex = 3;
@@ -112,7 +112,7 @@
             // 
             // butSimBFS
             // 
-            this.butSimBFS.Location = new System.Drawing.Point(309, 3);
+            this.butSimBFS.Location = new System.Drawing.Point(332, 3);
             this.butSimBFS.Name = "butSimBFS";
             this.butSimBFS.Size = new System.Drawing.Size(75, 23);
             this.butSimBFS.TabIndex = 2;
@@ -124,9 +124,9 @@
             // 
             this.butBasicFeasible.Location = new System.Drawing.Point(228, 3);
             this.butBasicFeasible.Name = "butBasicFeasible";
-            this.butBasicFeasible.Size = new System.Drawing.Size(75, 23);
+            this.butBasicFeasible.Size = new System.Drawing.Size(98, 23);
             this.butBasicFeasible.TabIndex = 2;
-            this.butBasicFeasible.Text = "Lu BFS";
+            this.butBasicFeasible.Text = "Basic Feasible";
             this.butBasicFeasible.UseVisualStyleBackColor = true;
             this.butBasicFeasible.Click += new System.EventHandler(this.butBasicFeasible_Click);
             // 
@@ -167,15 +167,10 @@
             this.list.Size = new System.Drawing.Size(242, 499);
             this.list.TabIndex = 2;
             // 
-            // butSwapNodes
+            // txtNumCities
             // 
-            this.butSwapNodes.Location = new System.Drawing.Point(471, 3);
-            this.butSwapNodes.Name = "butSwapNodes";
-            this.butSwapNodes.Size = new System.Drawing.Size(136, 23);
-            this.butSwapNodes.TabIndex = 4;
-            this.butSwapNodes.Text = "Swap Random Nodes";
-            this.butSwapNodes.UseVisualStyleBackColor = true;
-            this.butSwapNodes.Click += new System.EventHandler(this.butSwapNodes_Click);
+            this.txtNumCities.Name = "txtNumCities";
+            this.txtNumCities.Size = new System.Drawing.Size(100, 25);
             // 
             // frmMain
             // 
@@ -206,7 +201,6 @@
         #endregion
 
         private System.Windows.Forms.Button butSimAnnealing;
-        private System.Windows.Forms.Button butDiagraph;
         private TravellingSalesman.Presentation.GridList list;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton butGenerateProblem;
@@ -218,6 +212,7 @@
         private System.Windows.Forms.Button butSimBFS;
         private System.Windows.Forms.Button butReset;
         private System.Windows.Forms.Button butSwapNodes;
+        private System.Windows.Forms.ToolStripTextBox txtNumCities;
     }
 }
 
