@@ -338,7 +338,8 @@ namespace TravellingSalesman.Business_Logic
         {
             CalculateDistances(ref cities, 0);
             //quickSort(ref cities, 1, cities.Count-1);
-            //bubbleSort(ref cities,0);
+            bubbleSort(ref cities,1);
+            Report(cities);
         }
         
 
