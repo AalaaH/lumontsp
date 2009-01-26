@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using TravellingSalesman.Data_Logic;
@@ -51,8 +52,10 @@ namespace TravellingSalesman.Presentation
             Graphics dc = CreateGraphics();
             Font fArial = new Font("Arial", 8);
 
+            Debug.WriteLine(Cities);
             if (Cities != null)
             {
+                Debug.WriteLine(Cities.Count);
                 
                 Pen gPen = new Pen(Color.DarkOrange, 3);
                 
