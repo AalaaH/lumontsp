@@ -24,15 +24,9 @@ namespace TravellingSalesman
         public frmMain()
         {
             InitializeComponent();
-            ori_cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
+            // ori_cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
             cities = new List<City>(ori_cities);
             ResetCities();
-
-            PerformanceCounterCategory[] perfCounters = PerformanceCounterCategory.GetCategories();
-            foreach (PerformanceCounterCategory p in perfCounters)
-            {
-                Debug.WriteLine(p.CategoryName);
-            }
         }
 
         
@@ -97,8 +91,7 @@ namespace TravellingSalesman
 
         private void ResetCities()
         {            
-            cities.Clear();
-            /*
+            cities.Clear();            
             cities.Add(new City(10, 15, "syd"));
             cities.Add(new City(100, 78, "melb"));
             cities.Add(new City(893, 45, "adl"));
@@ -143,8 +136,8 @@ namespace TravellingSalesman
             cities.Add(new City(450, 362, "copenhagen"));
             cities.Add(new City(127, 407, "egypt"));
             cities.Add(new City(133, 251, "india"));
-            */
-            cities = new List<City>(ori_cities);
+            
+            // cities = new List<City>(ori_cities);
             list.SetData(cities);
             digraph.Cities = cities;
             digraph.Refresh();
@@ -154,6 +147,12 @@ namespace TravellingSalesman
         {
 
             ResetCities();
+        }
+
+        private void butSwapNodes_Click(object sender, EventArgs e)
+        {
+            Solver.instance.SwapNodes(ref cities);
+            RefreshCities(cities);
         }
 
         
