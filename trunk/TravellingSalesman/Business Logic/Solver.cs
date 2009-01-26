@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
+
 using TravellingSalesman.Data_Logic;
 
 namespace TravellingSalesman.Business_Logic
@@ -74,11 +76,11 @@ namespace TravellingSalesman.Business_Logic
 
                 // change temperature
                 temp -= delta;
-                Debug.write("");
-                Debug.write("iter=" + i.ToString());
-                Debug.write("temp=" + temp.ToString());
-                Debug.write("curD=" + curD.ToString());
-                Debug.write("newD=" + newD.ToString());
+                Debug.WriteLine("");
+                Debug.WriteLine("iter=" + i.ToString());
+                Debug.WriteLine("temp=" + temp.ToString());
+                Debug.WriteLine("curD=" + curD.ToString());
+                Debug.WriteLine("newD=" + newD.ToString());
 
 
                 
@@ -230,9 +232,9 @@ namespace TravellingSalesman.Business_Logic
                 for (int x = i+2; x < cities.Count; x++)
                 {
                     double newDistance = MathHelper.getDistance(cities[i], cities[x]);
-                    Debug.write(cities[i].Name + ":" + cities[x].Name + " - n=" + newDistance + ": o=" + curDistance);
+                    Debug.WriteLine(cities[i].Name + ":" + cities[x].Name + " - n=" + newDistance + ": o=" + curDistance);
 
-                    if (newDistance < curDistance)
+                    /*if (newDistance < curDistance)
                     {
                         Report.Invoke(cities);
                         curDistance = newDistance;
@@ -244,7 +246,7 @@ namespace TravellingSalesman.Business_Logic
                         City temp = cities[i];
                         cities[i] = cities[toSwap];
                         cities[toSwap] = temp; 
-                    }
+                    }*/
 
                     // if we want to report current list;
                     // Report.Invoke(cities);
@@ -305,7 +307,7 @@ namespace TravellingSalesman.Business_Logic
             for (int i = startCity+1; i < cities.Count; i++)
             {
                 cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);
-                Console.WriteLine(i + ":" + cities[i].Distance);
+                
             }
         }
         public void bubbleSort(ref List<City> cities, int startCity)
@@ -318,6 +320,8 @@ namespace TravellingSalesman.Business_Logic
                 {
                     swapCity(ref cities, current, i);
                     current = i;
+
+                    Report(cities);
                 }
             }
             startCity++;
