@@ -39,10 +39,7 @@ namespace TravellingSalesman.Business_Logic
 
 
         
-        private void debug(string msg)
-        {
-            Console.WriteLine(msg);
-        }
+
 
         public static Solver instance
         {
@@ -77,11 +74,11 @@ namespace TravellingSalesman.Business_Logic
 
                 // change temperature
                 temp -= delta;
-                debug("");
-                debug("iter=" + i.ToString());
-                debug("temp=" + temp.ToString());
-                debug("curD=" + curD.ToString());
-                debug("newD=" + newD.ToString());
+                Debug.write("");
+                Debug.write("iter=" + i.ToString());
+                Debug.write("temp=" + temp.ToString());
+                Debug.write("curD=" + curD.ToString());
+                Debug.write("newD=" + newD.ToString());
 
 
                 
@@ -233,7 +230,7 @@ namespace TravellingSalesman.Business_Logic
                 for (int x = i+2; x < cities.Count; x++)
                 {
                     double newDistance = MathHelper.getDistance(cities[i], cities[x]);
-                    debug(cities[i].Name+":"+cities[x].Name+" - n=" + newDistance + ": o=" + curDistance);
+                    Debug.write(cities[i].Name + ":" + cities[x].Name + " - n=" + newDistance + ": o=" + curDistance);
 
                     if (newDistance < curDistance)
                     {
