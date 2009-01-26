@@ -40,7 +40,7 @@ namespace TravellingSalesman.Business_Logic
 
             }
             Timer.instance.Stop();
-            Console.WriteLine("Timer: " + Timer.instance.elapsedTime()); 
+            Console.WriteLine("Timer Lu:" + Timer.instance.elapsedTime()); 
             Report(cities);
         }
     }
