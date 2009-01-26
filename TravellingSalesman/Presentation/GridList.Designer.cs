@@ -40,6 +40,7 @@
             // 
             this.dgvList.AllowUserToAddRows = false;
             this.dgvList.AllowUserToDeleteRows = false;
+            this.dgvList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colName,
@@ -59,14 +60,14 @@
             this.colName.HeaderText = "Name";
             this.colName.Name = "colName";
             this.colName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colName.Width = 50;
+            this.colName.Width = 60;
             // 
             // colXPos
             // 
             this.colXPos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colXPos.DataPropertyName = "X";
             this.colXPos.FillWeight = 50F;
-            this.colXPos.HeaderText = "xPos";
+            this.colXPos.HeaderText = "X";
             this.colXPos.Name = "colXPos";
             this.colXPos.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colXPos.Width = 50;
@@ -75,17 +76,17 @@
             // 
             this.colYPos.DataPropertyName = "Y";
             this.colYPos.FillWeight = 50F;
-            this.colYPos.HeaderText = "yPos";
+            this.colYPos.HeaderText = "Y";
             this.colYPos.Name = "colYPos";
             this.colYPos.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colYPos.Width = 50;
+            this.colYPos.Width = 39;
             // 
             // colDistance
             // 
             this.colDistance.DataPropertyName = "Distance";
             this.colDistance.HeaderText = "Distance";
             this.colDistance.Name = "colDistance";
-            this.colDistance.Width = 50;
+            this.colDistance.Width = 74;
             // 
             // GridList
             // 
