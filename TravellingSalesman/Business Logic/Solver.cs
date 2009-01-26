@@ -104,7 +104,7 @@ namespace TravellingSalesman.Business_Logic
                         cities[r2] = tempCity;
                         curD = newD;
                         Report.Invoke(cities);
-
+                        
                     }
                 }
                 i++;
@@ -219,8 +219,6 @@ namespace TravellingSalesman.Business_Logic
 
 
         
-
-        
         private void swapCity(ref List<City> cities,int index1, int index2)
         {
             City temp = cities[index1];
@@ -228,43 +226,86 @@ namespace TravellingSalesman.Business_Logic
             cities[index2] = temp;
         }
         
-        private int partition(ref List<City> cities, int left, int right, int pivotIndex)
+        private int partition(ref List<City> cities, int left, int right)
         {
-            int storeIndex = 0;
-
-            swapCity(ref cities, pivotIndex, right);
-            CalculateDistances(ref cities, left - 1);
-            storeIndex = left;
-            for (int i = left; i < (right - 1); i++)
+            findMedianOfMedians(ref cities, left, right);
+            int pivotIndex = left, index = left, i;
+            double pivotValue = cities[pivotIndex].Distance;
+            swapCity(ref cities, left, right);
+            for (i = left; i < right; i++)
             {
-                if (cities[i].Distance <= cities[pivotIndex].Distance)
+                if (cities[i].Distance < pivotValue)
                 {
-                    swapCity(ref cities, i, storeIndex);
-                    storeIndex++;
+                    swapCity(ref cities, i, index);
+                    index++;
                 }
             }
-            swapCity(ref cities, storeIndex, right);
-            Console.WriteLine("store index " + storeIndex);
-            return storeIndex;
+            swapCity(ref cities, right, index);
+            return index;
         }
 
+        //Computes the median of each group of 5 elements and stores
+        //it as the first element of the group. Recursively does this
+        //till there is only one group and hence only one Median
+        private double findMedianOfMedians(ref List<City> cities, int left, int right)
+        {
+            if (left == right)
+                return cities[left].Distance;
+
+            int i, shift = 1;
+            while (shift <= (right - left))
+            {
+                for (i = left; i <= right; i += shift * 5)
+                {
+                    int endIndex = (i + shift * 5 - 1 < right) ? i + shift * 5 - 1 : right;
+                    int medianIndex = findMedianIndex(ref cities, i, endIndex, shift);
+
+                    
+                    swapCity(ref cities, i, medianIndex);
+                }
+                shift *= 5;
+            }
+
+            return cities[left].Distance;
+        }
+
+        //Find the index of the Median of the elements
+        //of array that occur at every "shift" positions.
+        int findMedianIndex(ref List<City> cities, int left, int right, int shift)
+        {
+            int i, groups = (right - left) / shift + 1, k = left + groups / 2 * shift;
+            for (i = left; i <= k; i += shift)
+            {
+                int minIndex = i , j;
+                double minValue = cities[minIndex].Distance;
+                for (j = i; j <= right; j += shift)
+                    if (cities[j].Distance < minValue)
+                    {
+                        minIndex = j;
+                        minValue = cities[minIndex].Distance;
+                    }
+                swapCity(ref cities, i, minIndex);
+            }
+
+            return k;
+        }
         private void quickSort(ref List<City> cities, int left, int right)
         {
 
+            
             int pivotIndex = 0;
-            int pivotNewIndex = 0;
-            Console.WriteLine("yay im sorting");
+            
 
+            if (left >= right)
+                return;
+        
+            pivotIndex = partition(ref cities, left, right);
+            //CalculateDistances(ref cities, left);
+            quickSort(ref cities, left, pivotIndex - 1);
+            //quickSort(ref cities, pivotNewIndex + 1, right); not need only conserned with shorter values
+            
 
-            if (cities[right].Distance > cities[left].Distance)
-            {
-                pivotIndex = left + 1;
-                pivotNewIndex = partition(ref cities, left, right, pivotIndex);
-                Console.WriteLine(pivotNewIndex);
-                
-                quickSort(ref cities, left, pivotNewIndex - 1);
-                //quickSort(ref cities, pivotNewIndex + 1, right); not need only conserned with shorter values
-            }
+            
             
             
         }
@@ -277,37 +318,18 @@ namespace TravellingSalesman.Business_Logic
                 
             }
         }
-        public void bubbleSort(ref List<City> cities, int startCity)
-        {
-            int current = startCity;
-            
-            for (int i = startCity + 1; i < cities.Count; i++)
-            {
-                
-                if (cities[current].Distance < cities[i].Distance)
-                {
-                    swapCity(ref cities, current, i);
-                    current = i;
-
-                    Report(cities);
-                }
-            }
-            startCity++;
-            
-            if (startCity < cities.Count)
-            {
-                CalculateDistances(ref cities, startCity);
-                bubbleSort(ref cities, startCity);
-            }
-        }
+        
 
 
         public void SimonsBasicFeasible(ref List<City> cities)
         {
-            CalculateDistances(ref cities, 0);
-            //quickSort(ref cities, 1, cities.Count-1);
-            int num = 1;
-            bubbleSort(ref cities,num);
+
+            for (int i = 1; i < cities.Count; i++)
+            {
+                CalculateDistances(ref cities, i - 1);
+                quickSort(ref cities, i, cities.Count - 1);
+            }
+            
             Report(cities);
         }
         
