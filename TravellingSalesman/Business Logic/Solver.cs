@@ -313,7 +313,7 @@ namespace TravellingSalesman.Business_Logic
         public void bubbleSort(ref List<City> cities, int startCity)
         {
             int current = startCity;
-            CalculateDistances(ref cities, 0);
+            
             for (int i = startCity + 1; i < cities.Count; i++)
             {
                 if (cities[current].Distance > cities[i].Distance)
@@ -325,8 +325,10 @@ namespace TravellingSalesman.Business_Logic
                 }
             }
             startCity++;
+            
             if (startCity < cities.Count)
             {
+                CalculateDistances(ref cities, startCity);
                 bubbleSort(ref cities, startCity);
             }
         }
@@ -336,7 +338,7 @@ namespace TravellingSalesman.Business_Logic
         {
             //CalculateDistances(ref cities, 0);
             //quickSort(ref cities, 1, cities.Count-1);
-            bubbleSort(ref cities,1);
+            bubbleSort(ref cities,0);
         }
         
 
