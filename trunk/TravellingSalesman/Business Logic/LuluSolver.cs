@@ -34,7 +34,7 @@ namespace TravellingSalesman.Business_Logic
                     City temp = cities[i+1];
                     cities[i+1] = cities[toSwap];
                     cities[toSwap] = temp;
-                    Report(cities);
+                    //Report(cities);
                 }
 
             }
