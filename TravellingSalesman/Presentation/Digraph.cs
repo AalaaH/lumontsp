@@ -71,6 +71,7 @@ namespace TravellingSalesman.Presentation
                     dc.DrawString(Cities[i].Name, fArial, Brushes.Black, new PointF(Cities[i].X, Cities[i].Y));
                     i++;
                 }
+                dc.DrawString(Cities[i].Name, fArial, Brushes.Black, new PointF(Cities[i].X, Cities[i].Y));
 
                 dc.DrawEllipse(gPen, Cities[Cities.Count - 1].X - 2, Cities[Cities.Count - 1].Y - 2, 5, 5);
             }
