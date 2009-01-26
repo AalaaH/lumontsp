@@ -219,40 +219,7 @@ namespace TravellingSalesman.Business_Logic
 
 
         
-        public void BasicFeasible(ref List<City> cities)
-        {
-            double curDistance = 0;
-            int toSwap = -1;
 
-            for (int i = 0; i < cities.Count-1; i++)
-            {
-                curDistance = MathHelper.getDistance(cities[i], cities[i + 1]);
-                toSwap = -1;
-
-                for (int x = i+2; x < cities.Count; x++)
-                {
-                    double newDistance = MathHelper.getDistance(cities[i], cities[x]);
-                    Debug.WriteLine(cities[i].Name + ":" + cities[x].Name + " - n=" + newDistance + ": o=" + curDistance);
-
-                    /*if (newDistance < curDistance)
-                    {
-                        Report.Invoke(cities);
-                        curDistance = newDistance;
-                        toSwap = x;                       
-                    }
-
-                    if (toSwap > 0)
-                    {
-                        City temp = cities[i];
-                        cities[i] = cities[toSwap];
-                        cities[toSwap] = temp; 
-                    }*/
-
-                    // if we want to report current list;
-                    // Report.Invoke(cities);
-                }
-            }
-        }
         
         private void swapCity(ref List<City> cities,int index1, int index2)
         {
@@ -316,7 +283,8 @@ namespace TravellingSalesman.Business_Logic
             
             for (int i = startCity + 1; i < cities.Count; i++)
             {
-                if (cities[current].Distance > cities[i].Distance)
+                
+                if (cities[current].Distance < cities[i].Distance)
                 {
                     swapCity(ref cities, current, i);
                     current = i;
