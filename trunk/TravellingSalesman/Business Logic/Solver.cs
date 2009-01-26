@@ -8,7 +8,7 @@ using TravellingSalesman.Data_Logic;
 
 namespace TravellingSalesman.Business_Logic
 {
-    public sealed class Solver
+    public sealed partial class Solver
     {
 
         #region Reporting
