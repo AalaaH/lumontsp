@@ -25,7 +25,7 @@ namespace TravellingSalesman
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            cities.Add(new City(10, 15, "syd"));
+            cities.Add(new City(10, 15, "syd"));            
             cities.Add(new City(200, 378, "melb"));
             cities.Add(new City(193, 45, "adl"));
             cities.Add(new City(290, 38, "canb"));
@@ -36,6 +36,8 @@ namespace TravellingSalesman
             cities.Add(new City(274, 300, "miranda"));
             cities.Add(new City(546, 48, "cron"));
             cities.Add(new City(24, 60, "camden"));
+
+            
 
             list.SetData(cities);
             digraph.Cities = cities;
@@ -78,7 +80,7 @@ namespace TravellingSalesman
         private void butBasicFeasible_Click(object sender, EventArgs e)
         {            
             Solver.instance.Report = RefreshCities;
-            Solver.instance.BasicFeasible(ref cities);
+            Solver.instance.SimonsBasicFeasible(ref cities);
         }
     }
 }
