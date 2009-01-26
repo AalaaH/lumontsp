@@ -16,16 +16,23 @@ namespace TravellingSalesman
 {
     public partial class frmMain : Form
     {
+
+        private List<City> ori_cities = new List<City>();
+        private List<City> cities;
+
+
         public frmMain()
         {
             InitializeComponent();
+            ori_cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
+            cities = new List<City>(ori_cities);
+            ResetCities();
         }
 
-        List<City> cities = new List<City>();
+        
         private void Form1_Load(object sender, EventArgs e)
         {
-            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-            ResetCities();
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);            
         }
 
 
@@ -83,8 +90,9 @@ namespace TravellingSalesman
         }
 
         private void ResetCities()
-        {
+        {            
             cities.Clear();
+            /*
             cities.Add(new City(10, 15, "syd"));
             cities.Add(new City(100, 78, "melb"));
             cities.Add(new City(893, 45, "adl"));
@@ -129,8 +137,8 @@ namespace TravellingSalesman
             cities.Add(new City(450, 362, "copenhagen"));
             cities.Add(new City(127, 407, "egypt"));
             cities.Add(new City(133, 251, "india"));
-
-
+            */
+            cities = new List<City>(ori_cities);
             list.SetData(cities);
             digraph.Cities = cities;
             digraph.Refresh();
