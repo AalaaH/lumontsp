@@ -82,7 +82,7 @@ namespace TravellingSalesman
 
             Cursor.Current = Cursors.Default;
             Solver.instance.Report = RefreshCities;
-            Solver.instance.BasicFeasible(ref cities);
+            Solver.instance.SimonsBasicFeasible(ref cities);
         }
     }
 }
