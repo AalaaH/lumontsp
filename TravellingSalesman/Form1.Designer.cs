@@ -34,13 +34,14 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butGenerateProblem = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.butReset = new System.Windows.Forms.Button();
             this.butSimBFS = new System.Windows.Forms.Button();
             this.butBasicFeasible = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.list = new TravellingSalesman.Presentation.GridList();
-            this.butReset = new System.Windows.Forms.Button();
+            this.butSwapNodes = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -88,6 +89,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.butSwapNodes);
             this.panel1.Controls.Add(this.butReset);
             this.panel1.Controls.Add(this.butSimBFS);
             this.panel1.Controls.Add(this.butBasicFeasible);
@@ -97,6 +99,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(825, 34);
             this.panel1.TabIndex = 5;
+            // 
+            // butReset
+            // 
+            this.butReset.Location = new System.Drawing.Point(390, 3);
+            this.butReset.Name = "butReset";
+            this.butReset.Size = new System.Drawing.Size(75, 23);
+            this.butReset.TabIndex = 3;
+            this.butReset.Text = "Reset Cities";
+            this.butReset.UseVisualStyleBackColor = true;
+            this.butReset.Click += new System.EventHandler(this.butReset_Click);
             // 
             // butSimBFS
             // 
@@ -155,15 +167,15 @@
             this.list.Size = new System.Drawing.Size(242, 499);
             this.list.TabIndex = 2;
             // 
-            // butReset
+            // butSwapNodes
             // 
-            this.butReset.Location = new System.Drawing.Point(390, 3);
-            this.butReset.Name = "butReset";
-            this.butReset.Size = new System.Drawing.Size(75, 23);
-            this.butReset.TabIndex = 3;
-            this.butReset.Text = "Reset Cities";
-            this.butReset.UseVisualStyleBackColor = true;
-            this.butReset.Click += new System.EventHandler(this.butReset_Click);
+            this.butSwapNodes.Location = new System.Drawing.Point(471, 3);
+            this.butSwapNodes.Name = "butSwapNodes";
+            this.butSwapNodes.Size = new System.Drawing.Size(136, 23);
+            this.butSwapNodes.TabIndex = 4;
+            this.butSwapNodes.Text = "Swap Random Nodes";
+            this.butSwapNodes.UseVisualStyleBackColor = true;
+            this.butSwapNodes.Click += new System.EventHandler(this.butSwapNodes_Click);
             // 
             // frmMain
             // 
@@ -205,6 +217,7 @@
         private System.Windows.Forms.Button butBasicFeasible;
         private System.Windows.Forms.Button butSimBFS;
         private System.Windows.Forms.Button butReset;
+        private System.Windows.Forms.Button butSwapNodes;
     }
 }
 

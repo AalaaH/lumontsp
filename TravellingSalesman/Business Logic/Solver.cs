@@ -116,7 +116,7 @@ namespace TravellingSalesman.Business_Logic
         /// Randomly swaps two nodes
         /// </summary>
         /// <param name="cts"></param>
-        private void SwapNodes(ref List<City> cts)
+        public void SwapNodes(ref List<City> cts)
         {
             Random rd = new Random();
             int r1 = rd.Next(1, cts.Count);
@@ -231,8 +231,7 @@ namespace TravellingSalesman.Business_Logic
         
         private int partition(ref List<City> cities, int left, int right)
         {
-            if( left+5 > cities.Count) 
-                
+            
             int pivotIndex = left, index = left, i;
             double pivotValue = cities[pivotIndex].Distance;
             swapCity(ref cities, left, right);
