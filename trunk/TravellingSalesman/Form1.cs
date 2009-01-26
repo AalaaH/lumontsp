@@ -25,23 +25,7 @@ namespace TravellingSalesman
         private void Form1_Load(object sender, EventArgs e)
         {
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-
-            cities.Add(new City(10, 15, "syd"));            
-            cities.Add(new City(200, 378, "melb"));
-            cities.Add(new City(193, 45, "adl"));
-            cities.Add(new City(290, 38, "canb"));
-            cities.Add(new City(457, 86, "darwin"));
-            cities.Add(new City(89, 70, "perth"));
-            cities.Add(new City(157, 60, "newcast"));
-            cities.Add(new City(536, 200, "gong"));
-            cities.Add(new City(274, 300, "miranda"));
-            cities.Add(new City(546, 48, "cron"));
-            cities.Add(new City(24, 60, "camden"));
-
-            
-
-            list.SetData(cities);
-            digraph.Cities = cities;
+            ResetCities();
         }
 
 
@@ -51,7 +35,7 @@ namespace TravellingSalesman
         {
 
             Solver.instance.Report = RefreshCities;
-            Solver.instance.SimAnneal(ref cities, 1200, 0.001);        
+            Solver.instance.SimAnneal(ref cities, 20, 0.001);        
         }
 
         private void RefreshCities(List<City> cities)
@@ -60,6 +44,7 @@ namespace TravellingSalesman
             digraph.Refresh();
 
             list.SetData(cities);
+            list.Refresh();
             statusObjective.Text = "Total Distance: " + Solver.instance.TotalDistance(cities);
             
         }
@@ -84,10 +69,79 @@ namespace TravellingSalesman
 
         private void butBasicFeasible_Click(object sender, EventArgs e)
         {
-            //cities = Init.instance.GenerateProblem(50, digraph.Width, digraph.Height, digraph.Margin.All);
+            // cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
+            Solver.instance.Report = RefreshCities;
+            Solver.instance.BasicFeasible(ref cities);
+        }
+
+        private void butSimBFS_Click(object sender, EventArgs e)
+        {
+            //cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
             Solver.instance.Report = RefreshCities;
             Solver.instance.SimonsBasicFeasible(ref cities);
             
         }
+
+        private void ResetCities()
+        {
+            cities.Clear();
+            cities.Add(new City(10, 15, "syd"));
+            cities.Add(new City(100, 78, "melb"));
+            cities.Add(new City(893, 45, "adl"));
+            cities.Add(new City(290, 38, "canb"));
+            cities.Add(new City(457, 86, "darwin"));
+            cities.Add(new City(289, 70, "perth"));
+            cities.Add(new City(957, 60, "newcast"));
+            cities.Add(new City(536, 200, "gong"));
+            cities.Add(new City(274, 300, "miranda"));
+            cities.Add(new City(546, 48, "cron"));
+            cities.Add(new City(24, 83, "camden"));
+
+            cities.Add(new City(648, 357, "nyc"));
+            cities.Add(new City(363, 312, "wangi"));
+            cities.Add(new City(256, 27, "ashfield"));
+            cities.Add(new City(590, 512, "town hall"));
+            cities.Add(new City(345, 423, "penrith"));
+            cities.Add(new City(410, 434, "northead"));
+            cities.Add(new City(670, 275, "parra"));
+
+            cities.Add(new City(64, 409, "strathfield"));
+            cities.Add(new City(563, 412, "homebush"));
+            cities.Add(new City(156, 377, "newtown"));
+            cities.Add(new City(899, 412, "hurstville"));
+            cities.Add(new City(245, 323, "wolli creek"));
+            cities.Add(new City(410, 334, "mosman"));
+            cities.Add(new City(770, 75, "north sydney"));
+
+
+            cities.Add(new City(876, 564, "tasmania"));
+            cities.Add(new City(243, 567, "hobart"));
+            cities.Add(new City(43, 276, "england"));
+            cities.Add(new City(866, 29, "colarado"));
+            cities.Add(new City(750, 562, "wollstonecraft"));
+            cities.Add(new City(427, 407, "yoga fire"));
+            cities.Add(new City(43, 451, "hadouken"));
+
+            cities.Add(new City(576, 214, "sonic boom"));
+            cities.Add(new City(323, 167, "lighning kick"));
+            cities.Add(new City(503, 276, "hunter hill"));
+            cities.Add(new City(56, 569, "philli"));
+            cities.Add(new City(450, 362, "copenhagen"));
+            cities.Add(new City(127, 407, "egypt"));
+            cities.Add(new City(133, 251, "india"));
+
+
+            list.SetData(cities);
+            digraph.Cities = cities;
+            digraph.Refresh();
+        }
+
+        private void butReset_Click(object sender, EventArgs e)
+        {
+
+            ResetCities();
+        }
+
+        
     }
 }

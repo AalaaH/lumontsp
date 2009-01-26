@@ -75,7 +75,7 @@ ControlStyles.UserPaint, true);
             }
             else
             {
-                dc.DrawString("NO CITIES TO DRAW", new Font("Arial", 16), Brushes.Black, Width / 2, Height / 2);
+                dc.DrawString("NO CITIES TO DRAW", new Font("Arial", 16), Brushes.Black, (Width / 2)-100, Height / 2);
             }
         }
 
