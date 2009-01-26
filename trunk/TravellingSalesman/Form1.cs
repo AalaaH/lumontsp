@@ -84,9 +84,9 @@ namespace TravellingSalesman
 
         private void butBasicFeasible_Click(object sender, EventArgs e)
         {
-            cities = Init.instance.GenerateProblem(50, digraph.Width, digraph.Height, digraph.Margin.All);
+            //cities = Init.instance.GenerateProblem(50, digraph.Width, digraph.Height, digraph.Margin.All);
             Solver.instance.Report = RefreshCities;
-            Solver.instance.BasicFeasible(ref cities);
+            Solver.instance.SimonsBasicFeasible(ref cities);
             
         }
     }
