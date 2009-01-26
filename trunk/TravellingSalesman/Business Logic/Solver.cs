@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
+
 using TravellingSalesman.Data_Logic;
 
 namespace TravellingSalesman.Business_Logic
@@ -314,13 +315,16 @@ namespace TravellingSalesman.Business_Logic
 
         public void SimonsBasicFeasible(ref List<City> cities)
         {
-
+            Timer.instance.Start();
             for (int i = 1; i < cities.Count; i++)
             {
                 CalculateDistances(ref cities, i - 1);
                 quickSort(ref cities, i, cities.Count - 1);
             }
+
             
+            Timer.instance.Stop();
+            Console.WriteLine("Timer: " + Timer.instance.elapsedTime()); 
             Report(cities);
         }
         
