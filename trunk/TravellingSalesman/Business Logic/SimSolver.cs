@@ -16,7 +16,8 @@ namespace TravellingSalesman.Business_Logic
             double curDistance = TotalDistance(cities);
             
             Timer.instance.Start();
-            while (curDistance >= distance)
+            int counter=1;
+            while (counter<100)
             {
                 double averageDistance = TotalDistance(cities) / cities.Count;
                 while (curDistance >= distance)
@@ -30,8 +31,11 @@ namespace TravellingSalesman.Business_Logic
                         
                     }
                     curDistance = TotalDistance(cities);
+                    counter++;
                     
                 }
+                Console.WriteLine(counter);
+                counter++;
                 Timer.instance.Pause();
                 Report(cities, curDistance);
                 Timer.instance.Pause();
