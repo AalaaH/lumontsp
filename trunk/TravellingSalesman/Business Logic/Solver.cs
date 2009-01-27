@@ -89,6 +89,7 @@ namespace TravellingSalesman.Business_Logic
                 return dis + GetDistBeforeAfterCity(cts, c1) + GetDistBeforeAfterCity(cts, c2); // total distance after swap
             } 
             return TotalDistance(cts); */
+            City temp = cts[c1];
             return TotalDistance(cts);
         }
 
