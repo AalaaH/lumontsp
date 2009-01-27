@@ -11,13 +11,15 @@ namespace TravellingSalesman.Business_Logic
         public void SimonsNotSoBasic(ref List<City> cities)
         {
             //int longestTravelStartingCity = FindLongestDistance(ref cities);
-            SimonsBasicFeasible(ref cities);
+            //SimonsBasicFeasible(ref cities);
             double distance = TotalDistance(cities);
             double curDistance = TotalDistance(cities);
             
             Timer.instance.Start();
             int counter=1;
-            while (counter<10000)
+            List<City> cityTemp = null;
+            int maxIterations = 10000;
+            while (counter < maxIterations)
             {
                 double averageDistance = TotalDistance(cities) / cities.Count;
                 while (curDistance >= distance)
@@ -31,11 +33,26 @@ namespace TravellingSalesman.Business_Logic
                         
                     }
                     curDistance = TotalDistance(cities);
-                    counter++;
-                    if (counter > 10000) break;
+                    if (curDistance<distance)
+                    {
+                        if (cityTemp == null) cityTemp = new List<City>(cities);
+                        else
+                        {
+                            cityTemp.Clear();
+                            foreach (City c in cities) cityTemp.Add((City)c);
+                            
+                            //cities.ToList(cityTemp);
+
+                        }
+                        
+                    }
+
+
+                            counter++;
+                    if (counter > maxIterations) break;
                     
                 }
-                Console.WriteLine(counter);
+               // Console.WriteLine(counter);
                 counter++;
                 Timer.instance.Pause();
                 Report(cities, curDistance);
@@ -43,7 +60,14 @@ namespace TravellingSalesman.Business_Logic
                 distance = curDistance;
             }
             Timer.instance.Stop();
-            Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime());
+            //Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime());
+
+            if (cityTemp != null)
+            {
+                cities.Clear();
+                foreach (City c in cityTemp) cities.Add((City)c);
+            }
+
             Report(cities, curDistance);            
         }
 

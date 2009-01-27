@@ -24,11 +24,13 @@ namespace TravellingSalesman
 
         public frmMain()
         {
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             InitializeComponent();
             bg_worker.DoWork+=new DoWorkEventHandler(bg_worker_DoWork);
             // ori_cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
             cities = new List<City>(ori_cities);
             ResetCities();
+             
         }
 
 
@@ -57,13 +59,12 @@ namespace TravellingSalesman
             digraph.Cities = cities;
             digraph.Refresh();
 
-            list.SetData(cities);
-            list.Refresh();
+            //list.SetData(cities);
+            //list.Refresh();
             statusObjective.Text = "Total Distance: " + distance.ToString();
 
             lblDistance.Text = Solver.instance.TotalDistance(cities).ToString();
             lblDistance.Refresh();
-            Debug.WriteLine("distance=" + distance.ToString());
             
         }
 
