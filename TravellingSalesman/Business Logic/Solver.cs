@@ -217,20 +217,21 @@ namespace TravellingSalesman.Business_Logic
         public void SimonsBasicFeasible(ref List<City> cities)
         {
             double curDistance = 0;
-            Timer.instance.Start();
+//            Timer.instance.Start();
             for (int i = 1; i < cities.Count; i++)
             {
-                curDistance = TotalDistance(cities);
+                
                 CalculateDistances(ref cities, i - 1);
                 quickSort(ref cities, i, cities.Count - 1);
-                Timer.instance.Pause();
-                Report(cities, curDistance);
-                Timer.instance.Pause();
+  //              Timer.instance.Pause();
+    //            Report(cities, curDistance);
+      //          Timer.instance.Pause();
             }
+            curDistance = TotalDistance(cities);
 
             
-            Timer.instance.Stop();
-            Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime());
+        //    Timer.instance.Stop();
+          //  Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime());
             Report(cities, curDistance);
         }
 
