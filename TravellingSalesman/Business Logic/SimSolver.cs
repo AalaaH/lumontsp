@@ -17,7 +17,7 @@ namespace TravellingSalesman.Business_Logic
             
             Timer.instance.Start();
             int counter=1;
-            while (counter<100)
+            while (counter<10000)
             {
                 double averageDistance = TotalDistance(cities) / cities.Count;
                 while (curDistance >= distance)
