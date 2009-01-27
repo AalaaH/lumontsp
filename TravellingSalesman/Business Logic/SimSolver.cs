@@ -18,10 +18,11 @@ namespace TravellingSalesman.Business_Logic
             Timer.instance.Start();
             int counter=1;
             List<City> cityTemp = null;
-            int maxIterations = 10000;
+            int maxIterations = 300*cities.Count();
             while (counter < maxIterations)
-            {
+            {                
                 double averageDistance = TotalDistance(cities) / cities.Count;
+               
                 while (curDistance >= distance)
                 {
 
@@ -41,8 +42,6 @@ namespace TravellingSalesman.Business_Logic
                             cityTemp.Clear();
                             foreach (City c in cities) cityTemp.Add((City)c);
                             
-                            //cities.ToList(cityTemp);
-
                         }
                         
                     }
