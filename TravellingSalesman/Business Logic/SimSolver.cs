@@ -27,12 +27,14 @@ namespace TravellingSalesman.Business_Logic
                     {
                         CalculateDistances(ref cities, i - 1);
                         quickSortRnd(ref cities, i, cities.Count - 1, averageDistance);
-                        //Timer.instance.Pause();
-                        //Report(cities, curDistance);
-                        //Timer.instance.Pause();
+                        
                     }
                     curDistance = TotalDistance(cities);
+                    
                 }
+                Timer.instance.Pause();
+                Report(cities, curDistance);
+                Timer.instance.Pause();
                 distance = curDistance;
             }
             Timer.instance.Stop();
