@@ -32,6 +32,7 @@
             this.butSimAnnealing = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butGenerateProblem = new System.Windows.Forms.ToolStripButton();
+            this.txtNumCities = new System.Windows.Forms.ToolStripTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.butSwapNodes = new System.Windows.Forms.Button();
             this.butReset = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.list = new TravellingSalesman.Presentation.GridList();
-            this.txtNumCities = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -76,6 +76,11 @@
             this.butGenerateProblem.Size = new System.Drawing.Size(72, 22);
             this.butGenerateProblem.Text = "Generate";
             this.butGenerateProblem.Click += new System.EventHandler(this.butGenerateProblem_Click);
+            // 
+            // txtNumCities
+            // 
+            this.txtNumCities.Name = "txtNumCities";
+            this.txtNumCities.Size = new System.Drawing.Size(100, 25);
             // 
             // panel1
             // 
@@ -116,7 +121,7 @@
             this.butSimBFS.Name = "butSimBFS";
             this.butSimBFS.Size = new System.Drawing.Size(75, 23);
             this.butSimBFS.TabIndex = 2;
-            this.butSimBFS.Text = "Simon BFS";
+            this.butSimBFS.Text = "Simon\'s";
             this.butSimBFS.UseVisualStyleBackColor = true;
             this.butSimBFS.Click += new System.EventHandler(this.butSimBFS_Click);
             // 
@@ -166,11 +171,6 @@
             this.list.Name = "list";
             this.list.Size = new System.Drawing.Size(242, 499);
             this.list.TabIndex = 2;
-            // 
-            // txtNumCities
-            // 
-            this.txtNumCities.Name = "txtNumCities";
-            this.txtNumCities.Size = new System.Drawing.Size(100, 25);
             // 
             // frmMain
             // 
