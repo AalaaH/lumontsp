@@ -32,6 +32,7 @@ namespace TravellingSalesman.Business_Logic
                     }
                     curDistance = TotalDistance(cities);
                     counter++;
+                    if (counter > 10000) break;
                     
                 }
                 Console.WriteLine(counter);

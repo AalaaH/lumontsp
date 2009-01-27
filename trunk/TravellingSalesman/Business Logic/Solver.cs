@@ -134,7 +134,7 @@ namespace TravellingSalesman.Business_Logic
         private bool Accept(double distNew, double distOld, double temp)
         {
             double prob = new Random().NextDouble();
-            double sim = Math.Exp(-2 * (distNew - distOld) / temp);
+            double sim = Math.Exp(-5 * (distNew - distOld) / temp);
             if (prob < sim) return true;
 
             return false;

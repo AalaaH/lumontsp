@@ -57,7 +57,7 @@ namespace TravellingSalesman.Business_Logic
         {
             int numCities = cities.Count;
 
-            int MAX_ITER = 400;
+            int MAX_ITER = 2000;
             int lBound = 1, uBound = numCities-1;
 
             // curD and newD is not total distance
