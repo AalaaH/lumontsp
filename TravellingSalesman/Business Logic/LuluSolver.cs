@@ -14,9 +14,10 @@ namespace TravellingSalesman.Business_Logic
         public void BasicFeasible(ref List<City> cities, int start)
         {
             Timer.instance.Start();
+            double curDistance = 0;
             for (int i = start; i < cities.Count - 1; i++)
             {
-                double curDistance = MathHelper.getDistance(cities[i], cities[i + 1]);
+                curDistance = MathHelper.getDistance(cities[i], cities[i + 1]);
                 int toSwap = -1;
 
                 for (int x = i + 2; x < cities.Count; x++)
@@ -34,14 +35,14 @@ namespace TravellingSalesman.Business_Logic
                     cities[i+1] = cities[toSwap];
                     cities[toSwap] = temp;
                     Timer.instance.Pause();
-                    Report(cities);
+                    Report(cities, curDistance);
                     Timer.instance.Pause();
                 }
 
             }
             Timer.instance.Stop();
-            Console.WriteLine("Timer Lu:" + Timer.instance.elapsedTime()); 
-            Report(cities);
+            Console.WriteLine("Timer Lu:" + Timer.instance.elapsedTime());
+            Report(cities, curDistance);
         }
 
 
@@ -101,7 +102,7 @@ namespace TravellingSalesman.Business_Logic
                             City tempC = cities[r1 + s];
                             cities[r1 + s] = cities[r2 - s];
                             cities[r2 - s] = tempC;
-                            Report(cities);
+                            Report(cities, curD);
                         }
                     }
 

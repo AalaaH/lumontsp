@@ -42,6 +42,7 @@
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.list = new TravellingSalesman.Presentation.GridList();
+            this.lblDistance = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -85,6 +86,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.lblDistance);
             this.panel1.Controls.Add(this.butSwapNodes);
             this.panel1.Controls.Add(this.butReset);
             this.panel1.Controls.Add(this.butSimBFS);
@@ -147,7 +149,9 @@
             // 
             // statusObjective
             // 
+            this.statusObjective.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.statusObjective.Name = "statusObjective";
+            this.statusObjective.Overflow = System.Windows.Forms.ToolStripItemOverflow.Always;
             this.statusObjective.Size = new System.Drawing.Size(82, 17);
             this.statusObjective.Tag = "";
             this.statusObjective.Text = "Total Distance: ";
@@ -172,6 +176,15 @@
             this.list.Size = new System.Drawing.Size(242, 499);
             this.list.TabIndex = 2;
             // 
+            // lblDistance
+            // 
+            this.lblDistance.AutoSize = true;
+            this.lblDistance.Location = new System.Drawing.Point(648, 8);
+            this.lblDistance.Name = "lblDistance";
+            this.lblDistance.Size = new System.Drawing.Size(35, 13);
+            this.lblDistance.TabIndex = 5;
+            this.lblDistance.Text = "label1";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,6 +204,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -213,6 +227,7 @@
         private System.Windows.Forms.Button butReset;
         private System.Windows.Forms.Button butSwapNodes;
         private System.Windows.Forms.ToolStripTextBox txtNumCities;
+        private System.Windows.Forms.Label lblDistance;
     }
 }
 

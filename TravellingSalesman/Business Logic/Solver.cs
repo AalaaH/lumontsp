@@ -16,7 +16,7 @@ namespace TravellingSalesman.Business_Logic
 
         #region Reporting
 
-        public delegate void ReportSolution(List<City> cities);
+        public delegate void ReportSolution(List<City> cities, double dist);
         private ReportSolution _reportSolution = null;
 
         public ReportSolution Report
@@ -35,7 +35,7 @@ namespace TravellingSalesman.Business_Logic
         /// Used as a dummy reporting method for new solution
         /// </summary>
         /// <param name="cts"></param>
-        public void DummyReport(List<City> cts)
+        public void DummyReport(List<City> cts, double dist)
         {            
         }
 
@@ -215,20 +215,22 @@ namespace TravellingSalesman.Business_Logic
         
         public void SimonsBasicFeasible(ref List<City> cities)
         {
+            double curDistance = 0;
             Timer.instance.Start();
             for (int i = 1; i < cities.Count; i++)
             {
+                curDistance = TotalDistance(cities);
                 CalculateDistances(ref cities, i - 1);
                 quickSort(ref cities, i, cities.Count - 1);
                 Timer.instance.Pause();
-                Report(cities);
+                Report(cities, curDistance);
                 Timer.instance.Pause();
             }
 
             
             Timer.instance.Stop();
-            Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime()); 
-            Report(cities);
+            Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime());
+            Report(cities, curDistance);
         }
 
         

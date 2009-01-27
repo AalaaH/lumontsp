@@ -45,14 +45,18 @@ namespace TravellingSalesman
             Solver.instance.SimAnneal(ref cities, 20, 0.05);        
         }
 
-        private void RefreshCities(List<City> cities)
+        private void RefreshCities(List<City> cities, double distance)
         {            
             digraph.Cities = cities;
             digraph.Refresh();
 
             list.SetData(cities);
             list.Refresh();
-            statusObjective.Text = "Total Distance: " + Solver.instance.TotalDistance(cities);
+            statusObjective.Text = "Total Distance: " + distance.ToString();
+            
+            lblDistance.Text = distance.ToString();
+            lblDistance.Refresh();
+            Debug.WriteLine("distance=" + distance.ToString());
             
         }
 
@@ -160,7 +164,8 @@ namespace TravellingSalesman
 
         private void butSwapNodes_Click(object sender, EventArgs e)
         {
-            RefreshCities(cities);
+            
+            RefreshCities(cities, 0);
         }
 
         private void butSimNSB_Click(object sender, EventArgs e)
