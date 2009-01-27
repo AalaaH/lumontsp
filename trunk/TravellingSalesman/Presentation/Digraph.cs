@@ -94,9 +94,11 @@ ControlStyles.UserPaint, true);
         
         private void DrawPath(Graphics dc, City startCity, City endCity)
         {
-            Pen lGPen = new Pen(Color.DarkGray,1);
+            Pen colorPen = new Pen(Color.DarkGray,1);
             dc.SmoothingMode = SmoothingMode.HighQuality;
-            dc.DrawLine(lGPen, new Point(startCity.X , startCity.Y ), new Point(endCity.X , endCity.Y ));
+            if (startCity.Distance > 10)
+                colorPen.Color = System.Drawing.Color.Red;
+            dc.DrawLine(colorPen, new Point(startCity.X , startCity.Y ), new Point(endCity.X , endCity.Y ));
         }
 
     }

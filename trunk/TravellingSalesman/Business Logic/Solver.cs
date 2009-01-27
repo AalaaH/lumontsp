@@ -212,8 +212,6 @@ namespace TravellingSalesman.Business_Logic
             }
         }
         
-
-
         public void SimonsBasicFeasible(ref List<City> cities)
         {
             Timer.instance.Start();
@@ -230,6 +228,18 @@ namespace TravellingSalesman.Business_Logic
             Timer.instance.Stop();
             Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime()); 
             Report(cities);
+        }
+
+        
+        private int FindLongestDistance(ref List<City> cities)
+        {
+            int longestTravelStartingCity = 0;
+            for( int i =0;i<cities.Count;i++)
+            {
+                if(cities[longestTravelStartingCity].Distance<cities[i].Distance);
+                    longestTravelStartingCity = 1;
+            }
+            return (longestTravelStartingCity);
         }
   /*
         private double findMedianOfMedians(ref List<City> cities, int left, int right)

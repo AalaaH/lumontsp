@@ -163,6 +163,12 @@ namespace TravellingSalesman
             RefreshCities(cities);
         }
 
+        private void butSimNSB_Click(object sender, EventArgs e)
+        {
+            Solver.instance.Report = RefreshCities;
+            Solver.instance.SimonsNotSoBasic(ref cities);
+        }
+
         
     }
 }
