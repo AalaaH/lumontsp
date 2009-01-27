@@ -100,9 +100,23 @@ namespace TravellingSalesman.Business_Logic
 
             pivotIndex = partitionRnd(ref cities, left, right, average);
             //CalculateDistances(ref cities, left);
-            quickSort(ref cities, left, pivotIndex - 1);
+            quickSortRnd(ref cities, left, pivotIndex - 1,average);
             //quickSort(ref cities, pivotNewIndex + 1, right); not need only conserned with shorter values
 
+        }
+        private void swapCity(ref List<City> cities, int index1, int index2)
+        {
+            City temp = cities[index1];
+            cities[index1] = cities[index2];
+            cities[index2] = temp;
+        }
+        private void CalculateDistances(ref List<City> cities, int startCity)
+        {
+            cities[0].Distance = MathHelper.getDistance(cities[0], cities.Last());
+            for (int i = startCity + 1; i < cities.Count; i++)
+            {
+                cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);
+            }
         }
     }
 }
