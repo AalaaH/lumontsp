@@ -108,13 +108,11 @@ namespace TravellingSalesman.Business_Logic
                         {
                             City tempC = cities[r1 + s];
                             cities[r1 + s] = cities[r2 - s];
-                            cities[r2 - s] = tempC;
-                            Report(cities, curD);
+                            cities[r2 - s] = tempC;                            
                         }
                     }
                 }
-
-
+                Report(cities, curD);
             }
         }
 

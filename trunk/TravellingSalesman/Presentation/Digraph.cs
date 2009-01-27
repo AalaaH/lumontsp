@@ -96,12 +96,12 @@ namespace TravellingSalesman.Presentation
         {
             Pen colorPen = new Pen(Color.DarkGray,1);
             dc.SmoothingMode = SmoothingMode.HighQuality;
-            if (startCity.Distance > 100)
+            /*if (startCity.Distance > 100)
                 colorPen.Color = System.Drawing.Color.Green;
             if (startCity.Distance > 200)
                 colorPen.Color = System.Drawing.Color.Orange;
             if (startCity.Distance > 300)
-                colorPen.Color = System.Drawing.Color.Red;
+                colorPen.Color = System.Drawing.Color.Red;*/
             dc.DrawLine(colorPen, new Point(startCity.X , startCity.Y ), new Point(endCity.X , endCity.Y ));
         }
 
