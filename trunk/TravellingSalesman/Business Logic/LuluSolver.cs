@@ -91,6 +91,7 @@ namespace TravellingSalesman.Business_Logic
                     
                     if (newD < curD) // if new solution better we accept
                     {
+                        bool accept = true;
                         Console.WriteLine("accept");
                         City tempCity = cities[r1];
                         cities[r1] = cities[r2];
