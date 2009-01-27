@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TravellingSalesman.Data_Logic;
 
 namespace TravellingSalesman.Business_Logic
 {
@@ -11,16 +12,20 @@ namespace TravellingSalesman.Business_Logic
         {
             //int longestTravelStartingCity = FindLongestDistance(ref cities);
             SimonsBasicFeasible(ref cities);
-            TotalDistance(
-            double averageDistance = TotalDistance(cities) / cities.Count;
+            double distance = TotalDistance(cities);
             Timer.instance.Start();
-            for (int i = 1; i < cities.Count; i++)
+            while (TotalDistance(cities)>=distance)
             {
-                CalculateDistances(ref cities, i - 1);
-                quickSortRnd(ref cities, i, cities.Count - 1,averageDistance);
-                Timer.instance.Pause();
-                Report(cities);
-                Timer.instance.Pause();
+                double averageDistance = TotalDistance(cities) / cities.Count;
+                
+                for (int i = 1; i < cities.Count; i++)
+                {
+                    CalculateDistances(ref cities, i - 1);
+                    quickSortRnd(ref cities, i, cities.Count - 1,averageDistance);
+                    Timer.instance.Pause();
+                    Report(cities);
+                    Timer.instance.Pause();
+                }
             }
 
 

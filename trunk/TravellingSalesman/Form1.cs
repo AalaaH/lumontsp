@@ -94,7 +94,7 @@ namespace TravellingSalesman
         {
             //cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
             Solver.instance.Report = RefreshCities;
-            Solver.instance.SimonsBasicFeasible(ref cities);
+            Solver.instance.SimonsNotSoBasic(ref cities);
             
         }
 
