@@ -120,6 +120,7 @@ namespace TravellingSalesman.Business_Logic
             {
                 distance+= MathHelper.getDistance(cities[i], cities[i + 1]);
             }
+            distance += MathHelper.getDistance(cities.Last(), cities[0]);
             return distance;
         }
 
@@ -207,7 +208,8 @@ namespace TravellingSalesman.Business_Logic
         /// <param name="cities"></param>
         /// <param name="startCity"></param>
         private void CalculateDistances(ref List<City> cities, int startCity)
-        {
+        {            
+            cities[0].Distance = MathHelper.getDistance(cities[0], cities.Last());
             for (int i = startCity+1; i < cities.Count; i++)
             {
                 cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);                
