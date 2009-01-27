@@ -57,10 +57,11 @@ namespace TravellingSalesman.Business_Logic
         {
             int numCities = cities.Count;
 
-            int MAX_ITER = 200;
-            int lBound = 3, uBound = numCities + 1;
+            int MAX_ITER = 400;
+            int lBound = 1, uBound = numCities-1;
 
-            double curD = TotalDistance(cities);
+            // curD and newD is not total distance
+            double curD = 0;
 
             Random rd = new Random();
 
@@ -75,10 +76,10 @@ namespace TravellingSalesman.Business_Logic
                 for (int c = 0; c < cities.Count; c++)
                 {
                     // find random c1 and c2 to swap
-                    r1 = rd.Next(lBound, uBound);
-                    r2 = rd.Next(lBound, uBound);
+                    r1 = rd.Next(lBound, uBound-1);
+                    r2 = rd.Next(lBound, uBound-1);
 
-                    while (r2 != r2) r2 = rd.Next(lBound, uBound);
+                    while (r1 == r2) r2 = rd.Next(lBound, uBound);
 
                     // step a
                     if (r2 < r1)
@@ -89,15 +90,21 @@ namespace TravellingSalesman.Business_Logic
                     }
 
                     // step b
-                    double newD = GetNewDistance(cities, r1, r2, curD);
+                    // curD = distance frm prev node for both r1's
+                    curD = MathHelper.getDistance(cities[r1 - 1], cities[r1]) + MathHelper.getDistance(cities[r2 + 1], cities[r2]);
+                    double newD = MathHelper.getDistance(cities[r1], cities[r2 + 1]) + MathHelper.getDistance(cities[r1-1], cities[r2]);
                     bool accept = false;
                     
                     if (newD < curD) accept = true;// if new solution better we accept
-                    else if (Accept(newD, curD, temp)) accept = true;
+                    if (temp > 0.01)
+                    {
+                        if (Accept(newD, curD, temp)) accept = true;
+                    }
 
                     if (accept)
                     {
-                        for (int s = 0; s < (r1 - r2) / 2; s++)
+                        int max = Convert.ToInt32(Math.Round((double)((r2 - r1) / 2)));
+                        for (int s = 0; s <max; s++)
                         {
                             City tempC = cities[r1 + s];
                             cities[r1 + s] = cities[r2 - s];
@@ -105,8 +112,6 @@ namespace TravellingSalesman.Business_Logic
                             Report(cities, curD);
                         }
                     }
-
- 
                 }
 
 

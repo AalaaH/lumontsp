@@ -42,7 +42,7 @@ namespace TravellingSalesman
         {
 
             Solver.instance.Report = RefreshCities;
-            Solver.instance.SimAnneal(ref cities, 20, 0.05);        
+            Solver.instance.SimAnneal(ref cities, 20, 0.002);        
         }
 
         private void RefreshCities(List<City> cities, double distance)
@@ -53,8 +53,8 @@ namespace TravellingSalesman
             list.SetData(cities);
             list.Refresh();
             statusObjective.Text = "Total Distance: " + distance.ToString();
-            
-            lblDistance.Text = distance.ToString();
+
+            lblDistance.Text = Solver.instance.TotalDistance(cities).ToString();
             lblDistance.Refresh();
             Debug.WriteLine("distance=" + distance.ToString());
             
