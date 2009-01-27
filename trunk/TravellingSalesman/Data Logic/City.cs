@@ -6,7 +6,7 @@ using System.Text;
 namespace TravellingSalesman.Data_Logic
 {
     // data logic - represents a city (node)
-    public class City
+    public class City : ICloneable
     {
         private string _name;
         private int _xPos;
@@ -54,11 +54,29 @@ namespace TravellingSalesman.Data_Logic
         {
         }
 
+        public City(int x, int y, string name, double distance, double cost)
+        {
+            X = x;
+            Y = y;
+            Name = name;
+            Cost = cost;
+            Distance = distance;
+        }
+
         public City(int x, int y, string name)
         {
             X = x;
             Y = y;
             Name = name; 
         }
+
+        #region ICloneable Members
+
+        public object Clone()
+        {
+            return new City(X, Y, Name, Distance, Cost);
+        }
+
+        #endregion
     }
 }
