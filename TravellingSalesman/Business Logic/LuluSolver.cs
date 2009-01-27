@@ -75,7 +75,9 @@ namespace TravellingSalesman.Business_Logic
                 {
                     // find random c1 and c2 to swap
                     r1 = rd.Next(lBound, uBound);
-                    while (r2 != 21) r2 = rd.Next(lBound, uBound);
+                    r2 = rd.Next(lBound, uBound);
+
+                    while (r2 != r2) r2 = rd.Next(lBound, uBound);
 
                     // step a
                     if (r2 < r1)
@@ -89,30 +91,21 @@ namespace TravellingSalesman.Business_Logic
                     double newD = GetNewDistance(cities, r1, r2, curD);
                     bool accept = false;
                     
-                    if (newD < curD) // if new solution better we accept
-                    {
-                        accept = true;
-                        Console.WriteLine("accept");
-                        City tempCity = cities[r1];
-                        cities[r1] = cities[r2];
-                        cities[r2] = tempCity;
-                        curD = newD;
-                        Report.Invoke(cities);
-                    }
+                    if (newD < curD) accept = true;// if new solution better we accept
+                    else if (Accept(newD, curD, temp)) accept = true;
 
-                    else
+                    if (accept)
                     {
-                        if (Accept(newD, curD, temp)) // calc prob to accept increase
+                        for (int s = 0; s < (r1 - r2) / 2; s++)
                         {
-                            accept = true;
-                            Console.WriteLine("accept");
-                            City tempCity = cities[r1];
-                            cities[r1] = cities[r2];
-                            cities[r2] = tempCity;
-                            curD = newD;
-                            Report.Invoke(cities);
+                            City tempC = cities[r1 + s];
+                            cities[r1 + s] = cities[r2 - s];
+                            cities[r2 - s] = tempC;
+                            Report(cities);
                         }
                     }
+
+ 
                 }
 
 

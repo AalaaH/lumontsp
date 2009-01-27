@@ -77,7 +77,7 @@ namespace TravellingSalesman.Business_Logic
             // curDistance - (old distances involving c1 an c2) + (new distances involving c1 and c2)
             // this improves performance for networks with large numbers of nodes
 
-            if ((c2 - c1) > 2)
+            /*if ((c2 - c1) > 2)
             {
                 double dis = curDistance - GetDistBeforeAfterCity(cts, c1) - GetDistBeforeAfterCity(cts, c2); // distance - the two cities
 
@@ -88,6 +88,7 @@ namespace TravellingSalesman.Business_Logic
 
                 return dis + GetDistBeforeAfterCity(cts, c1) + GetDistBeforeAfterCity(cts, c2); // total distance after swap
             } 
+            return TotalDistance(cts); */
             return TotalDistance(cts);
         }
 

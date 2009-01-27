@@ -42,7 +42,7 @@ namespace TravellingSalesman
         {
 
             Solver.instance.Report = RefreshCities;
-            Solver.instance.SimAnneal(ref cities, 20, 0.001);        
+            Solver.instance.SimAnneal(ref cities, 20, 0.05);        
         }
 
         private void RefreshCities(List<City> cities)
