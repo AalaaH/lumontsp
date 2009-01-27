@@ -13,8 +13,10 @@ namespace TravellingSalesman.Business_Logic
             //int longestTravelStartingCity = FindLongestDistance(ref cities);
             SimonsBasicFeasible(ref cities);
             double distance = TotalDistance(cities);
+            double curDistance = 0;
+
             Timer.instance.Start();
-            while (TotalDistance(cities)>=distance)
+            while ((curDistance = (TotalDistance(cities))) >= distance)
             {
                 double averageDistance = TotalDistance(cities) / cities.Count;
                 
@@ -23,7 +25,7 @@ namespace TravellingSalesman.Business_Logic
                     CalculateDistances(ref cities, i - 1);
                     quickSortRnd(ref cities, i, cities.Count - 1,averageDistance);
                     Timer.instance.Pause();
-                    Report(cities);
+                    Report(cities, curDistance);
                     Timer.instance.Pause();
                 }
             }
@@ -31,7 +33,7 @@ namespace TravellingSalesman.Business_Logic
 
             Timer.instance.Stop();
             Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime());
-            Report(cities);
+            Report(cities, curDistance);
 
             
         }
