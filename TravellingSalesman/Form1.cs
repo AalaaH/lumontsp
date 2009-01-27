@@ -17,6 +17,7 @@ namespace TravellingSalesman
     public partial class frmMain : Form
     {
 
+        private BackgroundWorker bg_worker = new BackgroundWorker();
         private List<City> ori_cities = new List<City>();
         private List<City> cities;
 
@@ -24,12 +25,18 @@ namespace TravellingSalesman
         public frmMain()
         {
             InitializeComponent();
+            bg_worker.DoWork+=new DoWorkEventHandler(bg_worker_DoWork);
             // ori_cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
             cities = new List<City>(ori_cities);
             ResetCities();
         }
 
-        
+
+        public void bg_worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);            
@@ -42,7 +49,7 @@ namespace TravellingSalesman
         {
 
             Solver.instance.Report = RefreshCities;
-            Solver.instance.SimAnneal(ref cities, 20, 0.002);        
+            Solver.instance.SimAnneal(ref cities, 25, 0.5);        
         }
 
         private void RefreshCities(List<City> cities, double distance)
