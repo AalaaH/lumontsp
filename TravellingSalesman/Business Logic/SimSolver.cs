@@ -14,7 +14,7 @@ namespace TravellingSalesman.Business_Logic
             SimonsBasicFeasible(ref cities);
             double distance = TotalDistance(cities);
             double curDistance = 0;
-
+            
             Timer.instance.Start();
             while ((curDistance = (TotalDistance(cities))) >= distance)
             {
@@ -24,18 +24,15 @@ namespace TravellingSalesman.Business_Logic
                 {
                     CalculateDistances(ref cities, i - 1);
                     quickSortRnd(ref cities, i, cities.Count - 1,averageDistance);
-                    Timer.instance.Pause();
-                    Report(cities, curDistance);
-                    Timer.instance.Pause();
+                    //Timer.instance.Pause();
+                    //Report(cities, curDistance);
+                    //Timer.instance.Pause();
                 }
             }
 
-
             Timer.instance.Stop();
             Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime());
-            Report(cities, curDistance);
-
-            
+            Report(cities, curDistance);            
         }
 
         private int partitionRnd(ref List<City> cities, int left, int right, double average)
