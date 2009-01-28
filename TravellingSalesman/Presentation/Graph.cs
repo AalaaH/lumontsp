@@ -75,7 +75,8 @@ namespace TravellingSalesman.Presentation
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
+            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+            DrawGraph(e.Graphics);
         }        
     }
 }
