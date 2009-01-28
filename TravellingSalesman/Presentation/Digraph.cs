@@ -54,6 +54,8 @@ namespace TravellingSalesman.Presentation
         }
 
         
+
+
         private void DrawCities(Graphics dc)
         {
             Font fArial = new Font("Arial", 8);
@@ -98,7 +100,7 @@ namespace TravellingSalesman.Presentation
         
         private void DrawPath(Graphics dc, City startCity, City endCity)
         {
-            Pen colorPen = new Pen(Color.DarkGray,1);
+            Pen colorPen = new Pen(Color.DarkGray, 3);
             if (startCity.Collides) colorPen.Color = Color.Red;
             
             
