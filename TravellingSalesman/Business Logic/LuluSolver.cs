@@ -46,6 +46,10 @@ namespace TravellingSalesman.Business_Logic
         }
 
 
+        public void LocalSearch(ref List<City> cities)
+        {
+        }
+
 
         /// <summary>
         /// Solves using Simulated Annealing
