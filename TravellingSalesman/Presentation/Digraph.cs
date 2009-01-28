@@ -112,6 +112,8 @@ namespace TravellingSalesman.Presentation
                 colorPen.Color = System.Drawing.Color.Red;*/
             dc.DrawLine(colorPen, new Point(startCity.X , startCity.Y ), new Point(endCity.X , endCity.Y ));
         }
+       
+        
 
     }
 }

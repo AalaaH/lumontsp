@@ -33,6 +33,11 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.butGenerateProblem = new System.Windows.Forms.ToolStripButton();
             this.txtNumCities = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.txtTemp = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.txtDelta = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDistance = new System.Windows.Forms.Label();
             this.butSwapNodes = new System.Windows.Forms.Button();
@@ -42,12 +47,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
+            this.graph1 = new TravellingSalesman.Graph();
             this.list = new TravellingSalesman.Presentation.GridList();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.txtTemp = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.txtDelta = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -92,6 +93,33 @@
             // 
             this.txtNumCities.Name = "txtNumCities";
             this.txtNumCities.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(67, 22);
+            this.toolStripLabel1.Text = "temperature";
+            // 
+            // txtTemp
+            // 
+            this.txtTemp.Name = "txtTemp";
+            this.txtTemp.Size = new System.Drawing.Size(50, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(31, 22);
+            this.toolStripLabel2.Text = "delta";
+            // 
+            // txtDelta
+            // 
+            this.txtDelta.Name = "txtDelta";
+            this.txtDelta.Size = new System.Drawing.Size(50, 25);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // panel1
             // 
@@ -184,8 +212,17 @@
             this.digraph.Location = new System.Drawing.Point(173, 59);
             this.digraph.Margin = new System.Windows.Forms.Padding(50);
             this.digraph.Name = "digraph";
-            this.digraph.Size = new System.Drawing.Size(652, 499);
+            this.digraph.Size = new System.Drawing.Size(652, 264);
             this.digraph.TabIndex = 4;
+            // 
+            // graph1
+            // 
+            this.graph1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.graph1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.graph1.Location = new System.Drawing.Point(173, 323);
+            this.graph1.Name = "graph1";
+            this.graph1.Size = new System.Drawing.Size(652, 235);
+            this.graph1.TabIndex = 7;
             // 
             // list
             // 
@@ -195,33 +232,6 @@
             this.list.Size = new System.Drawing.Size(173, 499);
             this.list.TabIndex = 2;
             // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(67, 22);
-            this.toolStripLabel1.Text = "temperature";
-            // 
-            // txtTemp
-            // 
-            this.txtTemp.Name = "txtTemp";
-            this.txtTemp.Size = new System.Drawing.Size(50, 25);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(31, 22);
-            this.toolStripLabel2.Text = "delta";
-            // 
-            // txtDelta
-            // 
-            this.txtDelta.Name = "txtDelta";
-            this.txtDelta.Size = new System.Drawing.Size(50, 25);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,6 +239,7 @@
             this.ClientSize = new System.Drawing.Size(825, 580);
             this.Controls.Add(this.butSimAnnealing);
             this.Controls.Add(this.digraph);
+            this.Controls.Add(this.graph1);
             this.Controls.Add(this.list);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
@@ -270,6 +281,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripTextBox txtDelta;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private Graph graph1;
     }
 }
 
