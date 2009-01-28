@@ -64,19 +64,17 @@ namespace TravellingSalesman.Presentation
             }
         }
         
-        private void DrawGraph(Graphics dc)
-        {
-            Pen myPen = new Pen(Color.Black, 5);
-            dc.DrawArc(myPen, 10, 10, 100, 100, 90, 10);
-            
-        }
-
-
-
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             DrawGraph(e.Graphics);
-        }        
+        }
+        
+        private void DrawGraph(Graphics dc)
+        {
+            Pen myPen = new Pen(Color.Black, 5);
+            dc.DrawArc(myPen, 10, 10, 100, 100, 90, 10);
+
+        }
     }
 }
