@@ -49,7 +49,14 @@ namespace TravellingSalesman
 
         private void butSimAnnealing_Click(object sender, EventArgs e)
         {
-
+            double temp = 20;
+            double delta = 0.5;
+            try
+            {
+                temp = Convert.ToDouble(txtTemp.Text);
+                delta = Convert.ToDouble(txtDelta.Text);
+            }
+            catch { }
             Solver.instance.Report = RefreshCities;
             Solver.instance.SimAnneal(ref cities, 25, 0.5);        
         }

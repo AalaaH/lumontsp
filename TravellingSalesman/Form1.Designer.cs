@@ -43,6 +43,11 @@
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.list = new TravellingSalesman.Presentation.GridList();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.txtTemp = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.txtDelta = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -62,7 +67,12 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.butGenerateProblem,
-            this.txtNumCities});
+            this.txtNumCities,
+            this.toolStripLabel1,
+            this.txtTemp,
+            this.toolStripLabel2,
+            this.txtDelta,
+            this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(825, 25);
@@ -132,7 +142,7 @@
             this.butSimBFS.Name = "butSimBFS";
             this.butSimBFS.Size = new System.Drawing.Size(75, 23);
             this.butSimBFS.TabIndex = 2;
-            this.butSimBFS.Text = "Simon\'s";
+            this.butSimBFS.Text = "Quick Path";
             this.butSimBFS.UseVisualStyleBackColor = true;
             this.butSimBFS.Click += new System.EventHandler(this.butSimBFS_Click);
             // 
@@ -185,6 +195,33 @@
             this.list.Size = new System.Drawing.Size(173, 499);
             this.list.TabIndex = 2;
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(67, 22);
+            this.toolStripLabel1.Text = "temperature";
+            // 
+            // txtTemp
+            // 
+            this.txtTemp.Name = "txtTemp";
+            this.txtTemp.Size = new System.Drawing.Size(50, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(31, 22);
+            this.toolStripLabel2.Text = "delta";
+            // 
+            // txtDelta
+            // 
+            this.txtDelta.Name = "txtDelta";
+            this.txtDelta.Size = new System.Drawing.Size(50, 25);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,6 +265,11 @@
         private System.Windows.Forms.Button butSwapNodes;
         private System.Windows.Forms.ToolStripTextBox txtNumCities;
         private System.Windows.Forms.Label lblDistance;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox txtTemp;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripTextBox txtDelta;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

@@ -62,9 +62,7 @@ namespace TravellingSalesman.Business_Logic
             int numCities = cities.Count;
 
             int MAX_ITER = 2000;
-            int lBound = 1, uBound = numCities-1;
-
-            // curD and newD is not total distance
+            int lBound = 1, uBound = numCities-1;           
             double curD = 0;
 
             Random rd = new Random();
@@ -121,7 +119,5 @@ namespace TravellingSalesman.Business_Logic
 
             for(int i = 0; i<cities.Count-1; i++) Collides(ref cities, i);
         }
-
-
     }
 }
