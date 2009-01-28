@@ -107,6 +107,21 @@ namespace TravellingSalesman.Business_Logic
             return gradient * xVal + yInter;
         }
 
+        /// <summary>
+        /// Checks that two points are within the range
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="x2"></param>
+        /// <param name="xMin"></param>
+        /// <param name="xMax"></param>
+        /// <returns></returns>
+        private bool within(int val1, int val2, int min, int max)
+        {
+            if ((val1 > min && val1 < max) && (val2 < min && val2 > max)) return true;
+            return false;
+
+        }
+
 
         /// <summary>
         /// Checks to see if there are any arcs over the arc { cities[c] -> citiec[c+1]}
@@ -139,7 +154,8 @@ namespace TravellingSalesman.Business_Logic
             // 2 find out if there exists an arc that goes near that region
             for (int i = 0; i<cities.Count-1; i++)
             {
-                if(c==i) continue;
+                if(i==c)i+=2;
+                if (i < cities.Count) break;
 
                 double yLine = GetLineY(cities[c].X, m, b);
 
@@ -157,21 +173,19 @@ namespace TravellingSalesman.Business_Logic
                         hasCollision = false;
                     }
 
-                    if((cities[i].X > curCity.X) && (cities[i+1].X > curCity.X)) {
+                    if ((cities[i].X > curCity.X) && (cities[i + 1].X > curCity.X))
+                    {
                         cities[i].Collides = false;
                         hasCollision = false;
-                    }
+                    }                    
                 }
                 // negative slope
                 else if( m < 0)
                 {
                     if ((cities[i].Y > yLine) && cities[i + 1].Y < yLine) cities[i].Collides = true;
                 }
-               
-                else
-                {
-                    cities[i].Collides = false;
-                }
+                               
+                if (hasCollision) cities[c].Collides = true;
                 Report(cities, 0);
                 
             }

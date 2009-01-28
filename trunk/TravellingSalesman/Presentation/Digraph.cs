@@ -100,7 +100,7 @@ namespace TravellingSalesman.Presentation
         
         private void DrawPath(Graphics dc, City startCity, City endCity)
         {
-            Pen colorPen = new Pen(Color.DarkGray, 3);
+            Pen colorPen = new Pen(Color.Black, 1);
             if (startCity.Collides) colorPen.Color = Color.Red;
             
             
