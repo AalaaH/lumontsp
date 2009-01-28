@@ -47,11 +47,15 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
-            this.list = new TravellingSalesman.Presentation.GridList();
             this.graph = new TravellingSalesman.Presentation.Graph();
+            this.list = new TravellingSalesman.Presentation.GridList();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // butSimAnnealing
@@ -209,11 +213,23 @@
             this.digraph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.digraph.Cities = null;
             this.digraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.digraph.Location = new System.Drawing.Point(173, 59);
+            this.digraph.Location = new System.Drawing.Point(0, 0);
             this.digraph.Margin = new System.Windows.Forms.Padding(50);
             this.digraph.Name = "digraph";
-            this.digraph.Size = new System.Drawing.Size(652, 323);
+            this.digraph.Size = new System.Drawing.Size(652, 395);
             this.digraph.TabIndex = 4;
+            // 
+            // graph
+            // 
+            this.graph.BackColor = System.Drawing.Color.AliceBlue;
+            this.graph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.graph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graph.Location = new System.Drawing.Point(0, 0);
+            this.graph.Name = "graph";
+            this.graph.numberOfIteratoins = 0;
+            this.graph.Size = new System.Drawing.Size(652, 100);
+            this.graph.TabIndex = 7;
+            this.graph.totalDistance = 0;
             // 
             // list
             // 
@@ -223,26 +239,31 @@
             this.list.Size = new System.Drawing.Size(173, 499);
             this.list.TabIndex = 2;
             // 
-            // graph
+            // splitContainer1
             // 
-            this.graph.BackColor = System.Drawing.Color.AliceBlue;
-            this.graph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.graph.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.graph.Location = new System.Drawing.Point(173, 382);
-            this.graph.Name = "graph";
-            this.graph.numberOfIteratoins = 0;
-            this.graph.Size = new System.Drawing.Size(652, 176);
-            this.graph.TabIndex = 7;
-            this.graph.totalDistance = 0;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(173, 59);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.digraph);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.graph);
+            this.splitContainer1.Size = new System.Drawing.Size(652, 499);
+            this.splitContainer1.SplitterDistance = 395;
+            this.splitContainer1.TabIndex = 8;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 580);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.butSimAnnealing);
-            this.Controls.Add(this.digraph);
-            this.Controls.Add(this.graph);
             this.Controls.Add(this.list);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
@@ -258,6 +279,9 @@
             this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,6 +309,7 @@
         private System.Windows.Forms.ToolStripTextBox txtDelta;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private TravellingSalesman.Presentation.Graph graph;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 
