@@ -17,7 +17,8 @@ namespace TravellingSalesman.Business_Logic
             Timer.instance.Start();
             int counter=1;
             List<City> cityTemp = null;
-            int maxIterations = 300*cities.Count();
+            int maxIterations = 300*cities.Count;
+            CalculateDistances(ref cities, 0, cities.Count-1);
             while (counter < maxIterations)
             {                
                 double averageDistance = TotalDistance(cities) / cities.Count;
@@ -28,7 +29,7 @@ namespace TravellingSalesman.Business_Logic
 
                     for (int i = 1; i < cities.Count; i++)
                     {
-                        CalculateDistances(ref cities, i - 1);
+                        CalculateDistances(ref cities, i - 1,i+10);
                         quickSortRnd(ref cities, i, cities.Count - 1, averageDistance);
                         
                     }
@@ -97,10 +98,11 @@ namespace TravellingSalesman.Business_Logic
             cities[index1] = cities[index2];
             cities[index2] = temp;
         }
-        private void CalculateDistances(ref List<City> cities, int startCity)
+        private void CalculateDistances(ref List<City> cities, int startCity,int endCity)
         {
             cities[0].Distance = MathHelper.getDistance(cities[0], cities.Last());
-            for (int i = startCity + 1; i < cities.Count; i++)
+            if (endCity > cities.Count) endCity = cities.Count;
+            for (int i = startCity + 1; i < endCity; i++)
             {
                 cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);
             }
