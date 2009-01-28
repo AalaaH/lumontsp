@@ -47,7 +47,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
-            this.graph1 = new TravellingSalesman.Graph();
             this.list = new TravellingSalesman.Presentation.GridList();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -212,17 +211,8 @@
             this.digraph.Location = new System.Drawing.Point(173, 59);
             this.digraph.Margin = new System.Windows.Forms.Padding(50);
             this.digraph.Name = "digraph";
-            this.digraph.Size = new System.Drawing.Size(652, 264);
+            this.digraph.Size = new System.Drawing.Size(652, 499);
             this.digraph.TabIndex = 4;
-            // 
-            // graph1
-            // 
-            this.graph1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.graph1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.graph1.Location = new System.Drawing.Point(173, 323);
-            this.graph1.Name = "graph1";
-            this.graph1.Size = new System.Drawing.Size(652, 235);
-            this.graph1.TabIndex = 7;
             // 
             // list
             // 
@@ -239,7 +229,6 @@
             this.ClientSize = new System.Drawing.Size(825, 580);
             this.Controls.Add(this.butSimAnnealing);
             this.Controls.Add(this.digraph);
-            this.Controls.Add(this.graph1);
             this.Controls.Add(this.list);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
@@ -281,7 +270,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripTextBox txtDelta;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private Graph graph1;
     }
 }
 
