@@ -34,6 +34,7 @@
             this.butGenerateProblem = new System.Windows.Forms.ToolStripButton();
             this.txtNumCities = new System.Windows.Forms.ToolStripTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDistance = new System.Windows.Forms.Label();
             this.butSwapNodes = new System.Windows.Forms.Button();
             this.butReset = new System.Windows.Forms.Button();
             this.butSimBFS = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.list = new TravellingSalesman.Presentation.GridList();
-            this.lblDistance = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -96,6 +96,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(825, 34);
             this.panel1.TabIndex = 5;
+            // 
+            // lblDistance
+            // 
+            this.lblDistance.AutoSize = true;
+            this.lblDistance.Location = new System.Drawing.Point(648, 8);
+            this.lblDistance.Name = "lblDistance";
+            this.lblDistance.Size = new System.Drawing.Size(35, 13);
+            this.lblDistance.TabIndex = 5;
+            this.lblDistance.Text = "label1";
             // 
             // butSwapNodes
             // 
@@ -162,10 +171,10 @@
             this.digraph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.digraph.Cities = null;
             this.digraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.digraph.Location = new System.Drawing.Point(242, 59);
+            this.digraph.Location = new System.Drawing.Point(173, 59);
             this.digraph.Margin = new System.Windows.Forms.Padding(50);
             this.digraph.Name = "digraph";
-            this.digraph.Size = new System.Drawing.Size(583, 499);
+            this.digraph.Size = new System.Drawing.Size(652, 499);
             this.digraph.TabIndex = 4;
             // 
             // list
@@ -173,17 +182,8 @@
             this.list.Dock = System.Windows.Forms.DockStyle.Left;
             this.list.Location = new System.Drawing.Point(0, 59);
             this.list.Name = "list";
-            this.list.Size = new System.Drawing.Size(242, 499);
+            this.list.Size = new System.Drawing.Size(173, 499);
             this.list.TabIndex = 2;
-            // 
-            // lblDistance
-            // 
-            this.lblDistance.AutoSize = true;
-            this.lblDistance.Location = new System.Drawing.Point(648, 8);
-            this.lblDistance.Name = "lblDistance";
-            this.lblDistance.Size = new System.Drawing.Size(35, 13);
-            this.lblDistance.TabIndex = 5;
-            this.lblDistance.Text = "label1";
             // 
             // frmMain
             // 

@@ -85,7 +85,7 @@ namespace TravellingSalesman
             Cursor.Current = Cursors.WaitCursor;
             digraph.Clear();
 
-            cities = Init.instance.GenerateProblem(numCities, digraph.Width, digraph.Height, digraph.Margin.All);
+            cities = Init.instance.GenerateProblem(numCities, digraph.Width, digraph.Height, 5);
             
             list.SetData(cities);
             digraph.Cities = cities;
