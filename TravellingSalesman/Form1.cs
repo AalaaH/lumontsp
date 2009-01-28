@@ -138,7 +138,7 @@ namespace TravellingSalesman
             cities.Add(new City(156, 377, "newtown"));
             cities.Add(new City(899, 412, "hurstville"));
             cities.Add(new City(245, 323, "wolli creek"));
-            cities.Add(new City(410, 334, "mosman"));
+            cities.Add(new City(310, 334, "mosman"));
             cities.Add(new City(770, 75, "north sydney"));
 
 

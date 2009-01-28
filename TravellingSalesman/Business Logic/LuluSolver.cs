@@ -82,7 +82,7 @@ namespace TravellingSalesman.Business_Logic
                     // find random c1 and c2 to swap
                     r1 = rd.Next(lBound, uBound-1);
                     r2 = rd.Next(lBound, uBound-1);
-
+                                       
                     while (r1 == r2) r2 = rd.Next(lBound, uBound);
 
                     // step a
@@ -118,6 +118,8 @@ namespace TravellingSalesman.Business_Logic
                 }
                 Report(cities, curD);
             }
+
+            for(int i = 0; i<cities.Count-1; i++) Collides(ref cities, i);
         }
 
 

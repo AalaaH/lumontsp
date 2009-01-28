@@ -15,6 +15,9 @@ namespace TravellingSalesman.Data_Logic
         private double _distance;
         private double _cost;
 
+        private bool _coll;
+
+
 
         public string Name
         {
@@ -52,6 +55,7 @@ namespace TravellingSalesman.Data_Logic
 
         public City()
         {
+            Collides = false;
         }
 
         public City(int x, int y, string name, double distance, double cost)
@@ -61,14 +65,25 @@ namespace TravellingSalesman.Data_Logic
             Name = name;
             Cost = cost;
             Distance = distance;
+            Collides = false;
         }
 
         public City(int x, int y, string name)
         {
             X = x;
             Y = y;
-            Name = name; 
+            Name = name;
+            Collides = false;
         }
+
+
+        public bool Collides
+        {
+            get { return _coll; }
+            set { _coll = value; }
+        }
+
+
 
         #region ICloneable Members
 
