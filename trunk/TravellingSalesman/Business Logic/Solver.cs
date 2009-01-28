@@ -96,17 +96,88 @@ namespace TravellingSalesman.Business_Logic
         #region Utility methods
 
         /// <summary>
+        /// Returns y (for y = mx + b)
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="m"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        private double GetLineY(int xVal, double gradient, double yInter)
+        {
+            return gradient * xVal + yInter;
+        }
+
+
+        /// <summary>
         /// Checks to see if there are any arcs over the arc { cities[c] -> citiec[c+1]}
         /// </summary>
         /// <param name="c1"></param>
         /// <returns></returns>
-        private bool Collides(List<City> cities, int c)
+        private bool Collides(ref List<City> cities, int c)
         {
-            // 1 define region
-            Rectangle region;
-            if (cities[c+1].X > cities[c].X) {
-                //region = new Rectangle(cities[c].X, cities
+            // 1 define region       
+            City curCity = cities[c];
+            int xPos = Math.Min(cities[c].X, cities[c+1].X);
+            int yPos = Math.Min(cities[c].Y, cities[c+1].Y);
+            int width = Math.Abs(cities[c].X - cities[c+1].X);
+            int height = Math.Abs(cities[c].Y - cities[c+1].Y);
+
+            Rectangle region = new Rectangle(xPos, yPos, width, height);
+
+            List<City> possible = new List<City>();
+
+
+
+            // 1. find equation to original arc
+            double m = 0;
+            if (width > 0) m = -((double)(cities[c + 1].Y - cities[c].Y) / (double)(cities[c + 1].X - cities[c].X));
+
+            double b = cities[c].Y - m * cities[c].X;
+            bool hasCollision = false;
+            
+
+            // 2 find out if there exists an arc that goes near that region
+            for (int i = 0; i<cities.Count-1; i++)
+            {
+                if(c==i) continue;
+
+                double yLine = GetLineY(cities[c].X, m, b);
+
+                // positive
+                if (m > 0)
+                {
+                    if ((cities[i].Y < yLine) && (cities[i + 1].Y > yLine))
+                    {
+                        cities[i].Collides = true;
+                        hasCollision = true;
+                    }
+
+                    if((cities[i].X < curCity.X) && (cities[i+1].X < curCity.X)) {
+                        cities[i].Collides = false;
+                        hasCollision = false;
+                    }
+
+                    if((cities[i].X > curCity.X) && (cities[i+1].X > curCity.X)) {
+                        cities[i].Collides = false;
+                        hasCollision = false;
+                    }
+                }
+                // negative slope
+                else if( m < 0)
+                {
+                    if ((cities[i].Y > yLine) && cities[i + 1].Y < yLine) cities[i].Collides = true;
+                }
+               
+                else
+                {
+                    cities[i].Collides = false;
+                }
+                Report(cities, 0);
+                
             }
+
+
+                                   
             return false;
             
         }
@@ -165,288 +236,8 @@ namespace TravellingSalesman.Business_Logic
 
         #endregion
 
-<<<<<<< .mine
-       
 
-        /// <summary>
-        /// Swap two cities
-        /// </summary>
-        /// <param name="cities"></param>
-        /// <param name="index1"></param>
-        /// <param name="index2"></param>
-        private void swapCity(ref List<City> cities,int index1, int index2)
-        {
-            City temp = cities[index1];
-            cities[index1] = cities[index2];
-            cities[index2] = temp;
-        }
+  
 
-        
-        
-        private int partition(ref List<City> cities, int left, int right)
-        {
-            //findMedianOfMedians(ref cities, left, right); not needed for our moving target
-            int pivotIndex = left, index = left, i;
-            double pivotValue = cities[pivotIndex].Distance;
-            swapCity(ref cities, left, right);
-            for (i = left; i < right; i++)
-            {
-                if (cities[i].Distance < pivotValue)
-                {
-                    swapCity(ref cities, i, index);
-                    index++;
-                }
-            }
-            swapCity(ref cities, right, index);
-            return index;
-        }
-
-        
-        private void quickSort(ref List<City> cities, int left, int right)
-        {
-            
-            int pivotIndex = 0;
-            
-
-            if (left >= right)
-                return;
-        
-            pivotIndex = partition(ref cities, left, right);
-            //CalculateDistances(ref cities, left);
-            quickSort(ref cities, left, pivotIndex - 1);
-            //quickSort(ref cities, pivotNewIndex + 1, right); not need only conserned with shorter values
-          
-        }
-
-        /// <summary>
-        /// Assign distances
-        /// </summary>
-        /// <param name="cities"></param>
-        /// <param name="startCity"></param>
-        private void CalculateDistances(ref List<City> cities, int startCity)
-        {            
-            cities[0].Distance = MathHelper.getDistance(cities[0], cities.Last());
-            for (int i = startCity+1; i < cities.Count; i++)
-            {
-                cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);                
-            }
-        }
-        
-        public void SimonsBasicFeasible(ref List<City> cities)
-        {
-            double curDistance = 0;
-//            Timer.instance.Start();
-            for (int i = 1; i < cities.Count; i++)
-            {
-                
-                CalculateDistances(ref cities, i - 1);
-                quickSort(ref cities, i, cities.Count - 1);
-  //              Timer.instance.Pause();
-    //            Report(cities, curDistance);
-      //          Timer.instance.Pause();
-            }
-            curDistance = TotalDistance(cities);
-
-            
-        //    Timer.instance.Stop();
-          //  Console.WriteLine("Timer Simon: " + Timer.instance.elapsedTime());
-            Report(cities, curDistance);
-        }
-
-        
-        //private int FindLongestDistance(ref List<City> cities)
-        //{
-        //    int longestTravelStartingCity = 0;
-        //    for( int i =0;i<cities.Count;i++)
-        //    {
-        //        if(cities[longestTravelStartingCity].Distance<cities[i].Distance);
-        //            longestTravelStartingCity = 1;
-        //    }
-        //    return (longestTravelStartingCity);
-        //}
-  /*
-        private double findMedianOfMedians(ref List<City> cities, int left, int right)
-        {
-            if (left == right)
-                return cities[left].Distance;
-
-            int i, shift = 1;
-            while (shift <= (right - left))
-            {
-                for (i = left; i <= right; i += shift * 5)
-                {
-                    int endIndex = (i + shift * 5 - 1 < right) ? i + shift * 5 - 1 : right;
-                    int medianIndex = findMedianIndex(ref cities, i, endIndex, shift);
-
-
-                    swapCity(ref cities, i, medianIndex);
-                }
-                shift *= 5;
-            }
-
-            return cities[left].Distance;
-        }
-
-        int findMedianIndex(ref List<City> cities, int left, int right, int shift)
-        {
-            int i, groups = (right - left) / shift + 1, k = left + groups / 2 * shift;
-            for (i = left; i <= k; i += shift)
-            {
-                int minIndex = i, j;
-                double minValue = cities[minIndex].Distance;
-                for (j = i; j <= right; j += shift)
-                    if (cities[j].Distance < minValue)
-                    {
-                        minIndex = j;
-                        minValue = cities[minIndex].Distance;
-                    }
-                swapCity(ref cities, i, minIndex);
-            }
-
-            return k;
-        }
-*/
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
     }
 }

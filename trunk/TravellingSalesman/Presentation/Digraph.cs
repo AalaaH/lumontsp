@@ -70,6 +70,9 @@ namespace TravellingSalesman.Presentation
                     if (i == 0)
                         dc.DrawEllipse(new Pen(Color.DarkGreen, 3), Cities[i].X - 2, Cities[i].Y - 2, 5, 5);
 
+                    if(Cities[i].Collides)
+                        dc.DrawEllipse(new Pen(Color.Red, 3), Cities[i].X - 2, Cities[i].Y - 2, 5, 5);
+
                     dc.DrawString(Cities[i].Name, fArial, Brushes.Black, new PointF(Cities[i].X, Cities[i].Y));
                     i++;
                 }
@@ -86,6 +89,7 @@ namespace TravellingSalesman.Presentation
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             DrawCities(e.Graphics);
         }
 
@@ -95,7 +99,9 @@ namespace TravellingSalesman.Presentation
         private void DrawPath(Graphics dc, City startCity, City endCity)
         {
             Pen colorPen = new Pen(Color.DarkGray,1);
-            dc.SmoothingMode = SmoothingMode.HighQuality;
+            if (startCity.Collides) colorPen.Color = Color.Red;
+            
+            
             /*if (startCity.Distance > 100)
                 colorPen.Color = System.Drawing.Color.Green;
             if (startCity.Distance > 200)
