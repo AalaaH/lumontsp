@@ -29,7 +29,7 @@ namespace TravellingSalesman.Business_Logic
 
                     for (int i = 1; i < cities.Count; i++)
                     {
-                        CalculateDistances(ref cities, i - 1,i+10);
+                        CalculateDistances(ref cities, i - 1,i+20);
                         quickSortRnd(ref cities, i, cities.Count - 1, averageDistance);
                         
                     }
