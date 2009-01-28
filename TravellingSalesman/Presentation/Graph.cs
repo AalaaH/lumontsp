@@ -50,16 +50,16 @@ namespace TravellingSalesman.Presentation
                 Refresh();
             }
         }
-        private double _numberOfIteratoins;
-        public double numberOfIteratoins
+        private double _iterationNumber;
+        public double iterationNumber
         {
             get
             {
-                return _numberOfIteratoins;
+                return _iterationNumber;
             }
             set
             {
-                _numberOfIteratoins = value;
+                _iterationNumber = value;
                 Refresh();
             }
         }
@@ -72,9 +72,35 @@ namespace TravellingSalesman.Presentation
         
         private void DrawGraph(Graphics dc)
         {
-            Pen myPen = new Pen(Color.Black, 5);
-            dc.DrawArc(myPen, 10, 10, 100, 100, 90, 10);
+            totalDistance = 123;
+            iterationNumber = 1;
 
+            Point graphPoint = new Point();
+            Pen myPen = new Pen(Color.Black, 1);
+            SolidBrush myBrush = new SolidBrush(Color.Black);
+            Font myFont = new Font("Arial", 12);
+            double yScale = 0;
+            int offset = 10;
+            int canvasSizeX = Width-2*offset;
+            int canvasSizeY = Height-2*offset;
+            string yLabel = "Total Distance";
+            string xLabel = "Iteration";
+            int yLabelWidth = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Width);
+            int yLabelHeight = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Height);
+            int xlabelHeight = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Height);
+            int xlabelWidth = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Width);
+            Rectangle graphSpace = new Rectangle(offset + yLabelWidth, offset, canvasSizeX - yLabelWidth, canvasSizeY - xlabelHeight);
+            yScale = graphSpace.Height / totalDistance;
+
+            graphPoint.X = Convert.ToInt32(graphSpace.Left + iterationNumber);
+            graphPoint.Y = Convert.ToInt32(graphSpace.Top + graphSpace.Height - totalDistance * yScale);
+            dc.DrawEllipse(myPen, graphPoint.X, graphPoint.Y, 1, 1);
+           
+            dc.DrawString(yLabel, myFont, myBrush, offset, Height / 2-yLabelHeight);
+            dc.DrawString(xLabel, myFont, myBrush, Width/2-xlabelWidth, Height-offset-xlabelHeight);
+            dc.DrawRectangle(myPen, graphSpace);
         }
+        
+
     }
 }
