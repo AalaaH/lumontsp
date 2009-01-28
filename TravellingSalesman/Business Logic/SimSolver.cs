@@ -10,8 +10,7 @@ namespace TravellingSalesman.Business_Logic
     {
         public void SimonsNotSoBasic(ref List<City> cities)
         {
-            //int longestTravelStartingCity = FindLongestDistance(ref cities);
-            //SimonsBasicFeasible(ref cities);
+
             double distance = TotalDistance(cities);
             double curDistance = TotalDistance(cities);
             
@@ -34,20 +33,10 @@ namespace TravellingSalesman.Business_Logic
                         
                     }
                     curDistance = TotalDistance(cities);
-                    if (curDistance<distance)
-                    {
-                        if (cityTemp == null) cityTemp = new List<City>(cities);
-                        else
-                        {
-                            cityTemp.Clear();
-                            foreach (City c in cities) cityTemp.Add((City)c);
-                            
-                        }
-                        
-                    }
-
-
-                            counter++;
+                    
+                    if (curDistance<distance) CopyCityList(ref cities,ref cityTemp);
+                                        
+                    counter++;
                     if (counter > maxIterations) break;
                     
                 }
@@ -63,8 +52,7 @@ namespace TravellingSalesman.Business_Logic
 
             if (cityTemp != null)
             {
-                cities.Clear();
-                foreach (City c in cityTemp) cities.Add((City)c);
+                CopyCityList(ref cityTemp,ref cities);
             }
 
             Report(cities, curDistance);            
@@ -72,7 +60,7 @@ namespace TravellingSalesman.Business_Logic
 
         private int partitionRnd(ref List<City> cities, int left, int right, double average)
         {
-            //findMedianOfMedians(ref cities, left, right); not needed for our moving target
+            
             int pivotIndex = left, index = left, i;
             double pivotValue = cities[pivotIndex].Distance + average * MathHelper.getRandom();
             swapCity(ref cities, left, right);
@@ -99,8 +87,7 @@ namespace TravellingSalesman.Business_Logic
                 return;
 
             pivotIndex = partitionRnd(ref cities, left, right, average);
-            //CalculateDistances(ref cities, left);
-            quickSortRnd(ref cities, left, pivotIndex - 1,average);
+            quickSortRnd(ref cities, left, pivotIndex - 1, 0); //whats going on with average here
             //quickSort(ref cities, pivotNewIndex + 1, right); not need only conserned with shorter values
 
         }
@@ -118,5 +105,18 @@ namespace TravellingSalesman.Business_Logic
                 cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);
             }
         }
+        private void CopyCityList(ref List<City> citesOld, ref List<City> citesNew)
+        {
+            if (citiesNew == null) 
+            {
+                citiesNew = new List<City>(citiesOld);
+            }
+            else
+            {
+                citiesNew.Clear();
+                foreach (City c in citiesOld) citiesNew.Add((City)c);
+                
+            }
+
     }
 }
