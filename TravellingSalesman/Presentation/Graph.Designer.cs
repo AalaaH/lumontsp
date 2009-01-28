@@ -36,7 +36,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "Graph";
             this.Size = new System.Drawing.Size(720, 176);
-            this.Load += new System.EventHandler(this.Graph_Load);
             this.ResumeLayout(false);
 
         }

@@ -16,12 +16,10 @@ namespace TravellingSalesman.Presentation
         {
             InitializeComponent();
             this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-            
+            (this.CreateGraphics()).Clear(Color.White);
+            this.BackColor = Color.Blue;
         }
 
-        private void Graph_Load(object sender, EventArgs e)
-        {
-        }
 
         #region Data members
 
@@ -68,21 +66,16 @@ namespace TravellingSalesman.Presentation
         
         private void DrawGraph(Graphics dc)
         {
-            Pen myPen = new Pen(Color.Black, 1);
+            Pen myPen = new Pen(Color.Black, 5);
             dc.DrawArc(myPen, 10, 10, 100, 100, 90, 10);
             
         }
 
+
+
         protected override void OnPaint(PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-            DrawGraph(e.Graphics);
-            e.Graphics.DrawString("NO CITIES TO DRAW", new Font("Arial", 16), Brushes.Black, (Width / 2) - 100, Height / 2);
-        }
-
-
-
-        
-        
+            base.OnPaint(e);
+        }        
     }
 }
