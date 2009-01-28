@@ -105,7 +105,7 @@ namespace TravellingSalesman.Business_Logic
                 cities[i].Distance = MathHelper.getDistance(cities[startCity], cities[i]);
             }
         }
-        private void CopyCityList(ref List<City> citesOld, ref List<City> citesNew)
+        private void CopyCityList(ref List<City> citiesOld, ref List<City> citiesNew)
         {
             if (citiesNew == null)
             {

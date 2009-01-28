@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.Drawing;
 
 
 using TravellingSalesman.Data_Logic;
@@ -35,9 +36,7 @@ namespace TravellingSalesman.Business_Logic
         /// Used as a dummy reporting method for new solution
         /// </summary>
         /// <param name="cts"></param>
-        public void DummyReport(List<City> cts, double dist)
-        {            
-        }
+        public void DummyReport(List<City> cts, double dist) { }
 
         #endregion
 
@@ -93,7 +92,27 @@ namespace TravellingSalesman.Business_Logic
             return TotalDistance(cts);
         }
 
-        
+
+        #region Utility methods
+
+        /// <summary>
+        /// Checks to see if there are any arcs over the arc { cities[c] -> citiec[c+1]}
+        /// </summary>
+        /// <param name="c1"></param>
+        /// <returns></returns>
+        private bool Collides(List<City> cities, int c)
+        {
+            // 1 define region
+            Rectangle region;
+            if (cities[c+1].X > cities[c].X) {
+                //region = new Rectangle(cities[c].X, cities
+            }
+            return false;
+            
+        }
+        #endregion
+
+
         /// <summary>
         /// 
         /// </summary>
