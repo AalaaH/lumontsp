@@ -48,6 +48,7 @@
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.list = new TravellingSalesman.Presentation.GridList();
+            this.graph1 = new TravellingSalesman.Presentation.Graph();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -222,11 +223,22 @@
             this.list.Size = new System.Drawing.Size(173, 499);
             this.list.TabIndex = 2;
             // 
+            // graph1
+            // 
+            this.graph1.BackColor = System.Drawing.Color.Blue;
+            this.graph1.Location = new System.Drawing.Point(205, 352);
+            this.graph1.Name = "graph1";
+            this.graph1.numberOfIteratoins = 0;
+            this.graph1.Size = new System.Drawing.Size(720, 176);
+            this.graph1.TabIndex = 7;
+            this.graph1.totalDistance = 0;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 580);
+            this.Controls.Add(this.graph1);
             this.Controls.Add(this.butSimAnnealing);
             this.Controls.Add(this.digraph);
             this.Controls.Add(this.list);
@@ -270,6 +282,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripTextBox txtDelta;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private TravellingSalesman.Presentation.Graph graph1;
     }
 }
 
