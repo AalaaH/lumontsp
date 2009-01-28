@@ -107,7 +107,7 @@ namespace TravellingSalesman.Business_Logic
         }
         private void CopyCityList(ref List<City> citesOld, ref List<City> citesNew)
         {
-            if (citiesNew == null) 
+            if (citiesNew == null)
             {
                 citiesNew = new List<City>(citiesOld);
             }
@@ -115,8 +115,9 @@ namespace TravellingSalesman.Business_Logic
             {
                 citiesNew.Clear();
                 foreach (City c in citiesOld) citiesNew.Add((City)c);
-                
+
             }
+        }
 
     }
 }
