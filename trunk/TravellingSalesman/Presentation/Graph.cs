@@ -25,7 +25,8 @@ namespace TravellingSalesman.Presentation
 
 
         #region Data members
-
+        const string yLabel = "Distance";
+        const string xLabel = "Iteration";
         #endregion
 
         #region Public methods
@@ -68,13 +69,11 @@ namespace TravellingSalesman.Presentation
             Point graphPoint = new Point();
             Pen myPen = new Pen(Color.Black, 1);
             SolidBrush myBrush = new SolidBrush(Color.Black);
-            Font myFont = new Font("Arial", 12);
+            Font myFont = new Font("Arial", 10);
             double yScale = 0;
             int offset = 10;
             int canvasSizeX = Width - 2 * offset;
             int canvasSizeY = Height - 2 * offset;
-            string yLabel = "Total Distance";
-            string xLabel = "Iteration";
             int yLabelWidth = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Width);
             int yLabelHeight = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Height);
             int xlabelHeight = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Height);
@@ -102,7 +101,7 @@ namespace TravellingSalesman.Presentation
                 }
                 
             }
-    }
+        }
         
 
     }
