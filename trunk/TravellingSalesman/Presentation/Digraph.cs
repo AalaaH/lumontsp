@@ -82,12 +82,15 @@ namespace TravellingSalesman.Presentation
                 {
                     arc = Arcs[i];
                     DrawArc(dc, arc);
+
                     dc.DrawEllipse(gPen, arc.FrmCity.X - 2, arc.FrmCity.Y - 2, 5, 5);
                     if (i == 0)
                         dc.DrawEllipse(new Pen(Color.DarkGreen, 3), arc.FrmCity.X - 2, arc.FrmCity.Y - 2, 5, 5);
 
                     if (arc.Collides)
+                    {
                         dc.DrawEllipse(new Pen(Color.Red, 3), arc.FrmCity.X - 2, arc.FrmCity.Y - 2, 5, 5);
+                    }
 
                     dc.DrawString(arc.FrmCity.Name, fArial, Brushes.Black, new PointF(arc.FrmCity.X, arc.FrmCity.Y));
                     i++;
