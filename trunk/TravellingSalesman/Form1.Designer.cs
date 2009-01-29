@@ -221,15 +221,15 @@
             // 
             // graph
             // 
-            this.graph.BackColor = System.Drawing.Color.AliceBlue;
+            this.graph.BackColor = System.Drawing.Color.White;
             this.graph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.graph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graph.Location = new System.Drawing.Point(0, 0);
             this.graph.Name = "graph";
-            //this.graph.iterationNumber = 0;
             this.graph.Size = new System.Drawing.Size(652, 100);
             this.graph.TabIndex = 7;
-            //this.graph.totalDistance = 0;
+            this.graph.TotalDistance = ((System.Collections.Generic.List<double>)(resources.GetObject("graph.TotalDistance")));
+            this.graph.Load += new System.EventHandler(this.graph_Load);
             // 
             // list
             // 

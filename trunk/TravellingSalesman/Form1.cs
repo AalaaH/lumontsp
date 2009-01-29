@@ -194,6 +194,11 @@ namespace TravellingSalesman
             Solver.instance.SimonsNotSoBasic(ref cities);
         }
 
+        private void graph_Load(object sender, EventArgs e)
+        {
+
+        }
+
         
     }
 }
