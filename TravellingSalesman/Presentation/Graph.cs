@@ -68,6 +68,8 @@ namespace TravellingSalesman.Presentation
         {        
             Point graphPoint = new Point();
             Pen myPen = new Pen(Color.Black, 1);
+            Pen arrow = new Pen(Color.Black, 1);
+            arrow.EndCap = LineCap.ArrowAnchor;
             SolidBrush myBrush = new SolidBrush(Color.Black);
             Font myFont = new Font("Arial", 10);
             double yScale = 0;
@@ -82,7 +84,9 @@ namespace TravellingSalesman.Presentation
             
             dc.DrawString(yLabel, myFont, myBrush, offset, Height / 2 - yLabelHeight);
             dc.DrawString(xLabel, myFont, myBrush, Width / 2 - xlabelWidth, Height - offset - xlabelHeight);
-            dc.DrawRectangle(myPen, graphSpace);
+
+            dc.DrawLine(arrow, graphSpace.Left, graphSpace.Bottom, graphSpace.Left, graphSpace.Top);
+            dc.DrawLine(arrow, graphSpace.Left, graphSpace.Bottom, graphSpace.Right, graphSpace.Bottom);
             if (TotalDistance.Count > 0)
             {
                 yScale = graphSpace.Height / TotalDistance.First();
