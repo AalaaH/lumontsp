@@ -39,6 +39,7 @@
             this.txtDelta = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.butCollision = new System.Windows.Forms.Button();
             this.lblDistance = new System.Windows.Forms.Label();
             this.butSwapNodes = new System.Windows.Forms.Button();
             this.butReset = new System.Windows.Forms.Button();
@@ -46,22 +47,22 @@
             this.butBasicFeasible = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.graph = new TravellingSalesman.Presentation.Graph();
-            this.list = new TravellingSalesman.Presentation.GridList();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.butCollision = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // butSimAnnealing
             // 
-            this.butSimAnnealing.Location = new System.Drawing.Point(3, 2);
+            this.butSimAnnealing.Location = new System.Drawing.Point(12, 6);
             this.butSimAnnealing.Name = "butSimAnnealing";
             this.butSimAnnealing.Size = new System.Drawing.Size(120, 25);
             this.butSimAnnealing.TabIndex = 0;
@@ -129,23 +130,28 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.butCollision);
-            this.panel1.Controls.Add(this.lblDistance);
-            this.panel1.Controls.Add(this.butSimAnnealing);
             this.panel1.Controls.Add(this.butSwapNodes);
             this.panel1.Controls.Add(this.butReset);
-            this.panel1.Controls.Add(this.butSimBFS);
-            this.panel1.Controls.Add(this.butBasicFeasible);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(825, 34);
             this.panel1.TabIndex = 5;
             // 
+            // butCollision
+            // 
+            this.butCollision.Location = new System.Drawing.Point(12, 37);
+            this.butCollision.Name = "butCollision";
+            this.butCollision.Size = new System.Drawing.Size(120, 23);
+            this.butCollision.TabIndex = 6;
+            this.butCollision.Text = "Test Collision";
+            this.butCollision.UseVisualStyleBackColor = true;
+            this.butCollision.Click += new System.EventHandler(this.butCollision_Click);
+            // 
             // lblDistance
             // 
             this.lblDistance.AutoSize = true;
-            this.lblDistance.Location = new System.Drawing.Point(648, 8);
+            this.lblDistance.Location = new System.Drawing.Point(12, 131);
             this.lblDistance.Name = "lblDistance";
             this.lblDistance.Size = new System.Drawing.Size(35, 13);
             this.lblDistance.TabIndex = 5;
@@ -153,7 +159,7 @@
             // 
             // butSwapNodes
             // 
-            this.butSwapNodes.Location = new System.Drawing.Point(494, 3);
+            this.butSwapNodes.Location = new System.Drawing.Point(231, 5);
             this.butSwapNodes.Name = "butSwapNodes";
             this.butSwapNodes.Size = new System.Drawing.Size(136, 23);
             this.butSwapNodes.TabIndex = 4;
@@ -163,7 +169,7 @@
             // 
             // butReset
             // 
-            this.butReset.Location = new System.Drawing.Point(413, 3);
+            this.butReset.Location = new System.Drawing.Point(150, 5);
             this.butReset.Name = "butReset";
             this.butReset.Size = new System.Drawing.Size(75, 23);
             this.butReset.TabIndex = 3;
@@ -173,9 +179,9 @@
             // 
             // butSimBFS
             // 
-            this.butSimBFS.Location = new System.Drawing.Point(332, 3);
+            this.butSimBFS.Location = new System.Drawing.Point(12, 95);
             this.butSimBFS.Name = "butSimBFS";
-            this.butSimBFS.Size = new System.Drawing.Size(75, 23);
+            this.butSimBFS.Size = new System.Drawing.Size(120, 23);
             this.butSimBFS.TabIndex = 2;
             this.butSimBFS.Text = "Quick Path";
             this.butSimBFS.UseVisualStyleBackColor = true;
@@ -183,9 +189,9 @@
             // 
             // butBasicFeasible
             // 
-            this.butBasicFeasible.Location = new System.Drawing.Point(228, 3);
+            this.butBasicFeasible.Location = new System.Drawing.Point(12, 66);
             this.butBasicFeasible.Name = "butBasicFeasible";
-            this.butBasicFeasible.Size = new System.Drawing.Size(98, 23);
+            this.butBasicFeasible.Size = new System.Drawing.Size(120, 23);
             this.butBasicFeasible.TabIndex = 2;
             this.butBasicFeasible.Text = "Basic Feasible";
             this.butBasicFeasible.UseVisualStyleBackColor = true;
@@ -210,6 +216,38 @@
             this.statusObjective.Tag = "";
             this.statusObjective.Text = "Total Distance: ";
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 59);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.digraph);
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.graph);
+            this.splitContainer1.Size = new System.Drawing.Size(825, 499);
+            this.splitContainer1.SplitterDistance = 395;
+            this.splitContainer1.TabIndex = 8;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblDistance);
+            this.panel2.Controls.Add(this.butCollision);
+            this.panel2.Controls.Add(this.butSimAnnealing);
+            this.panel2.Controls.Add(this.butBasicFeasible);
+            this.panel2.Controls.Add(this.butSimBFS);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(150, 395);
+            this.panel2.TabIndex = 5;
+            // 
             // digraph
             // 
             this.digraph.Arcs = null;
@@ -217,10 +255,10 @@
             this.digraph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.digraph.Cities = null;
             this.digraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.digraph.Location = new System.Drawing.Point(0, 0);
+            this.digraph.Location = new System.Drawing.Point(150, 0);
             this.digraph.Margin = new System.Windows.Forms.Padding(50);
             this.digraph.Name = "digraph";
-            this.digraph.Size = new System.Drawing.Size(652, 395);
+            this.digraph.Size = new System.Drawing.Size(675, 395);
             this.digraph.TabIndex = 4;
             // 
             // graph
@@ -230,46 +268,10 @@
             this.graph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graph.Location = new System.Drawing.Point(0, 0);
             this.graph.Name = "graph";
-            this.graph.Size = new System.Drawing.Size(652, 100);
+            this.graph.Size = new System.Drawing.Size(825, 100);
             this.graph.TabIndex = 7;
             this.graph.TotalDistance = ((System.Collections.Generic.List<double>)(resources.GetObject("graph.TotalDistance")));
             this.graph.Load += new System.EventHandler(this.graph_Load);
-            // 
-            // list
-            // 
-            this.list.Dock = System.Windows.Forms.DockStyle.Left;
-            this.list.Location = new System.Drawing.Point(0, 59);
-            this.list.Name = "list";
-            this.list.Size = new System.Drawing.Size(173, 499);
-            this.list.TabIndex = 2;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(173, 59);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.digraph);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.graph);
-            this.splitContainer1.Size = new System.Drawing.Size(652, 499);
-            this.splitContainer1.SplitterDistance = 395;
-            this.splitContainer1.TabIndex = 8;
-            // 
-            // butCollision
-            // 
-            this.butCollision.Location = new System.Drawing.Point(129, 3);
-            this.butCollision.Name = "butCollision";
-            this.butCollision.Size = new System.Drawing.Size(93, 23);
-            this.butCollision.TabIndex = 6;
-            this.butCollision.Text = "Test Collision";
-            this.butCollision.UseVisualStyleBackColor = true;
-            this.butCollision.Click += new System.EventHandler(this.butCollision_Click);
             // 
             // frmMain
             // 
@@ -277,7 +279,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 580);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.list);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -289,12 +290,13 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,7 +305,6 @@
         #endregion
 
         private System.Windows.Forms.Button butSimAnnealing;
-        private TravellingSalesman.Presentation.GridList list;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton butGenerateProblem;
         private TravellingSalesman.Presentation.Digraph digraph;
@@ -324,6 +325,7 @@
         private TravellingSalesman.Presentation.Graph graph;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button butCollision;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
