@@ -18,6 +18,9 @@ namespace TravellingSalesman.Presentation
             this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             (this.CreateGraphics()).Clear(Color.White);
             this.BackColor = Color.Blue;
+            TotalDistance = new List<double>();
+            
+            
         }
 
 
@@ -37,8 +40,8 @@ namespace TravellingSalesman.Presentation
             (this.CreateGraphics()).Clear(Color.White);
         }
 
-        private double _totalDistance;
-        public double totalDistance
+        private List<double> _totalDistance;
+        public List<double> TotalDistance
         {
             get
             {
@@ -50,56 +53,49 @@ namespace TravellingSalesman.Presentation
                 Refresh();
             }
         }
-        private double _iterationNumber;
-        public double iterationNumber
-        {
-            get
-            {
-                return _iterationNumber;
-            }
-            set
-            {
-                _iterationNumber = value;
-                Refresh();
-            }
-        }
+        
+        
         
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             DrawGraph(e.Graphics);
         }
-        
-        private void DrawGraph(Graphics dc)
+
+        private void DrawGraph(Graphics dc)//, ref List<double> totalDistance)
+
         {
-            totalDistance = 123;
-            iterationNumber = 1;
 
-            Point graphPoint = new Point();
-            Pen myPen = new Pen(Color.Black, 1);
-            SolidBrush myBrush = new SolidBrush(Color.Black);
-            Font myFont = new Font("Arial", 12);
-            double yScale = 0;
-            int offset = 10;
-            int canvasSizeX = Width-2*offset;
-            int canvasSizeY = Height-2*offset;
-            string yLabel = "Total Distance";
-            string xLabel = "Iteration";
-            int yLabelWidth = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Width);
-            int yLabelHeight = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Height);
-            int xlabelHeight = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Height);
-            int xlabelWidth = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Width);
-            Rectangle graphSpace = new Rectangle(offset + yLabelWidth, offset, canvasSizeX - yLabelWidth, canvasSizeY - xlabelHeight);
-            yScale = graphSpace.Height / totalDistance;
+            if (TotalDistance.Count>0)
+            {
+                Point graphPoint = new Point();
+                Pen myPen = new Pen(Color.Black, 1);
+                SolidBrush myBrush = new SolidBrush(Color.Black);
+                Font myFont = new Font("Arial", 12);
+                double yScale = 0;
+                int offset = 10;
+                int canvasSizeX = Width - 2 * offset;
+                int canvasSizeY = Height - 2 * offset;
+                string yLabel = "Total Distance";
+                string xLabel = "Iteration";
+                int yLabelWidth = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Width);
+                int yLabelHeight = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Height);
+                int xlabelHeight = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Height);
+                int xlabelWidth = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Width);
+                Rectangle graphSpace = new Rectangle(offset + yLabelWidth, offset, canvasSizeX - yLabelWidth, canvasSizeY - xlabelHeight);
+                yScale = graphSpace.Height / TotalDistance.First();
 
-            graphPoint.X = Convert.ToInt32(graphSpace.Left + iterationNumber);
-            graphPoint.Y = Convert.ToInt32(graphSpace.Top + graphSpace.Height - totalDistance * yScale);
-            dc.DrawEllipse(myPen, graphPoint.X, graphPoint.Y, 1, 1);
-           
-            dc.DrawString(yLabel, myFont, myBrush, offset, Height / 2-yLabelHeight);
-            dc.DrawString(xLabel, myFont, myBrush, Width/2-xlabelWidth, Height-offset-xlabelHeight);
-            dc.DrawRectangle(myPen, graphSpace);
-        }
+                for (int i = 0; i < TotalDistance.Count; i++)
+                {
+                    graphPoint.X = Convert.ToInt32(graphSpace.Left + 1 + i);
+                    graphPoint.Y = Convert.ToInt32(graphSpace.Top + graphSpace.Height - TotalDistance[i] * yScale);
+                    dc.DrawEllipse(myPen, graphPoint.X, graphPoint.Y, 1, 1);
+                }
+                dc.DrawString(yLabel, myFont, myBrush, offset, Height / 2 - yLabelHeight);
+                dc.DrawString(xLabel, myFont, myBrush, Width / 2 - xlabelWidth, Height - offset - xlabelHeight);
+                dc.DrawRectangle(myPen, graphSpace);
+            }
+    }
         
 
     }
