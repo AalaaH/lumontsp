@@ -226,10 +226,10 @@
             this.graph.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graph.Location = new System.Drawing.Point(0, 0);
             this.graph.Name = "graph";
-            this.graph.iterationNumber = 0;
+            //this.graph.iterationNumber = 0;
             this.graph.Size = new System.Drawing.Size(652, 100);
             this.graph.TabIndex = 7;
-            this.graph.totalDistance = 0;
+            //this.graph.totalDistance = 0;
             // 
             // list
             // 
