@@ -64,27 +64,29 @@ namespace TravellingSalesman.Presentation
 
         private void DrawGraph(Graphics dc)//, ref List<double> totalDistance)
 
-        {
-
-            if (TotalDistance.Count>0)
+        {        
+            Point graphPoint = new Point();
+            Pen myPen = new Pen(Color.Black, 1);
+            SolidBrush myBrush = new SolidBrush(Color.Black);
+            Font myFont = new Font("Arial", 12);
+            double yScale = 0;
+            int offset = 10;
+            int canvasSizeX = Width - 2 * offset;
+            int canvasSizeY = Height - 2 * offset;
+            string yLabel = "Total Distance";
+            string xLabel = "Iteration";
+            int yLabelWidth = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Width);
+            int yLabelHeight = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Height);
+            int xlabelHeight = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Height);
+            int xlabelWidth = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Width);
+            Rectangle graphSpace = new Rectangle(offset + yLabelWidth, offset, canvasSizeX - yLabelWidth, canvasSizeY - xlabelHeight);
+            
+            dc.DrawString(yLabel, myFont, myBrush, offset, Height / 2 - yLabelHeight);
+            dc.DrawString(xLabel, myFont, myBrush, Width / 2 - xlabelWidth, Height - offset - xlabelHeight);
+            dc.DrawRectangle(myPen, graphSpace);
+            if (TotalDistance.Count > 0)
             {
-                Point graphPoint = new Point();
-                Pen myPen = new Pen(Color.Black, 1);
-                SolidBrush myBrush = new SolidBrush(Color.Black);
-                Font myFont = new Font("Arial", 12);
-                double yScale = 0;
-                int offset = 10;
-                int canvasSizeX = Width - 2 * offset;
-                int canvasSizeY = Height - 2 * offset;
-                string yLabel = "Total Distance";
-                string xLabel = "Iteration";
-                int yLabelWidth = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Width);
-                int yLabelHeight = Convert.ToInt32(dc.MeasureString(yLabel, myFont).Height);
-                int xlabelHeight = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Height);
-                int xlabelWidth = Convert.ToInt32(dc.MeasureString(xLabel, myFont).Width);
-                Rectangle graphSpace = new Rectangle(offset + yLabelWidth, offset, canvasSizeX - yLabelWidth, canvasSizeY - xlabelHeight);
                 yScale = graphSpace.Height / TotalDistance.First();
-
                 for (int i = 0; i < TotalDistance.Count; i++)
                 {
                     if(TotalDistance.Count>graphSpace.Width) graphPoint.X = Convert.ToInt32(graphSpace.Left + 1 + i/(1+(TotalDistance.Count/graphSpace.Width)));
@@ -98,9 +100,7 @@ namespace TravellingSalesman.Presentation
                     dc.DrawEllipse(myPen, graphPoint.X, graphPoint.Y, 1, 1);
                     myPen.Color = Color.Black;
                 }
-                dc.DrawString(yLabel, myFont, myBrush, offset, Height / 2 - yLabelHeight);
-                dc.DrawString(xLabel, myFont, myBrush, Width / 2 - xlabelWidth, Height - offset - xlabelHeight);
-                dc.DrawRectangle(myPen, graphSpace);
+                
             }
     }
         
