@@ -110,7 +110,7 @@ namespace TravellingSalesman
 
             cities = Init.instance.GenerateProblem(numCities, digraph.Width, digraph.Height, 5);
             
-            list.SetData(cities);
+            //list.SetData(cities);
             digraph.Cities = cities;
             digraph.Refresh();
 
@@ -186,7 +186,7 @@ namespace TravellingSalesman
             List<Arc> arcs = new List<Arc>();
             for (int x = 0; x < cities.Count - 1; x++) arcs.Add(new Arc(cities[x], cities[x + 1]));
 
-            list.SetData(cities);
+            //list.SetData(cities);
             digraph.Cities = cities;
             digraph.Arcs = arcs;
             digraph.Refresh();
@@ -234,6 +234,11 @@ namespace TravellingSalesman
             digraph.Refresh();
 
 
+
+        }
+
+        private void list_Load(object sender, EventArgs e)
+        {
 
         }
 
