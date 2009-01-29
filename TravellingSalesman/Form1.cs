@@ -221,19 +221,20 @@ namespace TravellingSalesman
             List<Arc> arcs = new List<Arc>();
 
             cities.Clear();
-            cities = Init.instance.GenerateProblem(5, digraph.Width, digraph.Height, digraph.Margin.All);
-
+            cities = Init.instance.GenerateProblem(10, digraph.Width, digraph.Height, digraph.Margin.All);
 
             for (int i = 0; i < cities.Count - 1; i++) arcs.Add(new Arc(cities[i], cities[i + 1]));
+            for (int i = 0; i < arcs.Count; i++)
+            {
+                Solver.instance.Collides(i, arcs);
+            }
+
 
             digraph.Arcs = arcs;
             digraph.Refresh();
 
 
-            for(int i=0; i<arcs.Count; i++)
-            {
-                Solver.instance.Collides(i, arcs);
-            }
+
         }
 
         
