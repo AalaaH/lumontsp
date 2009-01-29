@@ -165,7 +165,7 @@ namespace TravellingSalesman
             cities.Add(new City(470, 75, "north sydney"));
 
 
-            cities.Add(new City(276, 364, "tasmania"));
+            cities.Add(new City(376, 364, "tasmania"));
             cities.Add(new City(243, 167, "hobart"));
             cities.Add(new City(43, 276, "england"));
             cities.Add(new City(166, 29, "colarado"));
