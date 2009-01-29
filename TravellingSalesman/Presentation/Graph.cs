@@ -87,9 +87,16 @@ namespace TravellingSalesman.Presentation
 
                 for (int i = 0; i < TotalDistance.Count; i++)
                 {
-                    graphPoint.X = Convert.ToInt32(graphSpace.Left + 1 + i);
+                    if(TotalDistance.Count>graphSpace.Width) graphPoint.X = Convert.ToInt32(graphSpace.Left + 1 + i/(1+(TotalDistance.Count/graphSpace.Width)));
+                    else graphPoint.X = Convert.ToInt32(graphSpace.Left + 1 + i);
                     graphPoint.Y = Convert.ToInt32(graphSpace.Top + graphSpace.Height - TotalDistance[i] * yScale);
+                    if (i == 0) myPen.Color = Color.Black;
+                    else if (TotalDistance[i] > TotalDistance[i - 1]) myPen.Color = Color.Red;
+                    else if (TotalDistance[i] < TotalDistance[i - 1]) myPen.Color = Color.Green;
+                    else myPen.Color = Color.Black;
+                   
                     dc.DrawEllipse(myPen, graphPoint.X, graphPoint.Y, 1, 1);
+                    myPen.Color = Color.Black;
                 }
                 dc.DrawString(yLabel, myFont, myBrush, offset, Height / 2 - yLabelHeight);
                 dc.DrawString(xLabel, myFont, myBrush, Width / 2 - xlabelWidth, Height - offset - xlabelHeight);
