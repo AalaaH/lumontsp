@@ -123,15 +123,65 @@ namespace TravellingSalesman.Business_Logic
         }
 
 
+
+        public bool Collides(int cur, List<Arc> arcs)
+        {
+
+
+            for (int x = 0; x < arcs.Count; x++)
+            {
+                if (cur == x) { x++; continue; }
+                if (arcs[x].inRegionX(0, arcs[cur].MinX)) continue; // reg x1
+                if (arcs[x].inRegionX(arcs[cur].MaxX, Int32.MaxValue)) continue; // reg x3
+                if (arcs[x].inRegionY(0, arcs[cur].MinY)) continue; // reg y1
+                if (arcs[x].inRegionY(arcs[cur].MaxX, Int32.MaxValue)) continue;  // reg y3
+
+                Debug.WriteLine(arcs[cur].FrmCity.Name + " collides");
+                arcs[cur].Collides = true;
+                break;
+            }
+            return arcs[cur].Collides;
+
+        }
+        
+
+
+
+
         /// <summary>
         /// Checks to see if there are any arcs over the arc { cities[c] -> citiec[c+1]}
         /// </summary>
         /// <param name="c1"></param>
         /// <returns></returns>
-        private bool Collides(ref List<City> cities, int c)
+        private bool Collides(ref List<City> cities)
         {
+            List<Arc> arcs = new List<Arc>();
+            for (int x = 0; x < cities.Count - 1; x++) arcs.Add(new Arc(cities[x], cities[x + 1]));
+
+
+            for (int i = 0; i < arcs.Count; i++)
+            {
+                if (arcs[i].Collides) continue;
+
+                for (int x = 0; x < arcs.Count; x++)
+                {
+                    if (i == x) continue;
+                    if (arcs[x].inRegionX(0, arcs[i].MinX)) continue; // reg x1
+                    if (arcs[x].inRegionX(arcs[i].MaxX, Int32.MaxValue)) continue; // reg x3
+                    if (arcs[x].inRegionY(0, arcs[i].MinY)) continue; // reg y1
+                    if (arcs[x].inRegionY(arcs[i].MaxX, Int32.MaxValue)) continue;  // reg y3
+
+                    Debug.WriteLine(arcs[i].FrmCity.Name + " collides");
+                    arcs[i].Collides = true;
+                }
+
+            }
+
+
+
+
             // 1 define region       
-            City curCity = cities[c];
+            /*City curCity = cities[c];
             int xPos = Math.Min(cities[c].X, cities[c+1].X);
             int yPos = Math.Min(cities[c].Y, cities[c+1].Y);
             int width = Math.Abs(cities[c].X - cities[c+1].X);
@@ -189,7 +239,7 @@ namespace TravellingSalesman.Business_Logic
                 Report(cities, 0);
                 
             }
-
+            */
 
                                    
             return false;

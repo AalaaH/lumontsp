@@ -53,7 +53,53 @@ namespace TravellingSalesman.Presentation
             }
         }
 
-        
+        private List<Arc> _arcs;
+        public List<Arc> Arcs
+        {
+            get
+            {
+                return _arcs;
+            }
+            set
+            {
+                _arcs = value;
+                Refresh();
+            }
+        }
+
+        private void DrawArcs(Graphics dc)
+        {
+            Font fArial = new Font("Arial", 8);
+
+            if (Arcs != null && Arcs.Count > 0)
+            {
+                Pen gPen = new Pen(Color.DarkRed, 3);
+
+                int i = 0;
+                while (i < (Arcs.Count))
+                {
+                    Arc arc = Arcs[i];
+                    DrawArc(dc, arc);
+                    dc.DrawEllipse(gPen, arc.FrmCity.X - 2, arc.FrmCity.Y - 2, 5, 5);
+                    if (i == 0)
+                        dc.DrawEllipse(new Pen(Color.DarkGreen, 3), arc.FrmCity.X - 2, arc.FrmCity.Y - 2, 5, 5);
+
+                    if (arc.Collides)
+                        dc.DrawEllipse(new Pen(Color.Red, 3), arc.FrmCity.X - 2, arc.FrmCity.Y - 2, 5, 5);
+
+                    //dc.DrawString(Cities[i].Name, fArial, Brushes.Black, new PointF(Cities[i].X, Cities[i].Y));
+                    i++;
+                }
+                //DrawPath(dc, Cities[0], Cities.Last());
+                //dc.DrawString(arc.Name, fArial, Brushes.Black, new PointF(arc .X, Cities[i].Y));
+
+                //dc.DrawEllipse(gPen, Cities[Cities.Count - 1].X - 2, Cities[Cities.Count - 1].Y - 2, 5, 5);
+            }
+            else
+            {
+                dc.DrawString("NO CITIES TO DRAW", new Font("Arial", 16), Brushes.Black, (Width / 2) - 100, Height / 2);
+            }
+        }
 
 
         private void DrawCities(Graphics dc)
@@ -62,7 +108,7 @@ namespace TravellingSalesman.Presentation
 
             if (Cities!=null && Cities.Count>0)
             {
-                Pen gPen = new Pen(Color.DarkOrange, 3);
+                Pen gPen = new Pen(Color.DarkRed, 3);
                 
                 int i = 0;
                 while (i < (Cities.Count - 1))
@@ -92,15 +138,22 @@ namespace TravellingSalesman.Presentation
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-            DrawCities(e.Graphics);
+            //DrawCities(e.Graphics);
+            DrawArcs(e.Graphics);
+            
         }
 
 
-
+        private void DrawArc(Graphics dc, Arc arc)
+        {
+            Pen colorPen = new Pen(Color.DarkGray, 2);
+            if (arc.Collides) colorPen.Color = Color.Red;
+            dc.DrawLine(colorPen, new Point(arc.FrmCity.X, arc.FrmCity.Y), new Point(arc.ToCity.X, arc.ToCity.Y));
+        }
         
         private void DrawPath(Graphics dc, City startCity, City endCity)
         {
-            Pen colorPen = new Pen(Color.Black, 1);
+            Pen colorPen = new Pen(Color.DarkGray, 2);
             if (startCity.Collides) colorPen.Color = Color.Red;
             
             
