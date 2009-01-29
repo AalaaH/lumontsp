@@ -17,7 +17,8 @@ namespace TravellingSalesman.Business_Logic
             Timer.instance.Start();
             int counter=1;
             List<City> cityTemp = null;
-            int maxIterations = 400*cities.Count;
+            int maxIterations = 500*cities.Count;
+
             CalculateDistances(ref cities, 0, cities.Count-1);
             while (counter < maxIterations)
             {                
@@ -39,6 +40,9 @@ namespace TravellingSalesman.Business_Logic
                                         
                     counter++;
                     if (counter > maxIterations) break;
+                    Timer.instance.Pause();
+                    Report(cities, curDistance);
+                    Timer.instance.Pause();
                     
                 }
                // Console.WriteLine(counter);
