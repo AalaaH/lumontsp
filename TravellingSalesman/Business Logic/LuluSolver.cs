@@ -119,5 +119,25 @@ namespace TravellingSalesman.Business_Logic
 
             for(int i = 0; i<cities.Count-1; i++) Collides(ref cities, i);
         }
+
+
+        /// <summary>
+        /// Find bfs using greedy
+        /// </summary>
+        /// <param name="cities"></param>
+        private void GreedySolve(ref List<City> cities)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GeneticAlgorithm(ref List<City> cities)
+        {
+
+
+        }
+
     }
 }
