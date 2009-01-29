@@ -53,6 +53,7 @@
     <Compile Include="Business Logic\Perfomance.cs" />
     <Compile Include="Business Logic\SimSolver.cs" />
     <Compile Include="Business Logic\Solver.cs" />
+    <Compile Include="Data Logic\Arc.cs" />
     <Compile Include="Data Logic\City.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

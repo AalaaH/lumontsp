@@ -117,7 +117,7 @@ namespace TravellingSalesman.Business_Logic
                 Report(cities, curD);
             }
 
-            for(int i = 0; i<cities.Count-1; i++) Collides(ref cities, i);
+            Collides(ref cities);
         }
 
 

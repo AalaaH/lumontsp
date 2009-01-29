@@ -50,6 +50,7 @@
             this.graph = new TravellingSalesman.Presentation.Graph();
             this.list = new TravellingSalesman.Presentation.GridList();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.butCollision = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -60,7 +61,7 @@
             // 
             // butSimAnnealing
             // 
-            this.butSimAnnealing.Location = new System.Drawing.Point(12, 28);
+            this.butSimAnnealing.Location = new System.Drawing.Point(3, 2);
             this.butSimAnnealing.Name = "butSimAnnealing";
             this.butSimAnnealing.Size = new System.Drawing.Size(120, 25);
             this.butSimAnnealing.TabIndex = 0;
@@ -128,7 +129,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.butCollision);
             this.panel1.Controls.Add(this.lblDistance);
+            this.panel1.Controls.Add(this.butSimAnnealing);
             this.panel1.Controls.Add(this.butSwapNodes);
             this.panel1.Controls.Add(this.butReset);
             this.panel1.Controls.Add(this.butSimBFS);
@@ -209,6 +212,7 @@
             // 
             // digraph
             // 
+            this.digraph.Arcs = null;
             this.digraph.BackColor = System.Drawing.Color.White;
             this.digraph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.digraph.Cities = null;
@@ -257,13 +261,22 @@
             this.splitContainer1.SplitterDistance = 395;
             this.splitContainer1.TabIndex = 8;
             // 
+            // butCollision
+            // 
+            this.butCollision.Location = new System.Drawing.Point(129, 3);
+            this.butCollision.Name = "butCollision";
+            this.butCollision.Size = new System.Drawing.Size(93, 23);
+            this.butCollision.TabIndex = 6;
+            this.butCollision.Text = "Test Collision";
+            this.butCollision.UseVisualStyleBackColor = true;
+            this.butCollision.Click += new System.EventHandler(this.butCollision_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 580);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.butSimAnnealing);
             this.Controls.Add(this.list);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
@@ -310,6 +323,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private TravellingSalesman.Presentation.Graph graph;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button butCollision;
     }
 }
 

@@ -63,8 +63,12 @@ namespace TravellingSalesman
         }
 
         private void RefreshCities(List<City> cities, double distance)
-        {            
+        {
+            List<Arc> arcs = new List<Arc>();
+            for (int x = 0; x < cities.Count - 1; x++) arcs.Add(new Arc(cities[x], cities[x + 1]));
+
             distance  = Solver.instance.TotalDistance(cities);
+            digraph.Arcs = arcs;
             digraph.Cities = cities;
             digraph.Refresh();
 
@@ -84,6 +88,13 @@ namespace TravellingSalesman
         {
             digraph.Clear();
             digraph.Cities = cities;
+        }
+
+        private int Factorial(int n)
+        {
+            int total = 0;
+            int i = n;
+            while (i > 0) { total *= i; i--; } return total;
         }
 
         private void butGenerateProblem_Click(object sender, EventArgs e)
@@ -171,8 +182,13 @@ namespace TravellingSalesman
             cities.Add(new City(133, 251, "india"));
             
             // cities = new List<City>(ori_cities);
+
+            List<Arc> arcs = new List<Arc>();
+            for (int x = 0; x < cities.Count - 1; x++) arcs.Add(new Arc(cities[x], cities[x + 1]));
+
             list.SetData(cities);
             digraph.Cities = cities;
+            digraph.Arcs = arcs;
             digraph.Refresh();
         }
 
@@ -197,6 +213,27 @@ namespace TravellingSalesman
         private void graph_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void butCollision_Click(object sender, EventArgs e)
+        {
+
+            List<Arc> arcs = new List<Arc>();
+
+            cities.Clear();
+            cities = Init.instance.GenerateProblem(5, digraph.Width, digraph.Height, digraph.Margin.All);
+
+
+            for (int i = 0; i < cities.Count - 1; i++) arcs.Add(new Arc(cities[i], cities[i + 1]));
+
+            digraph.Arcs = arcs;
+            digraph.Refresh();
+
+
+            for(int i=0; i<arcs.Count; i++)
+            {
+                Solver.instance.Collides(i, arcs);
+            }
         }
 
         
