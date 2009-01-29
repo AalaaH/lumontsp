@@ -76,9 +76,11 @@ namespace TravellingSalesman.Presentation
                 Pen gPen = new Pen(Color.DarkRed, 3);
 
                 int i = 0;
+                Arc arc;
+
                 while (i < (Arcs.Count))
                 {
-                    Arc arc = Arcs[i];
+                    arc = Arcs[i];
                     DrawArc(dc, arc);
                     dc.DrawEllipse(gPen, arc.FrmCity.X - 2, arc.FrmCity.Y - 2, 5, 5);
                     if (i == 0)
@@ -87,13 +89,13 @@ namespace TravellingSalesman.Presentation
                     if (arc.Collides)
                         dc.DrawEllipse(new Pen(Color.Red, 3), arc.FrmCity.X - 2, arc.FrmCity.Y - 2, 5, 5);
 
-                    //dc.DrawString(Cities[i].Name, fArial, Brushes.Black, new PointF(Cities[i].X, Cities[i].Y));
+                    dc.DrawString(arc.FrmCity.Name, fArial, Brushes.Black, new PointF(arc.FrmCity.X, arc.FrmCity.Y));
                     i++;
                 }
-                //DrawPath(dc, Cities[0], Cities.Last());
-                //dc.DrawString(arc.Name, fArial, Brushes.Black, new PointF(arc .X, Cities[i].Y));
+                arc = Arcs[i - 1];
+                dc.DrawString(arc.ToCity.Name, fArial, Brushes.Black, new PointF(arc.ToCity.X, arc.ToCity.Y));
 
-                //dc.DrawEllipse(gPen, Cities[Cities.Count - 1].X - 2, Cities[Cities.Count - 1].Y - 2, 5, 5);
+                dc.DrawEllipse(gPen, arc.ToCity.X - 2, arc.ToCity.Y - 2, 5, 5);
             }
             else
             {
