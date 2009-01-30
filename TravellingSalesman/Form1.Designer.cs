@@ -39,16 +39,18 @@
             this.txtDelta = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.butCollision = new System.Windows.Forms.Button();
-            this.lblDistance = new System.Windows.Forms.Label();
             this.butSwapNodes = new System.Windows.Forms.Button();
             this.butReset = new System.Windows.Forms.Button();
+            this.butCollision = new System.Windows.Forms.Button();
+            this.lblDistance = new System.Windows.Forms.Label();
             this.butSimBFS = new System.Windows.Forms.Button();
             this.butBasicFeasible = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusObjective = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.yMouse = new System.Windows.Forms.Label();
+            this.xMouse = new System.Windows.Forms.Label();
             this.digraph = new TravellingSalesman.Presentation.Digraph();
             this.graph = new TravellingSalesman.Presentation.Graph();
             this.toolStrip1.SuspendLayout();
@@ -138,25 +140,6 @@
             this.panel1.Size = new System.Drawing.Size(825, 34);
             this.panel1.TabIndex = 5;
             // 
-            // butCollision
-            // 
-            this.butCollision.Location = new System.Drawing.Point(12, 37);
-            this.butCollision.Name = "butCollision";
-            this.butCollision.Size = new System.Drawing.Size(120, 23);
-            this.butCollision.TabIndex = 6;
-            this.butCollision.Text = "Test Collision";
-            this.butCollision.UseVisualStyleBackColor = true;
-            this.butCollision.Click += new System.EventHandler(this.butCollision_Click);
-            // 
-            // lblDistance
-            // 
-            this.lblDistance.AutoSize = true;
-            this.lblDistance.Location = new System.Drawing.Point(12, 131);
-            this.lblDistance.Name = "lblDistance";
-            this.lblDistance.Size = new System.Drawing.Size(35, 13);
-            this.lblDistance.TabIndex = 5;
-            this.lblDistance.Text = "label1";
-            // 
             // butSwapNodes
             // 
             this.butSwapNodes.Location = new System.Drawing.Point(231, 5);
@@ -176,6 +159,25 @@
             this.butReset.Text = "Reset Cities";
             this.butReset.UseVisualStyleBackColor = true;
             this.butReset.Click += new System.EventHandler(this.butReset_Click);
+            // 
+            // butCollision
+            // 
+            this.butCollision.Location = new System.Drawing.Point(12, 37);
+            this.butCollision.Name = "butCollision";
+            this.butCollision.Size = new System.Drawing.Size(120, 23);
+            this.butCollision.TabIndex = 6;
+            this.butCollision.Text = "Test Collision";
+            this.butCollision.UseVisualStyleBackColor = true;
+            this.butCollision.Click += new System.EventHandler(this.butCollision_Click);
+            // 
+            // lblDistance
+            // 
+            this.lblDistance.AutoSize = true;
+            this.lblDistance.Location = new System.Drawing.Point(12, 131);
+            this.lblDistance.Name = "lblDistance";
+            this.lblDistance.Size = new System.Drawing.Size(35, 13);
+            this.lblDistance.TabIndex = 5;
+            this.lblDistance.Text = "label1";
             // 
             // butSimBFS
             // 
@@ -237,6 +239,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.xMouse);
+            this.panel2.Controls.Add(this.yMouse);
             this.panel2.Controls.Add(this.lblDistance);
             this.panel2.Controls.Add(this.butCollision);
             this.panel2.Controls.Add(this.butSimAnnealing);
@@ -247,6 +251,24 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(150, 395);
             this.panel2.TabIndex = 5;
+            // 
+            // yMouse
+            // 
+            this.yMouse.AutoSize = true;
+            this.yMouse.Location = new System.Drawing.Point(77, 162);
+            this.yMouse.Name = "yMouse";
+            this.yMouse.Size = new System.Drawing.Size(35, 13);
+            this.yMouse.TabIndex = 7;
+            this.yMouse.Text = "label1";
+            // 
+            // xMouse
+            // 
+            this.xMouse.AutoSize = true;
+            this.xMouse.Location = new System.Drawing.Point(25, 162);
+            this.xMouse.Name = "xMouse";
+            this.xMouse.Size = new System.Drawing.Size(35, 13);
+            this.xMouse.TabIndex = 8;
+            this.xMouse.Text = "label2";
             // 
             // digraph
             // 
@@ -326,6 +348,8 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button butCollision;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label xMouse;
+        private System.Windows.Forms.Label yMouse;
     }
 }
 

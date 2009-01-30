@@ -16,6 +16,9 @@ namespace TravellingSalesman.Data_Logic
         private City _toCity;
         private double _distance;
         private double _gradient;
+        private double _yintercept;
+
+
         private bool _collides;
 
         public City FrmCity
@@ -42,6 +45,11 @@ namespace TravellingSalesman.Data_Logic
             set { _distance = value; }
         }
 
+        public double Yintercept
+        {
+            get { return _yintercept; }
+            set { _yintercept = value; }
+        }
 
         public double Grad
         {
@@ -93,8 +101,10 @@ namespace TravellingSalesman.Data_Logic
 
         private void Recalc()
         {
+            if (ToCity == null) return;
             Dist = MathHelper.getDistance(this);
             Grad = MathHelper.getGrad(this);
+            Yintercept = MathHelper.getYIntercept(this);
             Collides = false;
         }
 

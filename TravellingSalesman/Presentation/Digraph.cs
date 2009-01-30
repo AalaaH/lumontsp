@@ -22,7 +22,8 @@ namespace TravellingSalesman.Presentation
         #region Public methods
 
 
-
+        public delegate void MouseReport(int x, int y);
+        public MouseReport mouseReport;
 
         #endregion
 
@@ -30,7 +31,13 @@ namespace TravellingSalesman.Presentation
         {
             InitializeComponent();
             this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            this.MouseDown+=new MouseEventHandler(Digraph_MouseDown); 
             
+        }
+
+        public void Digraph_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(mouseReport!=null) mouseReport.Invoke(e.X, e.Y);
         }
 
 

@@ -114,10 +114,10 @@ namespace TravellingSalesman.Business_Logic
                         }
                     }
                 }
+                if(i<cities.Count-1)Collides(i, cities);
                 Report(cities, curD);
             }
 
-            Collides(ref cities);
         }
 
 
