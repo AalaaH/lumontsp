@@ -56,6 +56,7 @@ namespace TravellingSalesman.Data_Logic
         public City()
         {
             Collides = false;
+            Distance = 0;
         }
 
         public City(int x, int y, string name, double distance, double cost)

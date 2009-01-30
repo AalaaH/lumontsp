@@ -126,7 +126,8 @@ namespace TravellingSalesman.Business_Logic
 
         public bool Collides(int cur, List<Arc> arcs)
         {
-
+            arcs[cur].Collides = false;
+            arcs[cur].FrmCity.Collides = false;
 
             for (int x = 0; x < arcs.Count; x++)
             {
@@ -134,117 +135,60 @@ namespace TravellingSalesman.Business_Logic
                 if (arcs[x].inRegionX(0, arcs[cur].MinX)) continue; // reg x1
                 if (arcs[x].inRegionX(arcs[cur].MaxX, Int32.MaxValue)) continue; // reg x3
                 if (arcs[x].inRegionY(0, arcs[cur].MinY)) continue; // reg y1
-                if (arcs[x].inRegionY(arcs[cur].MaxX, Int32.MaxValue)) continue;  // reg y3
+                if (arcs[x].inRegionY(arcs[cur].MaxY, Int32.MaxValue)) continue;  // reg y3
 
-                Debug.WriteLine(arcs[cur].FrmCity.Name + " collides");
+                Point pt = MathHelper.getIntercept(arcs[cur], arcs[x]);
+
+                if (pt.X <= arcs[cur].MinX || pt.X >= arcs[cur].MaxX) continue;
+
                 arcs[cur].Collides = true;
-                break;
-            }
-            return arcs[cur].Collides;
+                arcs[cur].FrmCity.Collides = true;
 
+                return true;
+                
+            }
+            
+            return arcs[cur].Collides;
         }
         
 
 
 
 
-        /// <summary>
-        /// Checks to see if there are any arcs over the arc { cities[c] -> citiec[c+1]}
-        /// </summary>
-        /// <param name="c1"></param>
-        /// <returns></returns>
-        private bool Collides(ref List<City> cities)
+        public bool Collides(int cur, List<City> cities)
         {
             List<Arc> arcs = new List<Arc>();
-            for (int x = 0; x < cities.Count - 1; x++) arcs.Add(new Arc(cities[x], cities[x + 1]));
-
-
-            for (int i = 0; i < arcs.Count; i++)
+            for (int i = 0; i < cities.Count - 1; i++)
             {
-                if (arcs[i].Collides) continue;
-
-                for (int x = 0; x < arcs.Count; x++)
-                {
-                    if (i == x) continue;
-                    if (arcs[x].inRegionX(0, arcs[i].MinX)) continue; // reg x1
-                    if (arcs[x].inRegionX(arcs[i].MaxX, Int32.MaxValue)) continue; // reg x3
-                    if (arcs[x].inRegionY(0, arcs[i].MinY)) continue; // reg y1
-                    if (arcs[x].inRegionY(arcs[i].MaxX, Int32.MaxValue)) continue;  // reg y3
-
-                    Debug.WriteLine(arcs[i].FrmCity.Name + " collides");
-                    arcs[i].Collides = true;
-                }
-
+                arcs.Add(new Arc(cities[i], cities[i + 1]));
             }
 
-
-
-
-            // 1 define region       
-            /*City curCity = cities[c];
-            int xPos = Math.Min(cities[c].X, cities[c+1].X);
-            int yPos = Math.Min(cities[c].Y, cities[c+1].Y);
-            int width = Math.Abs(cities[c].X - cities[c+1].X);
-            int height = Math.Abs(cities[c].Y - cities[c+1].Y);
-
-            Rectangle region = new Rectangle(xPos, yPos, width, height);
-
-            List<City> possible = new List<City>();
-
-
-
-            // 1. find equation to original arc
-            double m = 0;
-            if (width > 0) m = -((double)(cities[c + 1].Y - cities[c].Y) / (double)(cities[c + 1].X - cities[c].X));
-
-            double b = cities[c].Y - m * cities[c].X;
-            bool hasCollision = false;
             
+            arcs[cur].Collides = false;
+            arcs[cur].FrmCity.Collides = false;
 
-            // 2 find out if there exists an arc that goes near that region
-            for (int i = 0; i<cities.Count-1; i++)
+            for (int x = 0; x < arcs.Count; x++)
             {
-                if(i==c)i+=2;
-                if (i < cities.Count) break;
+                if (cur == x) { x++; continue; }
+                if (arcs[x].inRegionX(0, arcs[cur].MinX)) continue; // reg x1
+                if (arcs[x].inRegionX(arcs[cur].MaxX, Int32.MaxValue)) continue; // reg x3
+                if (arcs[x].inRegionY(0, arcs[cur].MinY)) continue; // reg y1
+                if (arcs[x].inRegionY(arcs[cur].MaxY, Int32.MaxValue)) continue;  // reg y3
 
-                double yLine = GetLineY(cities[c].X, m, b);
+                Point pt = MathHelper.getIntercept(arcs[cur], arcs[x]);
 
-                // positive
-                if (m > 0)
-                {
-                    if ((cities[i].Y < yLine) && (cities[i + 1].Y > yLine))
-                    {
-                        cities[i].Collides = true;
-                        hasCollision = true;
-                    }
-
-                    if((cities[i].X < curCity.X) && (cities[i+1].X < curCity.X)) {
-                        cities[i].Collides = false;
-                        hasCollision = false;
-                    }
-
-                    if ((cities[i].X > curCity.X) && (cities[i + 1].X > curCity.X))
-                    {
-                        cities[i].Collides = false;
-                        hasCollision = false;
-                    }                    
-                }
-                // negative slope
-                else if( m < 0)
-                {
-                    if ((cities[i].Y > yLine) && cities[i + 1].Y < yLine) cities[i].Collides = true;
-                }
-                               
-                if (hasCollision) cities[c].Collides = true;
-                Report(cities, 0);
+                if (pt.X <= arcs[cur].MinX || pt.X >= arcs[cur].MaxX) continue;
+                
+                arcs[cur].Collides = true;
+                arcs[cur].FrmCity.Collides = true;
+                return true;
                 
             }
-            */
-
-                                   
-            return false;
             
+            return arcs[cur].Collides;
         }
+
+
         #endregion
 
 

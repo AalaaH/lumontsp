@@ -65,7 +65,14 @@ namespace TravellingSalesman
         private void RefreshCities(List<City> cities, double distance)
         {
             List<Arc> arcs = new List<Arc>();
-            for (int x = 0; x < cities.Count - 1; x++) arcs.Add(new Arc(cities[x], cities[x + 1]));
+            for (int x = 0; x < cities.Count - 1; x++)
+            {
+                Arc temp = new Arc(cities[x], cities[x + 1]);
+                temp.Collides = cities[x].Collides;
+                
+                arcs.Add(temp);
+                
+            }
 
             distance  = Solver.instance.TotalDistance(cities);
             digraph.Arcs = arcs;
@@ -215,15 +222,39 @@ namespace TravellingSalesman
 
         }
 
+        public void mouseClick(int xPos, int yPos)
+        {
+            xMouse.Text = xPos.ToString();
+            yMouse.Text = yPos.ToString();
+        }
+
         private void butCollision_Click(object sender, EventArgs e)
         {
-
+            digraph.mouseReport = mouseClick;
             List<Arc> arcs = new List<Arc>();
 
             cities.Clear();
             cities = Init.instance.GenerateProblem(10, digraph.Width, digraph.Height, digraph.Margin.All);
+            //cities.Add(new City(10, 15, "syd"));
+            //cities.Add(new City(100, 78, "melb"));
+            //cities.Add(new City(393, 45, "adl"));
+            //cities.Add(new City(290, 38, "canb"));
+            //cities.Add(new City(457, 86, "darwin"));
+            //cities.Add(new City(289, 70, "perth"));
 
-            for (int i = 0; i < cities.Count - 1; i++) arcs.Add(new Arc(cities[i], cities[i + 1]));
+
+            //cities.Add(new City(176, 214, "sonic boom"));
+            //cities.Add(new City(323, 167, "lighning kick"));
+            //cities.Add(new City(303, 276, "hunter hill"));
+            //cities.Add(new City(56, 369, "philli"));
+            //cities.Add(new City(250, 362, "copenhagen"));
+            //cities.Add(new City(127, 407, "egypt"));
+            //cities.Add(new City(133, 251, "india"));
+
+            for (int i = 0; i < cities.Count - 1; i++)
+            {
+                arcs.Add(new Arc(cities[i], cities[i + 1]));
+            }
             for (int i = 0; i < arcs.Count; i++)
             {
                 Solver.instance.Collides(i, arcs);
