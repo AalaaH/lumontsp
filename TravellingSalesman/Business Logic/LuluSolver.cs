@@ -113,9 +113,14 @@ namespace TravellingSalesman.Business_Logic
                             cities[r2 - s] = tempC;                            
                         }
                     }
-                }
-                if(i<cities.Count-1)Collides(i, cities);
+                }                
                 Report(cities, curD);
+            }
+            int k = 0;
+            while (k < cities.Count - 1)
+            {
+                Collides(k, cities);
+                k++;
             }
 
         }
