@@ -72,6 +72,7 @@ namespace TravellingSalesman.Presentation
             arrow.EndCap = LineCap.ArrowAnchor;
             SolidBrush myBrush = new SolidBrush(Color.Black);
             Font myFont = new Font("Arial", 10);
+            Font myFont8 = new Font("Arial", 8);
             double yScale = 0;
             int offset = 10;
             int canvasSizeX = Width - 2 * offset;
@@ -101,9 +102,10 @@ namespace TravellingSalesman.Presentation
                     else myPen.Color = Color.Black;
                    
                     dc.DrawEllipse(myPen, graphPoint.X, graphPoint.Y, 1, 1);
+                    
                     myPen.Color = Color.Black;
                 }
-                
+                dc.DrawString(Convert.ToString(Math.Round(TotalDistance.Last(),2)), myFont8, myBrush, graphPoint.X+1,graphPoint.Y-6);
             }
         }
         

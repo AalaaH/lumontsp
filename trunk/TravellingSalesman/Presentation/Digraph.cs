@@ -143,8 +143,8 @@ namespace TravellingSalesman.Presentation
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-            //DrawCities(e.Graphics);
-            DrawArcs(e.Graphics);
+            DrawCities(e.Graphics);
+            //DrawArcs(e.Graphics);
             
         }
 
