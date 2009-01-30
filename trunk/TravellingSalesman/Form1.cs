@@ -253,15 +253,17 @@ namespace TravellingSalesman
 
             for (int i = 0; i < cities.Count - 1; i++)
             {
-                arcs.Add(new Arc(cities[i], cities[i + 1]));
+                //arcs.Add(new Arc(cities[i], cities[i + 1]));
+                Solver.instance.Collides(i, cities);
             }
-            for (int i = 0; i < arcs.Count; i++)
+            
+            /*for (int i = 0; i < arcs.Count; i++)
             {
                 Solver.instance.Collides(i, arcs);
-            }
+            }*/
 
-
-            digraph.Arcs = arcs;
+            digraph.Cities = cities;
+            //digraph.Arcs = arcs;
             digraph.Refresh();
 
 
