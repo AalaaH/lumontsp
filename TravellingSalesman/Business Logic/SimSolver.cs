@@ -21,6 +21,7 @@ namespace TravellingSalesman.Business_Logic
             int temperature = 1000;
             int lastBestTemp=0;
 
+
             CalculateDistances(ref cities, 0, cities.Count-1);
             while (counter < maxIterations)
             {                
