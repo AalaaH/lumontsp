@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business Logic\ants.cs" />
     <Compile Include="Business Logic\LuluSolver.cs" />
     <Compile Include="Business Logic\MathHelper.cs" />
     <Compile Include="Business Logic\Perfomance.cs" />

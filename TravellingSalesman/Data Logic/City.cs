@@ -18,6 +18,7 @@ namespace TravellingSalesman.Data_Logic
         private bool _coll;
 
 
+        
 
         public string Name
         {
@@ -83,6 +84,7 @@ namespace TravellingSalesman.Data_Logic
             get { return _coll; }
             set { _coll = value; }
         }
+
 
 
 
