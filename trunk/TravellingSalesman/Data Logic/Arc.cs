@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using TravellingSalesman.Business_Logic;
 
+
 namespace TravellingSalesman.Data_Logic
 {
     /// <summary>
     /// Represents a path (arc) between two nodes (cities)
     /// </summary>
-    public class Arc
+    public class Arc : IComparable
     {
         #region Data Members
         private City _frmCity;
@@ -17,6 +18,16 @@ namespace TravellingSalesman.Data_Logic
         private double _distance;
         private double _gradient;
         private double _yintercept;
+
+        #region ACO
+        private double _pheremone;
+
+        public double Pheremone
+        {
+            get { return _pheremone; }
+            set { _pheremone = value; }
+        }
+        #endregion
 
 
         private bool _collides;
@@ -121,5 +132,19 @@ namespace TravellingSalesman.Data_Logic
         }
 
 
+
+        #region IComparable Members
+
+        public int CompareTo(object obj)
+        {
+            if (obj is Arc)
+            {
+                Arc arcTemp = obj as Arc;
+                
+            }
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

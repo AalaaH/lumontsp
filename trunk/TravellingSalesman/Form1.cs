@@ -135,9 +135,9 @@ namespace TravellingSalesman
         private void butSimBFS_Click(object sender, EventArgs e)
         {
             //cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
-            Solver.instance.Report = RefreshCities;
-            Solver.instance.SimonsNotSoBasic(ref cities);
-            
+            //Solver.instance.Report = RefreshCities;
+            //Solver.instance.SimonsNotSoBasic(ref cities);
+            Solver.instance.AntColonyOptimisation(ref cities);
         }
 
         private void ResetCities()
