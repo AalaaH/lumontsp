@@ -18,7 +18,10 @@ namespace TravellingSalesman.Business_Logic
         #region Reporting
 
         public delegate void ReportSolution(List<City> cities, double dist);
+        public delegate void ReportSolutionArcs(List<Arc> arcs, double dist);
+        
         private ReportSolution _reportSolution = null;
+        private ReportSolutionArcs _reportSolutionArc = null;
 
         public ReportSolution Report
         {
@@ -32,11 +35,25 @@ namespace TravellingSalesman.Business_Logic
             set { _reportSolution = value; }
         }
 
+        public ReportSolutionArcs ReportArcs
+        {
+            get
+            {
+                if (_reportSolutionArc == null)
+                {
+                    _reportSolutionArc = this.DummyReport;
+                }
+                return _reportSolutionArc;
+            }
+            set { _reportSolutionArc = value; }
+        }
+
         /// <summary>
         /// Used as a dummy reporting method for new solution
         /// </summary>
         /// <param name="cts"></param>
         public void DummyReport(List<City> cts, double dist) { }
+        public void DummyReport(List<Arc> cts, double dist) { }
 
         #endregion
 

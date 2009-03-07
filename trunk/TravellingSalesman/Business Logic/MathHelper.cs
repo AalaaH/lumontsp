@@ -54,7 +54,7 @@ namespace TravellingSalesman.Business_Logic
 
         public static Point getIntercept(Arc arc1, Arc arc2)
         {
-            Point p = new Point();
+            //Point p = new Point();
             double x = 0;
             double y = 0;
 

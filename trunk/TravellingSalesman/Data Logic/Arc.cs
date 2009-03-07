@@ -10,7 +10,7 @@ namespace TravellingSalesman.Data_Logic
     /// <summary>
     /// Represents a path (arc) between two nodes (cities)
     /// </summary>
-    public class Arc : IComparable
+    public class Arc : IComparable<Arc>
     {
         #region Data Members
         private City _frmCity;
@@ -135,13 +135,28 @@ namespace TravellingSalesman.Data_Logic
 
         #region IComparable Members
 
-        public int CompareTo(object obj)
+        public static Comparison<Arc> DistComparison =
+        delegate(Arc p1, Arc p2)
         {
-            if (obj is Arc)
-            {
-                Arc arcTemp = obj as Arc;
-                
-            }
+            return p1.Dist.CompareTo(p2.Dist);
+        };
+
+
+
+        #endregion
+        public void SwapToFrm()
+        {
+            City temp = new City();
+            temp = FrmCity;
+            FrmCity = ToCity;
+            ToCity = temp;
+        }
+
+        #region IComparable<Arc> Members
+
+        public int CompareTo(Arc other)
+        {
+            //return Name.CompareTo(other.na);
             throw new NotImplementedException();
         }
 
