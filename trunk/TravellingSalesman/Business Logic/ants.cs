@@ -234,7 +234,12 @@ namespace TravellingSalesman.Business_Logic
         private void DepostitTrails(ref List<List<Arc>> pathList)
         {
 
-            //pathList.Sort(delegate
+            //pathList.Sort(delegate(List<Arc> list1,List<Arc> List2)
+            //{
+            //    return (TotalArcDistance(List2) - TotalArcDistance(list1));
+            //});
+            //foreach (List<Arc> arcList in pathList)
+            //    Console.WriteLine("sorted : Start City: " + arcList[0].FrmCity.Name + " Distance: " + TotalArcDistance(arcList));
 
         }
 
