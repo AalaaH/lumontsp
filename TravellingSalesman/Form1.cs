@@ -62,6 +62,12 @@ namespace TravellingSalesman
             Solver.instance.SimAnneal(ref cities, 25, 0.5);        
         }
 
+        private void RefreshArc(List<Arc> arcs, double distance)
+        {
+            digraph.Arcs = arcs;
+            digraph.Refresh();
+        }
+
         private void RefreshCities(List<City> cities, double distance)
         {
             List<Arc> arcs = new List<Arc>();
@@ -137,7 +143,9 @@ namespace TravellingSalesman
             //cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
             //Solver.instance.Report = RefreshCities;
             //Solver.instance.SimonsNotSoBasic(ref cities);
+            Solver.instance.ReportArcs = this.RefreshArc;
             Solver.instance.AntColonyOptimisation(ref cities);
+            
         }
 
         private void ResetCities()
