@@ -162,4 +162,43 @@ namespace TravellingSalesman.Data_Logic
 
         #endregion
     }
+    public class ArcPath : IComparable<ArcPath>
+    {
+        private List<Arc> _arcList;
+        private double _totalDistance;
+
+        public double totalDistance
+        {
+            get { return _totalDistance; }
+        }
+        public List<Arc> List
+        {
+            set
+            {
+                if (_arcList == null) _arcList = new List<Arc>(value);
+                else
+                {
+                    _arcList.Clear;
+                    foreach (Arc arc in value)
+                        _arcList.Add(arc);
+                }
+                CalculateTotalDistance();
+            }
+            get
+            {
+                return (_arcList);
+            }
+        }
+        private void CalculateTotalDistance()
+        {
+
+            _totalDistance = 0;
+            foreach (Arc arc in _arcList)
+            {
+                _totalDistance += arc.Dist;
+            }
+        }
+
+    }
+
 }
