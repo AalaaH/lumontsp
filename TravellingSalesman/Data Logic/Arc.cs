@@ -109,6 +109,13 @@ namespace TravellingSalesman.Data_Logic
             ToCity = to;
             Recalc();
         }
+        public Arc(City frm, City to, double oldPheremone)
+        {
+            FrmCity = frm;
+            ToCity = to;
+            Pheremone = oldPheremone;
+            Recalc();
+        }
 
         private void Recalc()
         {
@@ -131,8 +138,6 @@ namespace TravellingSalesman.Data_Logic
             return false;
         }
 
-
-
         #region IComparable Members
 
         public static Comparison<Arc> DistComparison =
@@ -140,15 +145,17 @@ namespace TravellingSalesman.Data_Logic
         {
             return p1.Dist.CompareTo(p2.Dist);
         };
-
-
+        public object Clone()
+        {
+            return new Arc(FrmCity, ToCity, Pheremone);
+        }
 
         #endregion
         public void SwapToFrm()
         {
             City temp = new City();
-            temp = FrmCity;
-            FrmCity = ToCity;
+            temp = (City)FrmCity.Clone();
+            FrmCity = (City)ToCity.Clone();
             ToCity = temp;
         }
 
@@ -162,10 +169,19 @@ namespace TravellingSalesman.Data_Logic
 
         #endregion
     }
+    /// <summary>
+    /// A list of arcs
+    /// </summary>
     public class ArcPath : IComparable<ArcPath>
     {
-        private List<Arc> _arcList;
+        private List<Arc> _arcList = null;
         private double _totalDistance;
+        private double _averageDistance;
+
+        public double averageDistance
+        {
+            get { return _averageDistance; }
+        }
 
         public double totalDistance
         {
@@ -178,11 +194,11 @@ namespace TravellingSalesman.Data_Logic
                 if (_arcList == null) _arcList = new List<Arc>(value);
                 else
                 {
-                    _arcList.Clear;
+                    _arcList.Clear();
                     foreach (Arc arc in value)
                         _arcList.Add(arc);
                 }
-                CalculateTotalDistance();
+                recalc();
             }
             get
             {
@@ -191,14 +207,44 @@ namespace TravellingSalesman.Data_Logic
         }
         private void CalculateTotalDistance()
         {
-
             _totalDistance = 0;
             foreach (Arc arc in _arcList)
             {
                 _totalDistance += arc.Dist;
             }
         }
+        public ArcPath() 
+        { 
+            _arcList = new List<Arc>();
+        }
+        public ArcPath(List<Arc> arcList)
+        {
+            _arcList = new List<Arc>(arcList);
+            recalc();
+        }
+        public void recalc()
+        {
+            CalculateTotalDistance();
+            CalculateAverageDistance();
+        }
+        private void CalculateAverageDistance()
+        {
+            _averageDistance = _totalDistance / _arcList.Count();
+        }
 
+        #region IComparable<ArcPath> Members
+
+        int IComparable<ArcPath>.CompareTo(ArcPath other)
+        {
+            return this.totalDistance.CompareTo(other.totalDistance);
+            throw new NotImplementedException();
+        }
+
+        public int CompareTo(ArcPath other)
+        {
+            return this.totalDistance.CompareTo(other.totalDistance);
+        }
+
+        #endregion
     }
-
 }

@@ -70,18 +70,18 @@ namespace TravellingSalesman
 
         private void RefreshCities(List<City> cities, double distance)
         {
-            List<Arc> arcs = new List<Arc>();
-            for (int x = 0; x < cities.Count - 1; x++)
-            {
-                Arc temp = new Arc(cities[x], cities[x + 1]);
-                temp.Collides = cities[x].Collides;
+            //List<Arc> arcs = new List<Arc>();
+            //for (int x = 0; x < cities.Count - 1; x++)
+            //{
+            //    Arc temp = new Arc(cities[x], cities[x + 1]);
+            //    temp.Collides = cities[x].Collides;
                 
-                arcs.Add(temp);
+            //    arcs.Add(temp);
                 
-            }
+            //}
 
-            distance  = Solver.instance.TotalDistance(cities);
-            digraph.Arcs = arcs;
+            //distance  = Solver.instance.TotalDistance(cities);
+            //digraph.Arcs = arcs;
             digraph.Cities = cities;
             digraph.Refresh();
 
@@ -143,7 +143,8 @@ namespace TravellingSalesman
             //cities = Init.instance.GenerateProblem(200, digraph.Width, digraph.Height, digraph.Margin.All);
             //Solver.instance.Report = RefreshCities;
             //Solver.instance.SimonsNotSoBasic(ref cities);
-            Solver.instance.ReportArcs = this.RefreshArc;
+            //olver.instance.ReportArcs = this.RefreshArc;
+            Solver.instance.Report = RefreshCities;
             Solver.instance.AntColonyOptimisation(ref cities);
             
         }
