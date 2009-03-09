@@ -85,9 +85,6 @@ namespace TravellingSalesman.Data_Logic
             set { _coll = value; }
         }
 
-
-
-
         #region ICloneable Members
 
         public object Clone()
