@@ -36,14 +36,14 @@ namespace TravellingSalesman.Business_Logic
                     cities[toSwap] = temp;
                     Timer.instance.Pause();
                     
-                    Report(cities, curDistance);
+                    Report(cities, TotalDistance(cities));
                     Timer.instance.Pause();
                 }
 
             }
             Timer.instance.Stop();
             Console.WriteLine("Timer Lu:" + Timer.instance.elapsedTime());
-            Report(cities, curDistance);
+            Report(cities, TotalDistance(cities));
         }
 
 
@@ -62,7 +62,7 @@ namespace TravellingSalesman.Business_Logic
         {
             int numCities = cities.Count;
 
-            int MAX_ITER = 500;
+            int MAX_ITER = 100;
             int lBound = 1, uBound = numCities-1;           
             double curD = 0;
 
@@ -114,8 +114,8 @@ namespace TravellingSalesman.Business_Logic
                             cities[r2 - s] = tempC;                            
                         }
                     }
-                }                
-                Report(cities, curD);
+                }
+                Report(cities, TotalDistance(cities));
             }
             int k = 0;
             while (k < cities.Count - 1)

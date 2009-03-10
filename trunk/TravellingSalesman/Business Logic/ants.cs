@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using TravellingSalesman.Data_Logic;
 
 namespace TravellingSalesman.Business_Logic
@@ -35,6 +36,7 @@ namespace TravellingSalesman.Business_Logic
 
         public void reset()
         {
+            this.matrix.Clear();
         }
 
         /// <summary>
@@ -52,6 +54,7 @@ namespace TravellingSalesman.Business_Logic
                 {
                     Arc arcTemp = new Arc(cities[i], cities[j]);
                     arcTemp.Pheremone = 0;
+                    arcTemp.LocalPheremone = 0;
                     matrix.Add(arcTemp);
                 }
             }
@@ -63,7 +66,21 @@ namespace TravellingSalesman.Business_Logic
             {
                 foreach (Arc arc in matrix)
                 {
-                    if ((arc.FrmCity.Name == arcList.List[i].FrmCity.Name)&&(arc.ToCity.Name == arcList.List[i].ToCity.Name)) arc.Pheremone += pheremoneLevel;
+                    if ((arc.FrmCity.Name == arcList.List[i].FrmCity.Name)&&(arc.ToCity.Name == arcList.List[i].ToCity.Name)) 
+                        arc.Pheremone += pheremoneLevel;
+                    //else if (arc.FrmCity.Name == arcList[i+1].Name && arc.ToCity.Name == arcList[i].Name) arc.Pheremone += pheremoneLevel;
+                    //if (arc.Pheremone != 0) Console.WriteLine(arc.FrmCity.Name+" --> "+arc.ToCity.Name+" level "+arc.Pheremone);
+                }
+            }
+        }
+        public void localUpdateMatrix(ArcPath arcList, double pheremoneLevel)
+        {
+            for (int i = 0; i < arcList.List.Count; i++)
+            {
+                foreach (Arc arc in matrix)
+                {
+                    if ((arc.FrmCity.Name == arcList.List[i].FrmCity.Name) && (arc.ToCity.Name == arcList.List[i].ToCity.Name))
+                        arc.LocalPheremone += pheremoneLevel;
                     //else if (arc.FrmCity.Name == arcList[i+1].Name && arc.ToCity.Name == arcList[i].Name) arc.Pheremone += pheremoneLevel;
                     //if (arc.Pheremone != 0) Console.WriteLine(arc.FrmCity.Name+" --> "+arc.ToCity.Name+" level "+arc.Pheremone);
                 }
@@ -74,6 +91,7 @@ namespace TravellingSalesman.Business_Logic
             foreach (Arc arc in matrix)
                 {
                     arc.Pheremone = arc.Pheremone/rate;
+                    arc.LocalPheremone = arc.LocalPheremone / rate;
                 }
         }
 
@@ -83,7 +101,6 @@ namespace TravellingSalesman.Business_Logic
             {
                 if ((a1.FrmCity.Name == curCity.Name) && (!visitedCities.Contains(a1.ToCity.Name)) && (a1.FrmCity != a1.ToCity))
                 {
-                    a1.Dist += (MathHelper.getRandom() * Solver.instance.bestAverageDistance)/(Solver.instance.Iteration);
                     return true;
                 }
                 return false;
@@ -101,11 +118,13 @@ namespace TravellingSalesman.Business_Logic
     {
         
         #region Data members
-        const double PHEREMONE = 0.5;
+        const double PHEREMONE = 1;
         const double EVAPERATIONRATE = 2;
-        const int ITERATIONS = 500;
+        const int ITERATIONS = 200;
+        const int VISABLERANGE = 7;
         public int Iteration = 1;
         public double bestAverageDistance = 0;
+        public int currVisablerange = VISABLERANGE;
         #endregion
 
 
@@ -135,32 +154,33 @@ namespace TravellingSalesman.Business_Logic
                 pathArcList = new List<ArcPath>(pathArcList.GetRange(0, 1));
                 bestAverageDistance = pathArcList.First().averageDistance;
                 ConstructAntSolution(ref pathArcList, ref cityNameList);
+                DaemonActions(ref pathArcList);
                 Iteration++;
-                ReportAntSoltion(ref pathArcList);
+                ReportAntSoltion(ref pathArcList,(pathArcList.Count()-1));
+                ReportAntSoltion(ref pathArcList, 0);
             }
         }
-        private void ReportAntSoltion(ref List<ArcPath> pathArcList)
+        private void ReportAntSoltion(ref List<ArcPath> pathArcList, int index)
         {
-            pathArcList.Sort();
-            pathOrder(ref pathArcList);
+            //pathArcList.Sort();
+            pathOrder(ref pathArcList,index);
             List<City> reportCityList = new List<City>();
-            foreach (Arc arc in pathArcList[0].List)
+            foreach (Arc arc in pathArcList[index].List)
             {
                 reportCityList.Add((City)arc.FrmCity.Clone());
             }
-            pathArcList[0].recalc();
-            Report(reportCityList, pathArcList[0].totalDistance);
+            pathArcList[index].recalc();
+            Report(reportCityList, pathArcList[index].totalDistance);
         }
-        private void pathOrder(ref List<ArcPath> pathArcList)
+        private void pathOrder(ref List<ArcPath> pathArcList,int index)
         {
-            for (int i = 0; i < pathArcList[0].List.Count()-1; i++)
+            for (int i = 0; i < pathArcList[index].List.Count()-1; i++)
             {
-                ArcPath temp = new ArcPath(pathArcList[0].List);
+                ArcPath temp = new ArcPath(pathArcList[index].List);
                 SwapArcs(ref temp, temp.List.FindIndex(delegate(Arc arc) { if (arc.FrmCity.Name == temp.List[i].ToCity.Name)return true; else return false; }), i + 1);
-                pathArcList.Insert(0, temp);
+                pathArcList.Insert(index, temp);
             }
         }
-
         private void ConstructAntSolution(ref List<ArcPath> pathArcList, ref List<string> cityNameList)
         {
             //Construction Ants Solutions manages a colony of ants
@@ -176,7 +196,6 @@ namespace TravellingSalesman.Business_Logic
                 pathArcList.Add(tempArcPath);
             }
         }
-
         private List<Arc> CreateAntPath(ArcPath path, int startCity)
         {
             List<Arc> currentPath = new List<Arc>();
@@ -215,18 +234,55 @@ namespace TravellingSalesman.Business_Logic
         }
         private City findNearestCity(City FromCity, List<string> visitedCities)
         {
-            int range = 3;
+            int range = currVisablerange;
+            City bestCity = null;
             List<Arc> nearestArcs = new List<Arc>(ArcMatrix.Instance.getNearestCities(FromCity, visitedCities));
-            // add Pheremone to calculation
+            
+            //reduce list to only visable cities
             if (range > nearestArcs.Count)
                 range = nearestArcs.Count;
             nearestArcs = new List<Arc>(nearestArcs.GetRange(0, range));
-            nearestArcs.Sort(delegate(Arc a1, Arc a2)
+            bestCity = (City)(CalculateBestCity(ref nearestArcs)).Clone();
+            return (bestCity);
+        }
+        private City CalculateBestCity(ref List<Arc> nearestArcs)
+        {
+            City bestCity = null;
+            if (bestAverageDistance > 0)
             {
-                return (a1.Pheremone.CompareTo(a2.Pheremone));
-            });
-            nearestArcs.Reverse();
-            return (nearestArcs[0].ToCity);
+                double randomPheremone = (PHEREMONE/(MathHelper.getRandom()*Iteration * bestAverageDistance));
+                double averagePheremone = EVAPERATIONRATE / bestAverageDistance;
+                foreach (Arc arc in nearestArcs)
+                {
+                    if (arc.LocalPheremone == 0 )
+                    {
+                        bestCity = (City)(arc.ToCity).Clone();
+                        return (bestCity);
+                    }
+
+
+                    if (arc.Pheremone < randomPheremone)
+                    {
+                        if ((2 * arc.Pheremone) < averagePheremone)
+                            arc.Pheremone += (2 * randomPheremone);
+                        else
+                            arc.Pheremone += randomPheremone;
+                        randomPheremone = (PHEREMONE / (MathHelper.getRandom() * Iteration * bestAverageDistance));
+                    }
+
+                    //else
+                    //    Console.WriteLine("bingo");
+                }
+
+                //sort by pheremone        
+                nearestArcs.Sort(delegate(Arc a1, Arc a2)
+                {
+                    return (a1.Pheremone.CompareTo(a2.Pheremone));
+                });
+                nearestArcs.Reverse();
+            }
+            bestCity = (City)(nearestArcs[0].ToCity).Clone();
+            return (bestCity);
         }
 
         private void PheromoneUpdate(ref List<ArcPath> pathArcList)
@@ -252,11 +308,13 @@ namespace TravellingSalesman.Business_Logic
         {
 
             pathList.Sort();
-            ArcMatrix.Instance.updateMatrix(pathList[1], (PHEREMONE/pathList[1].averageDistance) );
+            for(int i=0;i<pathList.Count();i++)
+                ArcMatrix.Instance.localUpdateMatrix(pathList[i], (PHEREMONE / pathList[i].averageDistance));
+            ArcMatrix.Instance.updateMatrix(pathList[0], (PHEREMONE / pathList[0].averageDistance));
         }
 
 
-        private void DaemonActions()
+        private void DaemonActions(ref List<ArcPath> pathArcList)
         {
             //The Daemon Actions procedure is used to imple-
             //ment centralized actions which cannot be performed by a
@@ -265,6 +323,11 @@ namespace TravellingSalesman.Business_Logic
             //that can be used to decide whether it is useful or not and
             //to deposit additional pheromone to bias the search process
             //from a non-local perspective.
+            if (pathArcList.First().totalDistance == pathArcList.Last().totalDistance)
+            {
+                currVisablerange++;
+                if (currVisablerange > pathArcList.Last().List.Count) currVisablerange = VISABLERANGE;
+            }
         }
         public static City ArcToCity(Arc curArc)
         {
