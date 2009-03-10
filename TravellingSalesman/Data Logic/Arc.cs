@@ -21,11 +21,18 @@ namespace TravellingSalesman.Data_Logic
 
         #region ACO
         private double _pheremone;
+        private double _localPheremone;
+
 
         public double Pheremone
         {
             get { return _pheremone; }
             set { _pheremone = value; }
+        }
+        public double LocalPheremone
+        {
+            get { return _localPheremone; }
+            set { _localPheremone = value; }
         }
         #endregion
 
