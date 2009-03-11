@@ -357,6 +357,17 @@ namespace TravellingSalesman.Business_Logic
                     pathArcList.First().List[(crossedArc[j] + 1) % pathArcList.First().List.Count].SwapToFrm();
                     pathArcList.First().recalc();
                 }
+                if (pathArcList.First().List[(crossedArc[j] + 3) % pathArcList.First().List.Count()].Collides)
+                {
+                    City temp = new City();
+                    temp = (City)pathArcList.First().List[crossedArc[j]].ToCity.Clone();
+                    pathArcList.First().List[crossedArc[j]].ToCity = (City)(pathArcList.First().List[(crossedArc[j] + 3) % pathArcList.First().List.Count].FrmCity).Clone();
+                    pathArcList.First().List[(crossedArc[j] + 3) % pathArcList.First().List.Count].FrmCity = (City)temp.Clone();
+                    temp = (City)(pathArcList.First().List[(crossedArc[j] + 1) % pathArcList.First().List.Count].FrmCity).Clone();
+                    pathArcList.First().List[(crossedArc[j] + 1) % pathArcList.First().List.Count].FrmCity = (City)(pathArcList.First().List[(crossedArc[j] + 2) % pathArcList.First().List.Count]).ToCity.Clone();
+                    (pathArcList.First().List[(crossedArc[j] + 2) % pathArcList.First().List.Count].ToCity) = (City)temp.Clone();
+                    pathArcList.First().recalc();
+                }
             }
             pathArcList.Sort();
         }
