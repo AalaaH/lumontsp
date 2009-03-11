@@ -154,7 +154,11 @@ namespace TravellingSalesman.Data_Logic
         };
         public object Clone()
         {
-            return new Arc(FrmCity, ToCity, Pheremone);
+            Arc temp = new Arc();
+            temp.FrmCity = (City)FrmCity.Clone();
+            temp.ToCity = (City)ToCity.Clone();
+            temp.Pheremone = Pheremone;
+            return temp;
         }
 
         #endregion
