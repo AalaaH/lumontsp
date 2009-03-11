@@ -121,7 +121,7 @@ namespace TravellingSalesman.Business_Logic
         const double PHEREMONE = 1;
         const double EVAPERATIONRATE = 2;
         const int ITERATIONS = 200;
-        const int VISABLERANGE = 7;
+        const int VISABLERANGE = 2;
         public int Iteration = 1;
         public double bestAverageDistance = 0;
         public int currVisablerange = VISABLERANGE;
@@ -156,9 +156,11 @@ namespace TravellingSalesman.Business_Logic
                 ConstructAntSolution(ref pathArcList, ref cityNameList);
                 DaemonActions(ref pathArcList);
                 Iteration++;
-                ReportAntSoltion(ref pathArcList,(pathArcList.Count()-1));
+                //ReportAntSoltion(ref pathArcList,(pathArcList.Count()-1));
                 ReportAntSoltion(ref pathArcList, 0);
             }
+            ReportAntSoltion(ref pathArcList, (pathArcList.Count() - 1));
+            ReportAntSoltion(ref pathArcList, 0);
         }
         private void ReportAntSoltion(ref List<ArcPath> pathArcList, int index)
         {
@@ -308,7 +310,7 @@ namespace TravellingSalesman.Business_Logic
         {
 
             pathList.Sort();
-            for(int i=0;i<pathList.Count();i++)
+            for (int i = pathList.Count() - currVisablerange; i < pathList.Count(); i++)
                 ArcMatrix.Instance.localUpdateMatrix(pathList[i], (PHEREMONE / pathList[i].averageDistance));
             ArcMatrix.Instance.updateMatrix(pathList[0], (PHEREMONE / pathList[0].averageDistance));
         }
@@ -327,6 +329,33 @@ namespace TravellingSalesman.Business_Logic
             {
                 currVisablerange++;
                 if (currVisablerange > pathArcList.Last().List.Count) currVisablerange = VISABLERANGE;
+            }
+            fixCollisions(ref pathArcList);
+            
+          
+        }
+        public void fixCollisions(ref List<ArcPath> pathArcList)
+        {
+            pathOrder(ref pathArcList, 0);
+            List<int> crossedArc = new List<int>();
+            
+            for (int i = 0; i < pathArcList.First().List.Count(); i++)
+                if (Collides(i, pathArcList.First().List))
+                {
+                    pathArcList.First().List[i].Collides = true;
+                    crossedArc.Add(i);
+                }
+            for (int j = 0; j < crossedArc.Count(); j++)
+            {
+
+                if (pathArcList.First().List[(crossedArc[j] + 2) % pathArcList.First().List.Count()].Collides)
+                {
+                    City temp = new City();
+                    temp = (City)pathArcList.First().List[crossedArc[j]].ToCity.Clone();
+                    pathArcList.First().List[crossedArc[j]].ToCity = (City)(pathArcList.First().List[(crossedArc[j] + 2) % pathArcList.First().List.Count].FrmCity).Clone();
+                    pathArcList.First().List[(crossedArc[j] + 2) % pathArcList.First().List.Count].FrmCity = (City)temp.Clone();
+                    pathArcList.First().List[crossedArc[j] + 1].SwapToFrm();
+                }
             }
         }
         public static City ArcToCity(Arc curArc)
