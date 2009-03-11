@@ -120,7 +120,7 @@ namespace TravellingSalesman.Business_Logic
         #region Data members
         const double PHEREMONE = 1;
         const double EVAPERATIONRATE = 2;
-        const int ITERATIONS = 200;
+        const int ITERATIONS = 75;
         const int VISABLERANGE = 2;
         public int Iteration = 1;
         public double bestAverageDistance = 0;
@@ -156,7 +156,7 @@ namespace TravellingSalesman.Business_Logic
                 ConstructAntSolution(ref pathArcList, ref cityNameList);
                 DaemonActions(ref pathArcList);
                 Iteration++;
-                //ReportAntSoltion(ref pathArcList,(pathArcList.Count()-1));
+                if(Iteration%10==0) ReportAntSoltion(ref pathArcList,(pathArcList.Count()-1));
                 ReportAntSoltion(ref pathArcList, 0);
             }
             ReportAntSoltion(ref pathArcList, (pathArcList.Count() - 1));
@@ -354,9 +354,11 @@ namespace TravellingSalesman.Business_Logic
                     temp = (City)pathArcList.First().List[crossedArc[j]].ToCity.Clone();
                     pathArcList.First().List[crossedArc[j]].ToCity = (City)(pathArcList.First().List[(crossedArc[j] + 2) % pathArcList.First().List.Count].FrmCity).Clone();
                     pathArcList.First().List[(crossedArc[j] + 2) % pathArcList.First().List.Count].FrmCity = (City)temp.Clone();
-                    pathArcList.First().List[crossedArc[j] + 1].SwapToFrm();
+                    pathArcList.First().List[(crossedArc[j] + 1) % pathArcList.First().List.Count].SwapToFrm();
+                    pathArcList.First().recalc();
                 }
             }
+            pathArcList.Sort();
         }
         public static City ArcToCity(Arc curArc)
         {
